@@ -17,7 +17,7 @@ export const STRINGS = {
     eggCount: 'Verstecktes gefunden: {n} von {all}', eggRow: 'Psst, du hast etwas Verstecktes gefunden', eggHint: 'Psst: Sieh dir „{place}“ einmal ganz aus der Nähe an.',
     search: 'Ort suchen', noMatch: 'Kein Ort mit diesem Namen.',
     noData: 'Die Daten konnten nicht geladen werden. Bitte lade die Seite neu.',
-    keyBall: 'Größe: Zahl der Veröffentlichungen', keyLine: 'Linie: gemeinsam veröffentlicht', keyRing: 'Kleine Bögen: ohne Wiener Partner veröffentlicht',
+    keyBall: 'Größe: Zahl der Veröffentlichungen', keyLine: 'Linie: gemeinsam veröffentlicht', keyRing: 'Kleine Bögen: ohne Wiener Partner veröffentlicht', keySite: 'Punkt im Stadtplan: ein Standort',
     tourStart: 'So liest du das Netz', listOpen: 'Alle Orte', listShort: 'Orte', aboutOpen: 'Über das Netz', aboutShort: 'Info',
     back: 'Zurück', next: 'Weiter', tourDone: 'Selbst erkunden', tourClose: 'Beenden', close: 'Schließen', step: 'Schritt {i} von {n}',
     topics: ['Technik, Physik & Mathematik', 'Lebewesen & Natur', 'Gesundheit & Medizin', 'Mensch & Gesellschaft'],
@@ -29,6 +29,7 @@ export const STRINGS = {
     togetherNote: '{n} davon ({pct} %) sind gemeinsam mit einem anderen Wiener Forschungsort entstanden.',
     ringNote: 'Für die anderen {n} stehen die kleinen Bögen, die zur Kugel zurückführen.',
     topicsTitle: 'Woran wird hier geforscht?',
+    sitesTitle: '{n} Standorte', siteFar: 'nicht auf dieser Karte', sitesNote: 'Tippe auf einen Standort, um im Stadtplan dorthin zu fliegen. Die hellen Häuser gehören zu diesem Forschungsort.',
     partnersTitle: 'Forscht am häufigsten gemeinsam mit',
     partnersNote: 'Die Zahl zeigt die gemeinsamen Veröffentlichungen. Insgesamt hat dieser Ort {n} Partner im Netz.',
     listTitle: 'Alle {places} Forschungsorte', listNote: 'Geordnet nach der Zahl der Veröffentlichungen seit {since}.',
@@ -50,7 +51,7 @@ export const STRINGS = {
     eggCount: 'Hidden things found: {n} of {all}', eggRow: 'Psst, you have found something hidden', eggHint: 'Psst: take a really close look at “{place}”.',
     search: 'Find a place', noMatch: 'No place with this name.',
     noData: 'The data could not be loaded. Please reload the page.',
-    keyBall: 'Size: number of publications', keyLine: 'Line: published together', keyRing: 'Small arcs: published without a Vienna partner',
+    keyBall: 'Size: number of publications', keyLine: 'Line: published together', keyRing: 'Small arcs: published without a Vienna partner', keySite: 'Dot on the city map: one site',
     tourStart: 'How to read the network', listOpen: 'All places', listShort: 'Places', aboutOpen: 'About', aboutShort: 'Info',
     back: 'Back', next: 'Next', tourDone: 'Explore yourself', tourClose: 'End', close: 'Close', step: 'Step {i} of {n}',
     topics: ['Technology, physics & maths', 'Living things & nature', 'Health & medicine', 'People & society'],
@@ -62,6 +63,7 @@ export const STRINGS = {
     togetherNote: '{n} of them ({pct} %) were written together with another research place in Vienna.',
     ringNote: 'The small arcs that fall back to the sphere stand for the other {n}.',
     topicsTitle: 'What do they research here?',
+    sitesTitle: '{n} sites', siteFar: 'not on this map', sitesNote: 'Tap a site to fly there on the city map. The bright houses belong to this place.',
     partnersTitle: 'Publishes most often with',
     partnersNote: 'The number counts joint publications. This place has {n} partners in the network.',
     listTitle: 'All {places} research places', listNote: 'Ordered by the number of publications since {since}.',
@@ -114,8 +116,8 @@ export const TOUR = [
     de: { title: 'Die Farbe zeigt das Thema', body: ['Jede Kugel hat die Farbe des Themas, zu dem dort am meisten veröffentlicht wird. Viele Orte forschen aber an mehreren Themen. Tippe später auf eine Kugel, dann siehst du die ganze Mischung.'] },
     en: { title: 'Colour shows the topic', body: ['Each sphere has the colour of the topic it publishes on most. Many places work on several topics, though. Tap a sphere later to see the whole mix.'] } },
   { show: 'city',
-    de: { title: 'Wo ist das in Wien?', body: ['Jetzt schwebt jede Kugel über ihrer Adresse, und die Linien spannen sich als Bögen über die Stadt. Die Zahlen sind die Bezirke, das blaue Band ist die Donau.', 'Findest du einen Forschungsort in deiner Nähe?'] },
-    en: { title: 'Where is that in Vienna?', body: ['Now every sphere floats above its address, and the lines arch across the city. The numbers are the districts, the blue band is the Danube.', 'Can you find a research place near you?'] } },
+    de: { title: 'Wo ist das in Wien?', body: ['Jetzt schwebt jede Kugel über ihrem Hauptsitz. Die meisten Forschungsorte arbeiten aber an mehreren Adressen: Jeder kleine Punkt ist ein Standort. Tippe auf eine Kugel oder einen Punkt, dann leuchten alle Häuser auf, die dazugehören.', 'Die Häuser stammen aus dem 3D-Stadtmodell der Stadt Wien. Zoom ganz nah heran! Findest du einen Forschungsort in deiner Nähe?'] },
+    en: { title: 'Where is that in Vienna?', body: ['Now every sphere floats above its main site. But most research places work at several addresses: every small dot is a site. Tap a sphere or a dot and all the houses that belong to it light up.', 'The houses come from the City of Vienna\'s 3D city model. Zoom right in! Can you find a research place near you?'] } },
   { show: 'all',
     de: { title: 'Was das Netz nicht zeigt', body: ['Jede Grafik lässt etwas weg. Hier fehlen alle Partner außerhalb Wiens, obwohl Forschende mit der ganzen Welt zusammenarbeiten. Gezählt wird erst seit {since}.', 'Und eine große Kugel heißt nicht „besser“. Sie zeigt nur, dass dort viel veröffentlicht wird. Frag bei jeder Grafik: Was wurde gezählt, und was nicht?'] },
     en: { title: 'What the network does not show', body: ['Every chart leaves something out. This one leaves out all partners outside Vienna, although researchers work with people all over the world. Counting only starts in {since}.', 'And a big sphere does not mean “better”. It only shows that a lot gets published there. With any chart, ask: what was counted, and what was not?'] } },
@@ -134,10 +136,12 @@ export function aboutHtml(lang, f) {
     <li>Die kleinen Bögen an einer Kugel zeigen, wie viel ein Ort ohne anderen Wiener Forschungsort veröffentlicht hat: ein bis sieben Bögen, in logarithmischen Stufen. Partner außerhalb Wiens können trotzdem beteiligt sein.</li>
     <li>Die wandernden Lichtpunkte auf den Linien sind Schmuck und zeigen keine Daten.</li>
     <li>Zieht man an einer Kugel, bewegen sich die verbundenen Orte mit: stärker entlang dicker Linien, und ein großer Ort zieht einen kleinen stärker mit als umgekehrt. Das ist ein Bild dafür, dass Veränderungen an einem Ort die anderen erreichen. Gemessen ist diese Wirkung nicht.</li>
-    <li>Dachorganisationen sind zu einer Kugel zusammengefasst und stehen im Stadtplan an ihrem Hauptsitz.</li>
+    <li>Dachorganisationen sind zu einer Kugel zusammengefasst. Im Stadtplan schwebt jede Kugel über ihrem Hauptsitz; die Punkte zeigen alle Standorte, die sich auf den Websites der Einrichtungen fanden (Stand November 2026). Die Veröffentlichungen sind dem ganzen Forschungsort zugeordnet, nicht dem einzelnen Standort.</li>
+    <li>Die Häuser im Stadtplan sind Prismen mit echtem Grundriss und echter Höhe, aber ohne Dachform, und sie stehen auf flachem Boden. Gezeigt wird die Stadt nur im Umkreis von 260 Metern um einen Standort. Außerhalb Wiens gibt es keine Häuser im Modell.</li>
+    <li>Ein Haus leuchtet auf, wenn die Adresse eines Standorts in ihm liegt, samt allen Teilen, die die Stadt unter derselben Gebäudenummer oder demselben Adresscode führt. Das kann einen Trakt zu viel oder zu wenig treffen.</li>
     <li>Im Netz sitzen alle Orte auf der Oberfläche einer Kugel, eng verbundene näher beisammen. Die Lage hat sonst keine Bedeutung.</li></ul>
     <h3>Quellen</h3>
-    <p>Forschungsdaten: ${radar} (WWTF), ${link('https://openalex.org', 'OpenAlex')}. Bezirksgrenzen und Gewässer: ${link('https://data.wien.gv.at', 'Stadt Wien, data.wien.gv.at')} (CC BY 4.0). Adressen verortet mit Daten von ${link('https://www.openstreetmap.org/copyright', '© OpenStreetMap-Mitwirkenden')}.</p>`;
+    <p>Forschungsdaten: ${radar} (WWTF), ${link('https://openalex.org', 'OpenAlex')}. Häuser: Baukörpermodell aus dem ${link('https://www.wien.gv.at/stadtplanung/dreidimensionales-stadtmodell', '3D-Stadtmodell der Stadt Wien')}; Bezirksgrenzen, Gewässer und Wiener Adressen: ${link('https://data.wien.gv.at', 'Stadt Wien, data.wien.gv.at')} (alle CC BY 4.0). Adressen außerhalb Wiens verortet mit Daten von ${link('https://www.openstreetmap.org/copyright', '© OpenStreetMap-Mitwirkenden')}.</p>`;
   return `<h2>About the network</h2>
     <p>A prototype for an exhibition about science, designed in the look of the Q. but not an official product of the Q. The prototype shows which research places in Vienna publish together, and it practises how to read a data graphic along the way.</p>
     <h3>The data</h3>
@@ -148,8 +152,10 @@ export function aboutHtml(lang, f) {
     <li>The small arcs on a sphere show how much a place has published without another research place in Vienna: one to seven arcs, in logarithmic steps. Partners outside Vienna may still be involved.</li>
     <li>The travelling lights on the lines are decoration and carry no data.</li>
     <li>Pull a sphere and the connected places move along: more along thick lines, and a big place pulls a small one more than the other way round. It is a picture of how change in one place reaches the others. This effect is not measured.</li>
-    <li>Umbrella organisations are merged into one sphere and sit at their head office on the city map.</li>
+    <li>Umbrella organisations are merged into one sphere. On the city map every sphere floats above its main site; the dots show all sites found on the institutions' own websites (November 2026). Publications belong to the place as a whole, not to a single site.</li>
+    <li>The houses on the city map are prisms with their real outline and real height, but without roof shapes, and they stand on flat ground. The city is only shown within 260 metres of a site. Outside Vienna the model has no houses.</li>
+    <li>A house lights up when the address of a site lies in it, together with every part the city files under the same building number or address code. That can catch one wing too many or too few.</li>
     <li>In the network, all places sit on the surface of a sphere, closely linked ones nearer to each other. Position has no other meaning.</li></ul>
     <h3>Sources</h3>
-    <p>Research data: ${radar} (WWTF), ${link('https://openalex.org', 'OpenAlex')}. District borders and waters: ${link('https://data.wien.gv.at', 'City of Vienna, data.wien.gv.at')} (CC BY 4.0). Addresses located with data from ${link('https://www.openstreetmap.org/copyright', '© OpenStreetMap contributors')}.</p>`;
+    <p>Research data: ${radar} (WWTF), ${link('https://openalex.org', 'OpenAlex')}. Houses: building model from the ${link('https://www.wien.gv.at/stadtplanung/dreidimensionales-stadtmodell', 'City of Vienna\'s 3D city model')}; district borders, waters and Vienna addresses: ${link('https://data.wien.gv.at', 'City of Vienna, data.wien.gv.at')} (all CC BY 4.0). Addresses outside Vienna located with data from ${link('https://www.openstreetmap.org/copyright', '© OpenStreetMap contributors')}.</p>`;
 }

@@ -33,6 +33,8 @@ button { font: inherit; color: inherit; }
 .lbl.on { opacity: 1; }
 .lbl.strong { font-size: 18px; font-weight: 600; }
 .lbl.dark { color: #000; text-shadow: 0 0 3px #fff, 0 0 6px #fff; }   /* a name carried by a White or Lime sphere */
+.lbl.site { font-size: 14px; }
+.lbl.site.strong { font-size: 17px; }
 .lbl.district { font-size: 14px; font-weight: 400; opacity: 0; }
 .lbl.district.on { opacity: .75; }
 
@@ -72,6 +74,7 @@ h1 { font-size: clamp(26px, 3.6vw, 48px); line-height: 1.02; }
 .key-ball { width: 14px; height: 14px; border-radius: 50%; border: 2px solid currentColor; flex-shrink: 0; }
 .key-line { width: 14px; height: 3px; border-radius: 2px; background: var(--q-purple-40); flex-shrink: 0; }
 .key-ring { width: 14px; height: 9px; border-radius: 9px 9px 0 0; border: 2px solid currentColor; border-bottom: 0; flex-shrink: 0; }
+.key-site { width: 8px; height: 8px; margin: 0 3px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
 .legend p:first-of-type { margin-top: 6px; }
 .legend p { margin-top: -1px; }
 
@@ -145,6 +148,10 @@ body.busy .dock { display: none; }   /* a card is open: its own buttons lead on 
 .row { display: grid; grid-template-columns: 14px 1fr auto; gap: 10px; align-items: center; width: 100%; min-height: 48px; padding: 6px 6px; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: none; text-align: left; cursor: pointer; }
 .row:hover { background: var(--q-lime); color: var(--q-black); }
 .row .n { font-weight: 600; font-variant-numeric: tabular-nums; }
+.rows.sites .row { grid-template-columns: 1fr; }
+.rows.sites small { display: block; font: 400 14px/1.3 var(--q-font-copy); }
+.rows.sites .row.off { cursor: default; }
+.rows.sites .row.off:hover { background: none; color: inherit; }
 
 /* tour card: a Lime content block, as in the styleguide's layouts */
 .tour { display: flex; flex-direction: column; position: fixed; left: 50%; transform: translateX(-50%); bottom: var(--foot); width: min(620px, calc(100vw - 32px)); background: var(--q-lime); color: var(--q-black); border-radius: var(--q-radius-card) var(--q-radius-card) 56px var(--q-radius-card); padding: 20px 24px 20px; }

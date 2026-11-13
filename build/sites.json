@@ -1,0 +1,1916 @@
+{
+ "Universität Wien": {
+  "sites": [
+   {
+    "name": "Hauptgebäude",
+    "addr": "Universitätsring 1, 1010 Wien",
+    "main": true,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Neues Institutsgebäude (NIG)",
+    "addr": "Universitätsstraße 7, 1010 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Juridicum",
+    "addr": "Schottenbastei 10-16, 1010 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Fakultät für Psychologie (Liebiggasse)",
+    "addr": "Liebiggasse 5, 1010 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Schenkenstraße 8-10 (Theologische Fakultäten, Rechtswissenschaften)",
+    "addr": "Schenkenstraße 8-10, 1010 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Strafrecht und Kriminologie",
+    "addr": "Schenkenstraße 4, 1010 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Europäische Ethnologie",
+    "addr": "Hanuschgasse 3, 1010 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Theater-, Film- und Medienwissenschaft (Hofburg)",
+    "addr": "Hofburg, Batthyanystiege, 1010 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official",
+    "house": false
+   },
+   {
+    "name": "Institut für Rechts- und Verfassungsgeschichte (Postgasse)",
+    "addr": "Postgasse 7, 1010 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Universitätsarchiv und Institut für Byzantinistik und Neogräzistik",
+    "addr": "Postgasse 9, 1010 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Kultur- und Sozialanthropologie (Rathausstraße)",
+    "addr": "Rathausstraße 19, 1010 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Renngasse 6-8 (Rechtswissenschaften, Psychologie)",
+    "addr": "Renngasse 6-8, 1010 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Demografie (Dominikanerbastei)",
+    "addr": "Dominikanerbastei 16, 1010 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Demografie (Wiesingerstraße)",
+    "addr": "Wiesingerstraße 4, 1010 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Philosophie und Zentraler Informatikdienst (Ebendorferstraße)",
+    "addr": "Ebendorferstraße 10, 1010 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Zivilrecht (Freyung)",
+    "addr": "Freyung 6, 1010 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Kultur- und Sozialanthropologie (Schottengasse)",
+    "addr": "Schottengasse 10, 1010 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Forschungs-, Lehr- und Praxisambulanz der Fakultät für Psychologie",
+    "addr": "Wächtergasse 1, 1010 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Projekt Familienforschung in Österreich",
+    "addr": "Grillparzerstraße 7, 1010 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Politikwissenschaft (Apostelgasse)",
+    "addr": "Apostelgasse 23, 1030 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Max Perutz Labs (Campus-Vienna-Biocenter 5)",
+    "addr": "Campus-Vienna-Biocenter 5, 1030 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Max Perutz Labs (Dr.-Bohr-Gasse 1)",
+    "addr": "Dr.-Bohr-Gasse 1, 1030 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Zentrum für Molekulare Biologie (Max Perutz Labs)",
+    "addr": "Dr.-Bohr-Gasse 9, 1030 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "University of Vienna Biology Building (UBB)",
+    "addr": "Djerassiplatz 1, 1030 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Botanischer Garten und Department für Botanik und Biodiversitätsforschung",
+    "addr": "Rennweg 14, 1030 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Rechts- und Verfassungsgeschichte (Vordere Zollamtsstraße)",
+    "addr": "Vordere Zollamtsstraße 3, 1030 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Zieglergasse 6 (Ernährungswissenschaften, Sportwissenschaft)",
+    "addr": "Zieglergasse 6, 1070 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Alser Straße 23 (Institut Wiener Kreis, Pflegewissenschaft, Philosophie)",
+    "addr": "Alser Straße 23, 1080 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Campus der Universität Wien (Altes AKH)",
+    "addr": "Spitalgasse 2, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Alte WU (Ausweichquartier Augasse)",
+    "addr": "Augasse 2-6, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Zeitgeschichte (Berggasse)",
+    "addr": "Berggasse 7, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Fakultät für Physik (Boltzmanngasse 5)",
+    "addr": "Boltzmanngasse 5, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Quantenoptik, Quantennanophysik und Quanteninformation (Boltzmanngasse 3)",
+    "addr": "Boltzmanngasse 3, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Erwin Schrödinger Institut (ESI)",
+    "addr": "Boltzmanngasse 9, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Politikwissenschaft (Ferstelgasse)",
+    "addr": "Ferstelgasse 5, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Philosophie (Hörlgasse)",
+    "addr": "Hörlgasse 6, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Universitätszentrum Althangrund II (UZA II)",
+    "addr": "Josef-Holaubek-Platz 2, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Kolingasse 14-16",
+    "addr": "Kolingasse 14-16, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Geschichte (Maria-Theresien-Straße)",
+    "addr": "Maria-Theresien-Straße 9, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Oskar-Morgenstern-Platz (Mathematik, Wirtschaftswissenschaften)",
+    "addr": "Oskar-Morgenstern-Platz 1, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Staats- und Verwaltungsrecht (Porzellangasse 33a)",
+    "addr": "Porzellangasse 33a, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Porzellangasse 4 (Zentrum für Lehrer*innenbildung, Geschichte, Sprachwissenschaft)",
+    "addr": "Porzellangasse 4, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Soziologie (Pramergasse)",
+    "addr": "Pramergasse 9, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Rooseveltplatz 2 (Soziologie, Staatswissenschaft)",
+    "addr": "Rooseveltplatz 2, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Staatswissenschaft (Rooseveltplatz 3)",
+    "addr": "Rooseveltplatz 3, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Internationale Entwicklung",
+    "addr": "Sensengasse 3, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Sensengasse 3a (Bildungswissenschaft, Sprachwissenschaft)",
+    "addr": "Sensengasse 3a, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Sensengasse 8 (Fakultät für Chemie, Physik)",
+    "addr": "Sensengasse 8, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Strudlhofgasse 4 (Fakultät für Physik)",
+    "addr": "Strudlhofgasse 4, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Währinger Straße 17 (Theoretische Chemie, Isotopenphysik)",
+    "addr": "Währinger Straße 17, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Fakultät für Informatik und Institut für Publizistik- und Kommunikationswissenschaft",
+    "addr": "Währinger Straße 29, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Fakultät für Chemie (Währinger Straße 38-42)",
+    "addr": "Währinger Straße 38-42, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Rechnungswesen, Innovation und Strategie (Wasagasse)",
+    "addr": "Wasagasse 12, 1090 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Universitätssportzentrum Schmelz (Institut für Sport- und Bewegungswissenschaft)",
+    "addr": "Auf der Schmelz 6, 1150 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Universitätssternwarte (Institut für Astrophysik)",
+    "addr": "Türkenschanzstraße 17, 1180 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Franz-Klein-Gasse 1 / Gymnasiumstraße 50 (Archäologien, Translationswissenschaft)",
+    "addr": "Franz-Klein-Gasse 1, 1190 Wien",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Forschungsstation Haidlhof (Verhaltens- und Kognitionsbiologie)",
+    "addr": "Haidlhof 204, 2540 Bad Vöslau",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Leopold-Figl-Observatorium (Institut für Astrophysik)",
+    "addr": "Fürtleben 10, 2572 St. Corona am Schöpfl",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "WasserCluster Lunz (Funktionelle und Evolutionäre Ökologie)",
+    "addr": "Dr. Carl Kupelwieser Promenade 5, 3293 Lunz am See",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Konrad Lorenz Forschungsstelle (KLF) Grünau",
+    "addr": "Fischerau 13, 4645 Grünau im Almtal",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Außenstelle Landskron (Verhaltens- und Kognitionsbiologie)",
+    "addr": "Schlossbergweg 18, 9523 Landskron",
+    "main": false,
+    "source": "https://www.univie.ac.at/ueber-uns/oeffnungszeiten-und-standorte",
+    "verified": "official"
+   }
+  ],
+  "notes": "Quelle für alle Einträge ist die offizielle, nach Bezirken geordnete Standortliste der Universität Wien (abgerufen 2026-11-13). Aus der Stadt-Wien-Liste gestrichen, weil nicht mehr in der offiziellen Liste: Schlachthausgasse 43 (das Biologiegebäude wird heute als Djerassiplatz 1 geführt), Maria-Theresien-Straße 3 (offiziell nur noch Nr. 9). Bewusst weggelassen, obwohl in der offiziellen Liste: reine Verwaltung/IT/Bibliotheksverwaltung (Universitätsstraße 5 und 11, Teinfaltstraße 8, Karlsplatz 1/2/9, Franz-Grill-Straße 9, Althanstraße 8b, Währinger Straße 63, Sensengasse 6 mit nur einem Forschungsverbund-Büro), Universitätssport ohne Institut (Welthandelsplatz 1, Rennweg 89b, Spitalgasse 14, Grimmgasse 12-18, Kreuzgasse 74, Mönichkirchen), Kinderbüro/Kindergruppen (Lammgasse 8, Spittelauer Lände 10, Heiligenstädter Straße 11-25) sowie die Adressen der Partner-Hochschulen (PH Wien, KPH, Hochschule für Agrar- und Umweltpädagogik, PH NÖ Baden). Zusammengefasst: Campus Spitalgasse 2 (Höfe 1-9, inkl. Alser Straße 4), Währinger Straße 38/38-42/42 mit Zugang Boltzmanngasse 1, Rennweg 12/14 mit Botanischem Garten (Garteneingang laut Uni: Mechelgasse 2), Auf der Schmelz 6/6a, Franz-Klein-Gasse 1/Gymnasiumstraße 50 (ein Gebäudekomplex). Unsicherheiten: 'Hofburg, Batthyanystiege' hat keine Hausnummer und muss für die Karte händisch gesetzt werden. Augasse 2-6 ist laut Uni ein Ausweichquartier (temporär). Boltzmanngasse 3 ist das IQOQI-Gebäude der ÖAW, die Uni Wien führt dort eigene Quantenoptik-Gruppen. Die Namen der kleineren Standorte sind aus den dort gelisteten Einheiten abgeleitet, keine offiziellen Gebäudenamen. Grünau im Almtal (OÖ) und Landskron (Kärnten) liegen weit außerhalb des Wiener Umlands; je nach Kartenausschnitt streichen. In St. Corona lautet die offizielle Angabe 'Fürtleben 10/Schöpfl, 2572 St. Corona'."
+ },
+ "MedUni Wien": {
+  "sites": [
+   {
+    "name": "Rektoratsgebäude, Teaching Center und Comprehensive Cancer Center (MedUni Campus AKH)",
+    "addr": "Spitalgasse 23, 1090 Wien",
+    "main": true,
+    "source": "https://ccc.meduniwien.ac.at/en/about-us/contact/",
+    "verified": "official"
+   },
+   {
+    "name": "Universitätsklinikum AKH Wien (Kliniken, Hörsaalzentrum, Universitätsbibliothek)",
+    "addr": "Währinger Gürtel 18-20, 1090 Wien",
+    "main": false,
+    "source": "https://www.meduniwien.ac.at/web/en/studies-further-education/directions-to-medical-university-vienna/",
+    "verified": "official"
+   },
+   {
+    "name": "Anna Spiegel Forschungsgebäude",
+    "addr": "Lazarettgasse 14, 1090 Wien",
+    "main": false,
+    "source": "https://www.meduniwien.ac.at/web/en/studies-further-education/directions-to-medical-university-vienna/",
+    "verified": "official"
+   },
+   {
+    "name": "Zentrum für Krebsforschung",
+    "addr": "Borschkegasse 8a, 1090 Wien",
+    "main": false,
+    "source": "https://www.meduniwien.ac.at/web/en/about-us/organisation/medical-science-divisions/center-for-cancer-research",
+    "verified": "official"
+   },
+   {
+    "name": "Zentrum für Hirnforschung",
+    "addr": "Spitalgasse 4, 1090 Wien",
+    "main": false,
+    "source": "https://www.meduniwien.ac.at/web/en/studies-further-education/directions-to-medical-university-vienna/",
+    "verified": "official"
+   },
+   {
+    "name": "Zentrum für Gerichtsmedizin",
+    "addr": "Sensengasse 2, 1090 Wien",
+    "main": false,
+    "source": "https://www.meduniwien.ac.at/web/en/studies-further-education/directions-to-medical-university-vienna/",
+    "verified": "official"
+   },
+   {
+    "name": "Universitätszahnklinik",
+    "addr": "Sensengasse 2a, 1090 Wien",
+    "main": false,
+    "source": "https://www.meduniwien.ac.at/web/fileadmin/content/ueber_uns/image/plaene/Lageplan_Auf_einen_Blick_2022.11_EN.pdf",
+    "verified": "official"
+   },
+   {
+    "name": "Josephinum",
+    "addr": "Währinger Straße 25, 1090 Wien",
+    "main": false,
+    "source": "https://www.meduniwien.ac.at/web/fileadmin/content/ueber_uns/image/plaene/Lageplan_Auf_einen_Blick_2022.11_EN.pdf",
+    "verified": "official"
+   },
+   {
+    "name": "Währinger Straße 25a (Institut für Artificial Intelligence, Studienabteilung, Koordinierungszentrum für Klinische Studien)",
+    "addr": "Währinger Straße 25a, 1090 Wien",
+    "main": false,
+    "source": "https://www.meduniwien.ac.at/web/en/studies-further-education/directions-to-medical-university-vienna/",
+    "verified": "official"
+   },
+   {
+    "name": "Zentrum für Anatomie und Zellbiologie",
+    "addr": "Währinger Straße 13, 1090 Wien",
+    "main": false,
+    "source": "https://anatomie-zellbiologie.meduniwien.ac.at/en/about-us/contact/",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Pharmakologie",
+    "addr": "Währinger Straße 13a, 1090 Wien",
+    "main": false,
+    "source": "https://www.meduniwien.ac.at/web/en/studies-further-education/directions-to-medical-university-vienna/",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Physiologie",
+    "addr": "Schwarzspanierstraße 17, 1090 Wien",
+    "main": false,
+    "source": "https://physiologie-pharmakologie.meduniwien.ac.at/en/our-facilities/institute-of-physiology/",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Medizinische Chemie und Pathobiochemie",
+    "addr": "Währinger Straße 10, 1090 Wien",
+    "main": false,
+    "source": "https://www.meduniwien.ac.at/web/en/studies-further-education/directions-to-medical-university-vienna/",
+    "verified": "official"
+   },
+   {
+    "name": "Kinderspitalgasse 15 (Zentrum für Public Health, Zentrum für Virologie, Zentrum für Pathophysiologie, Infektiologie und Immunologie)",
+    "addr": "Kinderspitalgasse 15, 1090 Wien",
+    "main": false,
+    "source": "https://public-health.meduniwien.ac.at/en/our-departments/abteilung-fuer-primary-care-medicine/kontakt/",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Hygiene und Angewandte Immunologie",
+    "addr": "Lazarettgasse 19, 1090 Wien",
+    "main": false,
+    "source": "https://www.meduniwien.ac.at/web/fileadmin/content/ueber_uns/image/plaene/Lageplan_Auf_einen_Blick_2022.11_EN.pdf",
+    "verified": "official"
+   },
+   {
+    "name": "Max Perutz Labs (gemeinsam mit Universität Wien)",
+    "addr": "Dr.-Bohr-Gasse 9, 1030 Wien",
+    "main": false,
+    "source": "https://www.meduniwien.ac.at/web/fileadmin/content/ueber_uns/image/plaene/Lageplan_Auf_einen_Blick_2022.11_EN.pdf",
+    "verified": "official"
+   }
+  ],
+  "notes": "Basis: offizieller Lageplan 'At a glance' (Stand 11/2022) plus die aktuelle Anfahrtsseite der MedUni (2026, erwähnt die laufende S-Bahn-Sperre) und Kontaktseiten der Zentren. Nur über den Plan von 2022 belegt: Sensengasse 2a, Währinger Straße 25, Lazarettgasse 19, Dr.-Bohr-Gasse 9. Comprehensive Cancer Center: offizielle Adresse Spitalgasse 23 / BT86, also gleiche Adresse wie das Rektorat (BT88); deshalb kein eigener Eintrag, sondern im Haupteintrag genannt. Eric Kandel Institut (Zentrum für Präzisionsmedizin) und Center for Translational Medicine wurden laut ORF Wien am 2026-10-01 am Campus AKH eröffnet (CTM noch nicht voll bezogen); ich habe keine eigene Hausnummer gefunden, daher nicht als eigene Einträge aufgenommen. Bitte bei der MedUni nachfragen. MedUni Campus Mariannengasse: Betrieb laut MedUni-Aussendung vom Februar 2025 ab Wintersemester 2027/28 geplant; dann übersiedeln die Vorklinik-Standorte Währinger Straße 10/13/13a, Schwarzspanierstraße 17 und Borschkegasse 8a. Diese Einträge sind heute noch gültig, veralten aber absehbar. Die englische Anfahrtsseite vertauscht Kinderspitalgasse 6 und 15: Nr. 6 ist das St. Anna Kinderspital (eigene Institution, nicht aufgenommen), Nr. 15 ist das MedUni-Gebäude (durch Zentrumsseiten bestätigt). Aus der Stadt-Wien-Liste gestrichen: Rooseveltplatz 3 und Severingasse 9 (auf keiner aktuellen MedUni-Seite gefunden; Rooseveltplatz 3 führt heute die Uni Wien), Van-Swieten-Gasse 1 (Van-Swieten-Saal, Veranstaltungssaal, keine Forschung/Lehre im engeren Sinn). Himberg: Adresse aus einer MedUni-Stellenausschreibung, Tierzucht-Infrastruktur ohne Publikumsverkehr; für eine öffentliche Karte eventuell weglassen."
+ },
+ "TU Wien": {
+  "sites": [
+   {
+    "name": "Hauptgebäude (Campus Karlsplatz)",
+    "addr": "Karlsplatz 13, 1040 Wien",
+    "main": true,
+    "source": "https://www.tuwien.at/tu-wien/organisation/zentrale-bereiche/gebaeude-und-technik",
+    "verified": "official"
+   },
+   {
+    "name": "Resselgasse 3-5 (Campus Karlsplatz)",
+    "addr": "Resselgasse 3-5, 1040 Wien",
+    "main": false,
+    "source": "https://www.tuwien.at/tu-wien/organisation/zentrale-bereiche/gebaeude-und-technik",
+    "verified": "official"
+   },
+   {
+    "name": "Karlsgasse 11-13 (Campus Karlsplatz)",
+    "addr": "Karlsgasse 11-13, 1040 Wien",
+    "main": false,
+    "source": "https://www.tuwien.at/tu-wien/organisation/zentrale-bereiche/gebaeude-und-technik",
+    "verified": "official"
+   },
+   {
+    "name": "Argentinierstraße 8 (Campus Karlsplatz)",
+    "addr": "Argentinierstraße 8, 1040 Wien",
+    "main": false,
+    "source": "https://www.tuwien.at/tu-wien/organisation/zentrale-bereiche/gebaeude-und-technik",
+    "verified": "official"
+   },
+   {
+    "name": "Paniglgasse 16 (Campus Karlsplatz)",
+    "addr": "Paniglgasse 16, 1040 Wien",
+    "main": false,
+    "source": "https://www.tuwien.at/tu-wien/organisation/zentrale-bereiche/gebaeude-und-technik",
+    "verified": "official"
+   },
+   {
+    "name": "Wiedner Hauptstraße 7-9 (Campus Karlsplatz)",
+    "addr": "Wiedner Hauptstraße 7-9, 1040 Wien",
+    "main": false,
+    "source": "https://www.tuwien.at/tu-wien/organisation/zentrale-bereiche/gebaeude-und-technik",
+    "verified": "official"
+   },
+   {
+    "name": "Freihaus (Campus Freihaus)",
+    "addr": "Wiedner Hauptstraße 8-10, 1040 Wien",
+    "main": false,
+    "source": "https://www.tuwien.at/tu-wien/organisation/zentrale-bereiche/gebaeude-und-technik",
+    "verified": "official"
+   },
+   {
+    "name": "Campus Getreidemarkt",
+    "addr": "Getreidemarkt 9, 1060 Wien",
+    "main": false,
+    "source": "https://www.tuwien.at/tu-wien/organisation/zentrale-bereiche/gebaeude-und-technik",
+    "verified": "official"
+   },
+   {
+    "name": "Campus Gußhaus (Gußhausstraße 25-29, Elektrotechnik)",
+    "addr": "Gußhausstraße 25-29, 1040 Wien",
+    "main": false,
+    "source": "https://www.tuwien.at/tu-wien/organisation/zentrale-bereiche/gebaeude-und-technik",
+    "verified": "official"
+   },
+   {
+    "name": "Campus Gußhaus (Gußhausstraße 28-30)",
+    "addr": "Gußhausstraße 28-30, 1040 Wien",
+    "main": false,
+    "source": "https://www.tuwien.at/tu-wien/organisation/zentrale-bereiche/gebaeude-und-technik",
+    "verified": "official"
+   },
+   {
+    "name": "Favoritenstraße 9-11 (Campus Gußhaus)",
+    "addr": "Favoritenstraße 9-11, 1040 Wien",
+    "main": false,
+    "source": "https://www.tuwien.at/tu-wien/organisation/zentrale-bereiche/gebaeude-und-technik",
+    "verified": "official"
+   },
+   {
+    "name": "Favoritenstraße 16",
+    "addr": "Favoritenstraße 16, 1040 Wien",
+    "main": false,
+    "source": "https://www.tuwien.at/tu-wien/organisation/zentrale-bereiche/gebaeude-und-technik",
+    "verified": "official"
+   },
+   {
+    "name": "Taubstummengasse 11",
+    "addr": "Taubstummengasse 11, 1040 Wien",
+    "main": false,
+    "source": "https://www.tuwien.at/tu-wien/organisation/zentrale-bereiche/gebaeude-und-technik",
+    "verified": "official"
+   },
+   {
+    "name": "Theresianumgasse 27",
+    "addr": "Theresianumgasse 27, 1040 Wien",
+    "main": false,
+    "source": "https://www.tuwien.at/tu-wien/organisation/zentrale-bereiche/gebaeude-und-technik",
+    "verified": "official"
+   },
+   {
+    "name": "Atominstitut",
+    "addr": "Stadionallee 2, 1020 Wien",
+    "main": false,
+    "source": "https://www.tuwien.at/tu-wien/organisation/zentrale-bereiche/gebaeude-und-technik",
+    "verified": "official"
+   },
+   {
+    "name": "Science Center (Arsenal)",
+    "addr": "Franz-Grill-Straße 4, 1030 Wien",
+    "main": false,
+    "source": "https://www.tuwien.at/tu-wien/organisation/zentrale-bereiche/gebaeude-und-technik",
+    "verified": "official"
+   },
+   {
+    "name": "Standort Engerthstraße",
+    "addr": "Engerthstraße 119, 1200 Wien",
+    "main": false,
+    "source": "https://www.tuwien.at/tu-wien/organisation/zentrale-bereiche/gebaeude-und-technik",
+    "verified": "official"
+   },
+   {
+    "name": "Pilotfabrik Industrie 4.0 (Seestadt Aspern)",
+    "addr": "Seestadtstraße 27, 1220 Wien",
+    "main": false,
+    "source": "https://www.tuwien.at/tu-wien/organisation/zentrale-bereiche/gebaeude-und-technik",
+    "verified": "official"
+   }
+  ],
+  "notes": "Quelle: Gebäudeliste der TU-Abteilung Gebäude und Technik (abgerufen 2026-11-13), alle Adressen dort wörtlich geführt. Aus der Stadt-Wien-Liste gestrichen, weil nicht mehr in der offiziellen Gebäudeliste: Adolf-Blamauer-Gasse 1-3 (Funke-Halle), Floragasse 7, Theresianumgasse 7, Wiedner Hauptstraße 76, Wiedner Hauptstraße 6. In anderen Einträgen aufgegangen: Favoritenstraße 9 und 11, Karlsgasse 11 und 13, Resselgasse 3 und 5, Gußhausstraße 25 und 27-29, Wiedner Hauptstraße 7 und 9; Gumpendorfer Straße 1a und Lehargasse 4 gehören zum Areal Getreidemarkt; Operngasse 11 und Treitlstraße 3 sind in der offiziellen Liste nicht einzeln genannt und gehören vermutlich zum Freihaus-Komplex (Annahme, nicht geprüft). Franz-Grill-Straße 3 (Arsenal Objekt 214) ist jetzt Teil von 'Franz-Grill-Straße 2-9'. Offiziell gelistet, aber weggelassen, weil die Nutzung nicht geklärt ist: Mattiellistraße 2-4, Fillgradergasse 7 (jeweils Gebäudecode X, vermutlich Anmietungen) und Karlsgasse 5 (neuer Standort für Weiterbildung). Unsicher: Nutzung von Engerthstraße 119 (Stadtliste: 'Labor Fertigungstechnik', von mir nicht bestätigt), Theresianumgasse 27, Taubstummengasse 11 und Favoritenstraße 16; deshalb neutrale Namen. Die Pilotfabrik an der Seestadtstraße 27 ist über TU-Seiten bestätigt (dort teils als 27/3). Die TU ordnet Atominstitut dem Areal Freihaus und Engerthstraße/Seestadtstraße/Theresianumgasse dem Areal Getreidemarkt zu; das ist eine Verwaltungszuordnung, keine räumliche. Außerhalb Wiens: Die TU ist am interuniversitären Department für Agrarbiotechnologie (IFA Tulln, Konrad-Lorenz-Straße 20, 3430 Tulln) beteiligt; der Standort ist unter BOKU eingetragen und hier nicht doppelt geführt."
+ },
+ "IIASA": {
+  "sites": [
+   {
+    "name": "Schloss Laxenburg",
+    "addr": "Schlossplatz 1, 2361 Laxenburg",
+    "main": true,
+    "source": "https://iiasa.ac.at/contact",
+    "verified": "secondary"
+   }
+  ],
+  "notes": "Single site. iiasa.ac.at blocked direct access (HTTP 403), so the address was confirmed through search-engine excerpts of several iiasa.ac.at pages and the Wittgenstein Centre contact page rather than read first-hand; all agree on Schlossplatz 1, A-2361 Laxenburg, which matches the current main address."
+ },
+ "BOKU": {
+  "sites": [
+   {
+    "name": "Gregor-Mendel-Haus (Hauptgebäude)",
+    "addr": "Gregor-Mendel-Straße 33, 1180 Wien",
+    "main": true,
+    "source": "https://boku.ac.at/fm/themen/orientierung-und-lageplaene/standort-tuerkenschanze",
+    "verified": "official"
+   },
+   {
+    "name": "Adolf-von-Guttenberg-Haus",
+    "addr": "Feistmantelstraße 4, 1180 Wien",
+    "main": false,
+    "source": "https://boku.ac.at/fm/themen/orientierung-und-lageplaene/standort-tuerkenschanze",
+    "verified": "official"
+   },
+   {
+    "name": "Oskar-Simony-Haus",
+    "addr": "Peter-Jordan-Straße 65, 1180 Wien",
+    "main": false,
+    "source": "https://boku.ac.at/fm/themen/orientierung-und-lageplaene/standort-tuerkenschanze",
+    "verified": "official"
+   },
+   {
+    "name": "Forschungsglashaus",
+    "addr": "Peter-Jordan-Straße 63, 1180 Wien",
+    "main": false,
+    "source": "https://boku.ac.at/fm/themen/orientierung-und-lageplaene/standort-tuerkenschanze",
+    "verified": "official"
+   },
+   {
+    "name": "Adolf-Cieslar-Haus",
+    "addr": "Peter-Jordan-Straße 70, 1190 Wien",
+    "main": false,
+    "source": "https://boku.ac.at/fm/themen/orientierung-und-lageplaene/standort-tuerkenschanze",
+    "verified": "official"
+   },
+   {
+    "name": "TÜWI",
+    "addr": "Peter-Jordan-Straße 76, 1190 Wien",
+    "main": false,
+    "source": "https://boku.ac.at/fm/themen/orientierung-und-lageplaene/standort-tuerkenschanze",
+    "verified": "official"
+   },
+   {
+    "name": "Wilhelm-Exner-Haus, Franz-Schwackhöfer-Haus, Ilse-Wallentin-Haus",
+    "addr": "Peter-Jordan-Straße 82, 1190 Wien",
+    "main": false,
+    "source": "https://boku.ac.at/fm/themen/orientierung-und-lageplaene/standort-tuerkenschanze",
+    "verified": "official"
+   },
+   {
+    "name": "Emil-Perels-Haus und Armin-Szilvinyi-Haus (Muthgasse I und II)",
+    "addr": "Muthgasse 18, 1190 Wien",
+    "main": false,
+    "source": "https://boku.ac.at/fm/themen/orientierung-und-lageplaene/standort-muthgasse",
+    "verified": "official"
+   },
+   {
+    "name": "Simon-Zeisel-Haus (Muthgasse III)",
+    "addr": "Muthgasse 11, 1190 Wien",
+    "main": false,
+    "source": "https://boku.ac.at/fm/themen/orientierung-und-lageplaene/standort-muthgasse",
+    "verified": "official"
+   },
+   {
+    "name": "Außenanmietung Muthgasse 107",
+    "addr": "Muthgasse 107, 1190 Wien",
+    "main": false,
+    "source": "https://boku.ac.at/fm/themen/orientierung-und-lageplaene/standort-muthgasse",
+    "verified": "official"
+   },
+   {
+    "name": "Wasserbaulabor",
+    "addr": "Am Brigittenauer Sporn 3, 1200 Wien",
+    "main": false,
+    "source": "https://boku.ac.at/fm/themen/orientierung-und-lageplaene/standort-muthgasse",
+    "verified": "official"
+   },
+   {
+    "name": "Institut für Soziale Ökologie (SEC)",
+    "addr": "Schottenfeldgasse 29, 1070 Wien",
+    "main": false,
+    "source": "https://boku.ac.at/fm/themen/orientierung-und-lageplaene/aussenstellen",
+    "verified": "official"
+   },
+   {
+    "name": "Versuchszentrum Jedlersdorf",
+    "addr": "Sowinetzgasse 1, 1210 Wien",
+    "main": false,
+    "source": "https://boku.ac.at/fm/themen/orientierung-und-lageplaene/aussenstellen",
+    "verified": "official"
+   },
+   {
+    "name": "Forstlicher Versuchsgarten Knödelhütte (Gustav-Hempel-Haus)",
+    "addr": "Knödelhüttenstraße 37, 1140 Wien",
+    "main": false,
+    "source": "https://boku.ac.at/fm/themen/orientierung-und-lageplaene/aussenstellen",
+    "verified": "official"
+   },
+   {
+    "name": "BOKU Versuchswirtschaft Groß-Enzersdorf",
+    "addr": "Schloßhofer Straße 31, 2301 Groß-Enzersdorf",
+    "main": false,
+    "source": "https://boku.ac.at/fm/themen/orientierung-und-lageplaene/aussenstellen",
+    "verified": "official"
+   },
+   {
+    "name": "Universitäts- und Forschungszentrum Tulln (UFT)",
+    "addr": "Konrad-Lorenz-Straße 24, 3430 Tulln an der Donau",
+    "main": false,
+    "source": "https://boku.ac.at/universitaetsleitung/rektorat/stabsstellen/stabsstelle-standorte-und-bauten",
+    "verified": "official"
+   },
+   {
+    "name": "IFA Tulln (Department für Agrarbiotechnologie)",
+    "addr": "Konrad-Lorenz-Straße 20, 3430 Tulln an der Donau",
+    "main": false,
+    "source": "https://boku.ac.at/universitaetsleitung/rektorat/stabsstellen/stabsstelle-standorte-und-bauten",
+    "verified": "official"
+   },
+   {
+    "name": "BOKU Lehrforst-Zentrum (Heuberg/Rosalia)",
+    "addr": "Heuberg 82, 7212 Forchtenstein",
+    "main": false,
+    "source": "https://boku.ac.at/fm/themen/orientierung-und-lageplaene/aussenstellen",
+    "verified": "official"
+   },
+   {
+    "name": "WasserCluster Lunz",
+    "addr": "Dr. Carl Kupelwieser Promenade 5, 3293 Lunz am See",
+    "main": false,
+    "source": "https://boku.ac.at/fm/themen/orientierung-und-lageplaene/aussenstellen",
+    "verified": "official"
+   }
+  ],
+  "notes": "Quelle: deutsche Standortseiten des BOKU Facility Managements und der Stabsstelle Standorte und Bauten (abgerufen 2026-11-13). Lunz: Die BOKU-Seite nennt nur '3293 Lunz am See'; die Straßenadresse stammt aus der offiziellen Standortliste der Universität Wien, die denselben WasserCluster führt. Jedlersdorf: Die Stadtliste nennt Gerasdorfer Straße 103, die BOKU selbst Sowinetzgasse 1; übernommen wurde die BOKU-Angabe (vermutlich dasselbe Areal mit anderem Zugang, nicht geprüft). Gestrichen aus der Stadt-Wien-Liste: Max-Emanuel-Straße 17 (auf keiner aktuellen Standortseite), Schlachthammerstraße 86 / Außenstelle Essling (fehlt in der offiziellen Außenstellenliste), Borkowskigasse 4 (Baracken) und Hasenauerstraße 38 (stehen nur noch auf der englischen Türkenschanze-Seite, nicht mehr auf der deutschen; vermutlich aufgegeben, nicht abschließend geklärt). Weggelassen: Peter-Jordan-Straße 82a (Verwaltergebäude, International Relations, reine Verwaltung). Die IKI-Prüfhalle liegt ebenfalls auf Peter-Jordan-Straße 82 und ist im Sammeleintrag enthalten. Muthgasse 107 führt die BOKU nur als 'Außenanmietung' ohne Angabe der Nutzung. Der Wasserbaulabor-Standort wird von der BOKU als 'Am-Brigittenauer-Sporn 3' geschrieben. Die Schottenfeldgasse 29 steht in der Stadtliste noch unter der Universität Klagenfurt (IFF); die BOKU führt das Institut für Soziale Ökologie dort heute als eigene Außenstelle."
+ },
+ "OeAW": {
+  "sites": [
+   {
+    "name": "ÖAW Hauptgebäude",
+    "addr": "Dr.-Ignaz-Seipel-Platz 2, 1010 Wien",
+    "main": true,
+    "source": "https://de.wikipedia.org/wiki/Österreichische_Akademie_der_Wissenschaften",
+    "verified": "secondary"
+   },
+   {
+    "name": "ÖAW Campus Akademie (ACDH, ISR, IKW, CMC, ITA)",
+    "addr": "Bäckerstraße 13, 1010 Wien",
+    "main": false,
+    "source": "https://www.oeaw.ac.at/en/ikw/the-institute/contact",
+    "verified": "secondary"
+   },
+   {
+    "name": "ÖAW Postsparkasse (ÖAI, IHB, IMAFO, VID, Marietta-Blau-Institut, Schallforschung)",
+    "addr": "Dominikanerbastei 16, 1010 Wien",
+    "main": false,
+    "source": "https://www.oeaw.ac.at/en/ihb/institute/contact",
+    "verified": "secondary"
+   },
+   {
+    "name": "IQOQI Wien",
+    "addr": "Boltzmanngasse 3, 1090 Wien",
+    "main": false,
+    "source": "https://www.iqoqi-vienna.at/",
+    "verified": "official"
+   },
+   {
+    "name": "CeMM",
+    "addr": "Lazarettgasse 14, 1090 Wien",
+    "main": false,
+    "source": "https://cemm.at/contact",
+    "verified": "official"
+   },
+   {
+    "name": "IMBA",
+    "addr": "Dr.-Bohr-Gasse 3, 1030 Wien",
+    "main": false,
+    "source": "https://www.viennabiocenter.org/about/vbc-at-a-glance/who-is-here-members/institute-of-molecular-biotechnology-imba/",
+    "verified": "official"
+   },
+   {
+    "name": "Gregor Mendel Institut (GMI)",
+    "addr": "Dr.-Bohr-Gasse 3, 1030 Wien",
+    "main": false,
+    "source": "https://www.oeaw.ac.at/gmi/imprint",
+    "verified": "secondary"
+   },
+   {
+    "name": "AITHYRA",
+    "addr": "Helmut-Qualtinger-Gasse 2, 1030 Wien",
+    "main": false,
+    "source": "https://www.aithyra.at/",
+    "verified": "official"
+   }
+  ],
+  "notes": "www.oeaw.ac.at answers automated requests with HTTP 403 and the browser tool failed, so no oeaw.ac.at page could be read directly. Every entry marked 'secondary' rests on search-engine excerpts of the named oeaw.ac.at page (or Wikipedia for the main seat), not on a page read in full; check them by hand before printing. IQOQI, CeMM and AITHYRA were read on the institutes' own domains; IMBA on the Vienna BioCenter campus site (campus association, not the legal parent). GMI and IMBA share one building, hence the same address twice. The Postsparkasse is a single block: Dominikanerbastei 16 is the office address the institutes use, Georg-Coch-Platz 2 the visitor entrance, Wiesingerstraße 4 the postal/delivery address; map it once. Institute allocation per building follows the excerpts: Bäckerstraße 13 was named on the contact pages of ACDH, ISR, IKW, CMC and ITA; Dominikanerbastei 16 on those of IHB, ÖAI, VID, MBI (successor of HEPHY and Stefan-Meyer-Institut since 2025), Schallforschung and in the IMAFO move notice (2023). Institut für Sozialanthropologie, IKGA and Institut für Iranistik: the ÖAW institute list reportedly places them at Dominikanerbastei 16 as well, but several older pages still say Hollandstraße 11-13, 1020 Wien; unresolved, so they are not named in the site label and Hollandstraße is left out. Left out for lack of a reliable current address: Institut für Europäisches Schadenersatzrecht (Reichsratsstraße 17, 1010 Wien appears only on a 2012 page; another excerpt put it at Bäckerstraße 13), MBI outbuilding Nikolsdorfer Gasse 18, 1050 Wien (mentioned on the MBI directions page excerpt, which may be dated). Addresses from the brief that look outdated and were not confirmed as current sites: Hollandstraße 11-13, Wohllebengasse 12-14 (former Schallforschung and VID), Sonnenfelsgasse 19 (former ACDH), Postgasse 7 (former ISR, IKW, CMC), Vordere Zollamtsstraße 3 (interim quarters 2020-2022), Apostelgasse 23, Kegelgasse (no trace found). Institutes outside the Vienna area, left out: 6 (IQOQI Innsbruck, Institut für Interdisziplinäre Gebirgsforschung Innsbruck, Erich-Schmid-Institut Leoben, Institut für Weltraumforschung Graz, RICAM Linz, Cori Institute Graz); the cities come from Wikipedia's general list and background knowledge, not from individual contact pages. No ÖAW institute in Wiener Neustadt was found."
+ },
+ "IST Austria": {
+  "sites": [
+   {
+    "name": "ISTA Campus Klosterneuburg",
+    "addr": "Am Campus 1, 3400 Klosterneuburg",
+    "main": true,
+    "source": "https://ista.ac.at/en/contact/",
+    "verified": "official"
+   }
+  ],
+  "notes": "Single campus, address confirmed on the official contact page. The institute now brands itself ISTA."
+ },
+ "AIT": {
+  "sites": [
+   {
+    "name": "AIT Giefinggasse (Hauptsitz)",
+    "addr": "Giefinggasse 4, 1210 Wien",
+    "main": true,
+    "source": "https://www.ait.ac.at/en/about-the-ait/locations-and-subsidiary-enterprises",
+    "verified": "official"
+   },
+   {
+    "name": "AIT Argentinierstraße",
+    "addr": "Argentinierstraße 2, 1040 Wien",
+    "main": false,
+    "source": "https://www.ait.ac.at/ueber-das-ait/standorte-und-tochterunternehmen/argentinierstrasse",
+    "verified": "official"
+   },
+   {
+    "name": "AIT Seibersdorf",
+    "addr": "2444 Seibersdorf",
+    "main": false,
+    "source": "https://www.ait.ac.at/ueber-das-ait/standorte-und-tochterunternehmen/seibersdorf",
+    "verified": "official"
+   },
+   {
+    "name": "AIT Tulln",
+    "addr": "Konrad-Lorenz-Straße 24, 3430 Tulln",
+    "main": false,
+    "source": "https://www.ait.ac.at/en/about-the-ait/locations-and-subsidiary-enterprises",
+    "verified": "official"
+   }
+  ],
+  "notes": "AIT's own locations page lists the headquarters as 'Giefinggasse 2, 4 and 6' with Giefinggasse 4 as company address; one marker used. Argentinierstraße '2/4' is written that way by AIT (Center for Vision, Automation and Control); it probably means house 2, door 4, so geocode as Argentinierstraße 2 if '2/4' fails. Seibersdorf: AIT publishes no street or house number, only '2444 Seibersdorf', so this entry does NOT meet the street+number rule and needs manual placement or dropping. Wiener Neustadt is not on AIT's current locations list, so it was left out. No separate 'TECHbase' address is listed (TECHbase is the Giefinggasse complex). Further AIT sites far from Vienna, on the official list but not included here: Graz (Reininghausstr. 13/1, 8020), Klagenfurt (Lakeside B10A, 9020), Neukirchen an der Enknach (Industrieparkstraße 6, 5282; the LKR Ranshofen subsidiary), Innsbruck (Maximilianstraße 2, 6020), Steyr-Gleink (Im Stadtgut D1, 4407), Dornbirn (Hochschulstraße 1, 6850)."
+ },
+ "WU Wien": {
+  "sites": [
+   {
+    "name": "Campus WU, Library & Learning Center (LC)",
+    "addr": "Welthandelsplatz 1, 1020 Wien",
+    "main": true,
+    "source": "https://www.wu.ac.at/universitaet/campus/orientierung-anfahrt",
+    "verified": "official"
+   },
+   {
+    "name": "Campus WU, Gebäude D1 und Teaching Center",
+    "addr": "Welthandelsplatz 1, Gebäude D1, 1020 Wien",
+    "main": false,
+    "source": "https://www.data.gv.at/katalog/dataset/stadt-wien_universittenstandortewien (layer UNIVERSITAETOGD)",
+    "verified": "city-list"
+   },
+   {
+    "name": "Campus WU, Gebäude D2 und Student Center",
+    "addr": "Welthandelsplatz 1, Gebäude D2, 1020 Wien",
+    "main": false,
+    "source": "https://www.data.gv.at/katalog/dataset/stadt-wien_universittenstandortewien (layer UNIVERSITAETOGD)",
+    "verified": "city-list"
+   },
+   {
+    "name": "Campus WU, Gebäude D3",
+    "addr": "Welthandelsplatz 1, Gebäude D3, 1020 Wien",
+    "main": false,
+    "source": "https://www.data.gv.at/katalog/dataset/stadt-wien_universittenstandortewien (layer UNIVERSITAETOGD)",
+    "verified": "city-list"
+   },
+   {
+    "name": "Campus WU, Gebäude D4",
+    "addr": "Welthandelsplatz 1, Gebäude D4, 1020 Wien",
+    "main": false,
+    "source": "https://www.data.gv.at/katalog/dataset/stadt-wien_universittenstandortewien (layer UNIVERSITAETOGD)",
+    "verified": "city-list"
+   },
+   {
+    "name": "Campus WU, Gebäude AD",
+    "addr": "Welthandelsplatz 1, Gebäude AD, 1020 Wien",
+    "main": false,
+    "source": "https://www.data.gv.at/katalog/dataset/stadt-wien_universittenstandortewien (layer UNIVERSITAETOGD)",
+    "verified": "city-list"
+   },
+   {
+    "name": "Campus WU, Gebäude EA (Executive Academy)",
+    "addr": "Welthandelsplatz 1, Gebäude EA, 1020 Wien",
+    "main": false,
+    "source": "https://www.data.gv.at/katalog/dataset/stadt-wien_universittenstandortewien (layer UNIVERSITAETOGD)",
+    "verified": "city-list"
+   }
+  ],
+  "notes": "Ein Eintrag für den gesamten Campus (laut WU sieben Gebäudekomplexe: Library & Learning Center, Teaching Center, Departmentgebäude 1-5, Executive Academy, Administration, Student Center), alle unter Welthandelsplatz 1 geführt. Die WU-Seite nennt die Adresse ohne Postleitzahl; 1020 stammt aus der vorgegebenen Hauptadresse und den WU-Executive-Academy-Seiten. Gestrichen aus der Stadt-Wien-Liste: Franz-Klein-Gasse 1 (heute Universität Wien) und Heiligenstädter Straße 46-48 (kein Hinweis auf aktuelle WU-Nutzung). Keine WU-Standorte außerhalb des Campus gefunden. The campus has one postal address; the single buildings and their positions come from the City of Vienna university layer."
+ },
+ "Vienna BioCenter": {
+  "sites": [
+   {
+    "name": "IMP",
+    "addr": "Campus-Vienna-Biocenter 1, 1030 Wien",
+    "main": true,
+    "source": "https://www.imp.ac.at/contact",
+    "verified": "official"
+   },
+   {
+    "name": "Max Perutz Labs",
+    "addr": "Dr.-Bohr-Gasse 9, 1030 Wien",
+    "main": false,
+    "source": "https://www.maxperutzlabs.ac.at/contact",
+    "verified": "official"
+   },
+   {
+    "name": "Vienna BioCenter Core Facilities",
+    "addr": "Dr.-Bohr-Gasse 3, 1030 Wien",
+    "main": false,
+    "source": "https://www.viennabiocenter.org/vbcf/",
+    "verified": "official"
+   }
+  ],
+  "notes": "The main address in the starting file (Dr.-Bohr-Gasse 3) is not what the campus itself publishes: viennabiocenter.org gives 'Campus-Vienna-Biocenter 1, 1030 Vienna' as the Vienna BioCenter address, which is also the IMP building; that site is therefore set as main. Dr.-Bohr-Gasse 3 is the address of VBCF (and of IMBA and GMI, counted under OeAW). Max Perutz Labs publish only Dr.-Bohr-Gasse 9; further buildings they may use on campus (e.g. Campus-Vienna-Biocenter 5) could not be confirmed on an official page and are left out. Dr.-Bohr-Gasse 7 appears only as a historic IMP address in old publications and is left out."
+ },
+ "Ludwig Boltzmann Gesellschaft": {
+  "sites": [
+   {
+    "name": "LBG Geschäftsstelle",
+    "addr": "Nußdorfer Straße 64, 1090 Wien",
+    "main": true,
+    "source": "https://lbg.ac.at/",
+    "verified": "official"
+   },
+   {
+    "name": "LBI Arthritis und Rehabilitation",
+    "addr": "Spitalgasse 23, 1090 Wien",
+    "main": false,
+    "source": "https://ar.lbg.ac.at/",
+    "verified": "official"
+   },
+   {
+    "name": "LBI Kardiovaskuläre Forschung",
+    "addr": "Schwarzspanierstraße 17, 1090 Wien",
+    "main": false,
+    "source": "https://cardio.lbg.ac.at/",
+    "verified": "official"
+   },
+   {
+    "name": "LBI Grund- und Menschenrechte",
+    "addr": "Freyung 6, 1010 Wien",
+    "main": false,
+    "source": "https://gmr.lbg.ac.at/",
+    "verified": "official"
+   },
+   {
+    "name": "LBI Hämatologie und Onkologie",
+    "addr": "Währinger Gürtel 18-20, 1090 Wien",
+    "main": false,
+    "source": "https://onc.lbg.ac.at/",
+    "verified": "official"
+   },
+   {
+    "name": "LBI Lungengesundheit",
+    "addr": "Sanatoriumstraße 2, 1140 Wien",
+    "main": false,
+    "source": "https://lunghealth.lbg.ac.at/",
+    "verified": "official"
+   },
+   {
+    "name": "LBI Netzwerkmedizin",
+    "addr": "Julius-Tandler-Platz 3, 1090 Wien",
+    "main": false,
+    "source": "https://netmed.lbg.ac.at/",
+    "verified": "official"
+   },
+   {
+    "name": "LBI Rehabilitation Research",
+    "addr": "Reizenpfenninggasse 1, 1140 Wien",
+    "main": false,
+    "source": "https://rehabilitation.lbg.ac.at/",
+    "verified": "official"
+   },
+   {
+    "name": "LBI Traumatologie",
+    "addr": "Donaueschingenstraße 13, 1200 Wien",
+    "main": false,
+    "source": "https://trauma.lbg.ac.at/",
+    "verified": "official"
+   }
+  ],
+  "notes": "All nine addresses were read on the institutes' own lbg.ac.at pages. Host buildings: Arthritis und Rehabilitation sits c/o MedUni Wien, Center for Medical Data Science, Spitalgasse 23, BT88; Kardiovaskuläre Forschung c/o MedUni Wien, Institut für Gefäßbiologie und Thromboseforschung, Schwarzspanierstraße 17/H; Hämatologie und Onkologie at MedUni Wien, Universitätsklinik für Innere Medizin I (AKH); Lungengesundheit at Klinik Ottakring, Standort Penzing, Pavillon Hermann; Grund- und Menschenrechte in the Schottenhof; Netzwerkmedizin is the LBI at Universität Wien but gives Julius-Tandler-Platz 3, Top 5.1. Three members from the list have closed and are left out because their own pages no longer show an institute address (they show only the LBG head office): LBI Applied Diagnostics (ended 30 June 2023), LBI Rare and Undiagnosed Diseases (ended 31 March 2023), LBI Digital Health and Patient Safety (term ended end of September 2026). Unconfirmed last addresses, for reference only: DHPS reportedly moved on 1 December 2025 from Währinger Straße 104/10, 1180 Wien to Spitalgasse 23, Bauteil 86, 1090 Wien (search excerpt of a dhps.lbg.ac.at page); Applied Diagnostics was given as Währinger Gürtel 18-20, 1090 Wien in a 2017 press release. Naming: the tissue-regeneration cluster site still calls LBI Traumatologie 'LBI for Experimental and Clinical Traumatology'; LBG now lists it as 'Traumatologie (in Kooperation mit AUVA)'. No rename history was verified for the other institutes. None of the listed members is outside the Vienna area, so no entry carries outside=true. A possible second site of LBI Traumatologie outside Vienna was not found on its page."
+ },
+ "VetMedUni Wien": {
+  "sites": [
+   {
+    "name": "Campus Floridsdorf",
+    "addr": "Veterinärplatz 1, 1210 Wien",
+    "main": true,
+    "source": "https://www.vetmeduni.ac.at/universitaet/campus/standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Wilhelminenberg (Forschungsinstitut für Wildtierkunde und Ökologie, Konrad-Lorenz-Institut für Vergleichende Verhaltensforschung, Österreichische Vogelwarte)",
+    "addr": "Savoyenstraße 1, 1160 Wien",
+    "main": false,
+    "source": "https://www.vetmeduni.ac.at/fiwi",
+    "verified": "official"
+   },
+   {
+    "name": "VetFarm (Hof Kremesberg)",
+    "addr": "Kremesberg 13, 2563 Pottenstein",
+    "main": false,
+    "source": "https://www.vetmeduni.ac.at/vetfarm",
+    "verified": "official"
+   },
+   {
+    "name": "Wolf Science Center (Wolfsforschungszentrum)",
+    "addr": "Dörfles 48, 2115 Ernstbrunn",
+    "main": false,
+    "source": "https://www.wolfscience.at/de/kontakt",
+    "verified": "official"
+   }
+  ],
+  "notes": "Campus, Wilhelminenberg und VetFarm sind über vetmeduni.ac.at bestätigt; die Adresse des Wolf Science Center stammt von dessen eigener Website wolfscience.at (Core Facility der Vetmeduni). Laut Infobroschüre der Vetmeduni (08/2025) gibt es weitere Standorte, für die ich keine Straßenadresse verifizieren konnte und die deshalb fehlen: VetFarm-Höfe Rehgras (Furth an der Triesting), Haidlhof (Bad Vöslau) und Medau (Berndorf); Außenstelle der Österreichischen Vogelwarte in Seebarn/Grafenwörth; Reproduction Center Wieselburg; Außenstelle 'Der Wiederkäuer im Alpenraum' in Innsbruck. Die Vetmeduni ist außerdem am IFA Tulln beteiligt (unter BOKU eingetragen). Der Haidlhof ist bei der Universität Wien mit 'Haidlhof 204, 2540 Bad Vöslau' eingetragen (gemeinsam genutzte Forschungsstation)."
+ },
+ "SFU Wien": {
+  "sites": [
+   {
+    "name": "Campus Prater (Freudplatz 1 und 3)",
+    "addr": "Freudplatz 1, 1020 Wien",
+    "main": true,
+    "source": "https://www.sfu.ac.at/en/about-sfu/contact-sfu-vienna/",
+    "verified": "official"
+   },
+   {
+    "name": "Psychologische Universitätsambulanz",
+    "addr": "Welthandelsplatz 3, 1020 Wien",
+    "main": false,
+    "source": "https://psychologie-ambulanz.sfu.ac.at/en/psychological-outpatient-clinic/",
+    "verified": "official"
+   },
+   {
+    "name": "Psychotherapeutische Universitätsambulanz (Erwachsene)",
+    "addr": "Salztorgasse 5, 1010 Wien",
+    "main": false,
+    "source": "https://ptw.sfu.ac.at/en/contact/psychotherapy-outpatient-clinics/",
+    "verified": "official"
+   },
+   {
+    "name": "Psychotherapeutische Universitätsambulanz für Kinder und Jugendliche",
+    "addr": "Faulmanngasse 4, 1040 Wien",
+    "main": false,
+    "source": "https://ptw.sfu.ac.at/en/contact/psychotherapy-outpatient-clinics/",
+    "verified": "official"
+   }
+  ],
+  "notes": "Main address Freudplatz 1 confirmed. Freudplatz 3 (Fakultät für Medizin, Zahnklinik im 2. Stock; med.sfu.ac.at and healthcare.sfu.ac.at) is the neighbouring building and is folded into the Campus Prater entry. The three outpatient clinics are university training clinics at separate addresses; drop them if the map should show only faculty buildings. healthcare.sfu.ac.at describes Salztorgasse 5 as serving adults and children, while the faculty page puts the children's clinic at Faulmanngasse 4; both addresses are on official pages. A photo gallery on sfu.ac.at mentions 'Lassallestraße 3', but no official page states what is there, so it is left out. The two city-list entries are the same address (duplicate)."
+ },
+ "Wiener Gesundheitsverbund": {
+  "sites": [
+   {
+    "name": "Wiener Gesundheitsverbund Generaldirektion",
+    "addr": "Thomas-Klestil-Platz 7, 1030 Wien",
+    "main": true,
+    "source": "https://gesundheitsverbund.at/impressum/",
+    "verified": "official"
+   },
+   {
+    "name": "Klinik Donaustadt",
+    "addr": "Langobardenstraße 122, 1220 Wien",
+    "main": false,
+    "source": "https://klinik-donaustadt.gesundheitsverbund.at/",
+    "verified": "official"
+   },
+   {
+    "name": "Klinik Hietzing",
+    "addr": "Wolkersbergenstraße 1, 1130 Wien",
+    "main": false,
+    "source": "https://klinik-hietzing.gesundheitsverbund.at/",
+    "verified": "official"
+   },
+   {
+    "name": "Klinik Ottakring",
+    "addr": "Montleartstraße 37, 1160 Wien",
+    "main": false,
+    "source": "https://klinik-ottakring.gesundheitsverbund.at/",
+    "verified": "official"
+   },
+   {
+    "name": "Standort Penzing der Klinik Ottakring",
+    "addr": "Sanatoriumstraße 2, 1140 Wien",
+    "main": false,
+    "source": "https://standort-penzing.gesundheitsverbund.at/",
+    "verified": "official"
+   }
+  ],
+  "notes": "Generaldirektion is written 'Thomas-Klestil-Platz 7/1'; suffix dropped. Klinik Penzing no longer exists under that name: since December 2024 it is 'Standort Penzing der Klinik Ottakring' (klinik-penzing.gesundheitsverbund.at redirects to standort-penzing...), address Sanatoriumstraße 2 unchanged. Klinik Hietzing's homepage also names a 'Standort Riedelgasse 5, 1130 Wien' (not included; one site per clinic was requested and its function was not verified). Other WiGeV clinics (AKH, Favoriten, Floridsdorf, Landstraße) were not requested."
+ },
+ "Complexity Science Hub": {
+  "sites": [
+   {
+    "name": "Complexity Science Hub",
+    "addr": "Metternichgasse 8, 1030 Wien",
+    "main": true,
+    "source": "https://csh.ac.at/contact/",
+    "verified": "official"
+   }
+  ],
+  "notes": "Metternichgasse 8, 1030 Wien is confirmed as the current postal and visiting address on csh.ac.at; the starting file is correct. No second site is listed there."
+ },
+ "NHM Wien": {
+  "sites": [
+   {
+    "name": "Naturhistorisches Museum (Hauptgebäude)",
+    "addr": "Burgring 7, 1010 Wien",
+    "main": true,
+    "source": "https://www.nhm.at/forschung",
+    "verified": "official"
+   },
+   {
+    "name": "Narrenturm (Pathologisch-anatomische Sammlung)",
+    "addr": "Spitalgasse 2, 1090 Wien",
+    "main": false,
+    "source": "https://www.nhm.at/information/aussenstellen",
+    "verified": "official"
+   },
+   {
+    "name": "Nationalparkinstitut Donauauen",
+    "addr": "Lange Gasse 28, 2404 Petronell",
+    "main": false,
+    "source": "https://www.nhm.at/information/aussenstellen",
+    "verified": "official"
+   }
+  ],
+  "notes": "Main building: NHM gives 'Maria-Theresien-Platz, 1010 Wien (Haupteingang)' and 'Burgring 7, 1010 Wien (barrierefrei)'; Burgring 7 kept because it has a house number. Narrenturm sits in Uni-Campus Hof 6 (Spitalgasse 2 is the campus address, so the geocoded point lands at the campus entrance, not on the tower). Third official outpost, Hallstatt ('Alte Schmiede, Salzbergtal, 4830 Hallstatt'), dropped: far from Vienna and no house number."
+ },
+ "St. Anna Kinderspital": {
+  "sites": [
+   {
+    "name": "St. Anna Kinderspital",
+    "addr": "Kinderspitalgasse 6, 1090 Wien",
+    "main": true,
+    "source": "https://www.stanna.at/kontakt/",
+    "verified": "official"
+   },
+   {
+    "name": "St. Anna Kinderkrebsforschung (CCRI)",
+    "addr": "Zimmermannplatz 10, 1090 Wien",
+    "main": false,
+    "source": "https://ccri.at/contact/",
+    "verified": "official"
+   }
+  ],
+  "notes": "Both confirmed on the institutions' own pages. The two addresses are a few metres apart, so the markers nearly overlap."
+ },
+ "AGES": {
+  "sites": [
+   {
+    "name": "AGES Spargelfeldstraße (Firmensitz)",
+    "addr": "Spargelfeldstraße 191, 1220 Wien",
+    "main": true,
+    "source": "https://www.ages.at/ages/standorte",
+    "verified": "official"
+   },
+   {
+    "name": "AGES Währinger Straße (Öffentliche Gesundheit)",
+    "addr": "Währinger Straße 25a, 1090 Wien",
+    "main": false,
+    "source": "https://www.ages.at/ages/standorte",
+    "verified": "official"
+   },
+   {
+    "name": "AGES Traisengasse (Medizinmarktaufsicht)",
+    "addr": "Traisengasse 5, 1200 Wien",
+    "main": false,
+    "source": "https://www.ages.at/ages/standorte",
+    "verified": "official"
+   },
+   {
+    "name": "AGES Possingergasse (Medizinmarktaufsicht)",
+    "addr": "Possingergasse 38, 1160 Wien",
+    "main": false,
+    "source": "https://www.ages.at/ages/standorte",
+    "verified": "official"
+   },
+   {
+    "name": "AGES Mödling (Tiergesundheit)",
+    "addr": "Robert-Koch-Gasse 17, 2340 Mödling",
+    "main": false,
+    "source": "https://www.ages.at/ages/standorte",
+    "verified": "official"
+   },
+   {
+    "name": "AGES Versuchsstation Fuchsenbigl",
+    "addr": "Gutshofstraße 12, 2286 Fuchsenbigl",
+    "main": false,
+    "source": "https://www.ages.at/ages/standorte",
+    "verified": "official"
+   }
+  ],
+  "notes": "AGES writes 'Währingerstraße 25a'; normalised to the official street spelling 'Währinger Straße'. Traisengasse and Possingergasse house the Medizinmarktaufsicht (regulatory, includes the medicines control laboratory); whether they count as research sites is a judgment call. Of the 18 sites on the official list, only those near Vienna are included; left out: Graz (2), Linz, Salzburg, Innsbruck and the trial stations Schönfeld, Pitzelstätten, Ritzlhof, Hagenberg, Großnondorf (2042 Guntersdorf, Weinviertel), Grabenegg, Gleisdorf."
+ },
+ "VCQ": {
+  "sites": [
+   {
+    "name": "Universität Wien, Fakultät für Physik",
+    "addr": "Boltzmanngasse 5, 1090 Wien",
+    "main": true,
+    "source": "https://physik.univie.ac.at/",
+    "verified": "official"
+   },
+   {
+    "name": "TU Wien, Atominstitut",
+    "addr": "Stadionallee 2, 1020 Wien",
+    "main": false,
+    "source": "https://www.tuwien.at/en/phy/ati/about-us/accessibility",
+    "verified": "official"
+   },
+   {
+    "name": "IQOQI Wien (ÖAW)",
+    "addr": "Boltzmanngasse 3, 1090 Wien",
+    "main": false,
+    "source": "https://www.iqoqi-vienna.at/",
+    "verified": "official"
+   },
+   {
+    "name": "ISTA",
+    "addr": "Am Campus 1, 3400 Klosterneuburg",
+    "main": false,
+    "source": "https://ista.ac.at/en/contact/",
+    "verified": "official"
+   }
+  ],
+  "notes": "vcq.quantum.at has a broken TLS certificate; the content is served at vcq-quantum.at. The VCQ site names four member institutions (Universität Wien, TU Wien, ÖAW, ISTA) and 37 members (TU Wien 18, Universität Wien 10, ISTA 6, ÖAW 3 plus 2 dual affiliations) but gives no street address and no institute or department per member. The four addresses come from the member institutions' own pages; assigning the TU Wien members to the Atominstitut and the Universität Wien members to Boltzmanngasse 5 is the brief's assumption and was not checked person by person. Some TU Wien members (theory, photonics) and some Universität Wien members probably work in other buildings; those were not verified and are left out. Boltzmanngasse 5 is kept as main because it matches the starting file; the VCQ site itself states no seat. ISTA lies in Klosterneuburg, counted as Vienna area (outside=false)."
+ },
+ "GeoSphere Austria": {
+  "sites": [
+   {
+    "name": "GeoSphere Austria Hohe Warte (Zentrale)",
+    "addr": "Hohe Warte 38, 1190 Wien",
+    "main": true,
+    "source": "https://geosphere.at/en/about-us/contact-and-visit",
+    "verified": "official"
+   },
+   {
+    "name": "GeoSphere Austria Neulinggasse",
+    "addr": "Neulinggasse 38, 1030 Wien",
+    "main": false,
+    "source": "https://geosphere.at/en/about-us/contact-and-visit",
+    "verified": "official"
+   }
+  ],
+  "notes": "Only these two Vienna sites on the official contact page. Regional offices (Graz, Innsbruck, Salzburg, Klagenfurt) are far from Vienna and not included. Conrad Observatorium (Trafelberg, Lower Austria) and Sonnblick Observatorium are named but without a street address, so left out."
+ },
+ "Austrian Cluster for Tissue Regeneration": {
+  "sites": [
+   {
+    "name": "LBI Traumatologie",
+    "addr": "Donaueschingenstraße 13, 1200 Wien",
+    "main": true,
+    "source": "https://tissue-regeneration.at/contact/",
+    "verified": "official"
+   }
+  ],
+  "notes": "The cluster's member page (https://tissue-regeneration.at/members/) lists 17 member institutions with research groups but no addresses; only the coordinator address (LBI Traumatologie, Donaueschingenstraße 13) is on the cluster site. For the other seven Vienna entries the address is the institution's general address from its own imprint or contact page, not the address of the specific group named by the cluster. Consequence: MedUni Wien, TU Wien and BOKU groups work in several buildings (AKH, Getreidemarkt, Muthgasse and others) that are not pinned down here; the BOKU group named by the cluster (cell aging, Grillari) most likely does not sit at Gregor-Mendel-Straße 33. Drop or refine these three if the map needs group-level precision. LBI Osteologie is described by the cluster as located at Hanusch-Krankenhaus and Traumazentrum Meidling; only the Hanusch address is given on the institute's page, so the Meidling site is left out. Members outside the Vienna area, left out: 9 (Paracelsus Medizinische Privatuniversität Salzburg, Universität Salzburg, LBI Nanovesicular Precision Medicine Salzburg, Medizinische Universität Innsbruck, Rotes Kreuz Oberösterreich Linz, FH Oberösterreich, Medizinische Universität Graz, COREMED Joanneum Research Graz, Donau-Universität Krems). The 17 associate members are companies and are left out."
+ },
+ "Hanusch-Krankenhaus": {
+  "sites": [
+   {
+    "name": "Hanusch-Krankenhaus",
+    "addr": "Heinrich-Collin-Straße 30, 1140 Wien",
+    "main": true,
+    "source": "https://www.oegk.at/cdscontent/?contentid=10007.875760&portal=oegkhanuschkrankenhausportal",
+    "verified": "official"
+   }
+  ],
+  "notes": "Single site (ÖGK hospital portal; hanusch-krankenhaus.at redirects there)."
+ },
+ "Orthopädisches Spital Speising": {
+  "sites": [
+   {
+    "name": "Orthopädisches Spital Speising",
+    "addr": "Speisinger Straße 109, 1130 Wien",
+    "main": true,
+    "source": "https://www.oss.at/kontakt/",
+    "verified": "official"
+   }
+  ],
+  "notes": "Single site."
+ },
+ "CEU": {
+  "sites": [
+   {
+    "name": "CEU Campus Wien",
+    "addr": "Quellenstraße 51, 1100 Wien",
+    "main": true,
+    "source": "https://www.ceu.edu/contact",
+    "verified": "official"
+   }
+  ],
+  "notes": "Not in the city list. Quellenstraße 51 is still the Vienna address on ceu.edu/contact. The Otto-Wagner-Areal (Steinhof) plan was dropped; press reports mention a planned permanent campus near the Hauptbahnhof (move-in not before 2028 per Bloomberg, site details unconfirmed). No move has taken place. No second Vienna teaching site found."
+ },
+ "Umweltbundesamt": {
+  "sites": [
+   {
+    "name": "Umweltbundesamt (Hauptsitz)",
+    "addr": "Drorygasse 1, 1030 Wien",
+    "main": true,
+    "source": "https://www.umweltbundesamt.at/kontakt",
+    "verified": "official"
+   },
+   {
+    "name": "Umweltbundesamt Labor",
+    "addr": "Spittelauer Lände 5, 1090 Wien",
+    "main": false,
+    "source": "https://www.umweltbundesamt.at/kontakt",
+    "verified": "official"
+   }
+  ],
+  "notes": "MAIN ADDRESS CHANGED: the starting file has Spittelauer Lände 5, 1090 Wien. The official contact page and the imprint now give 'Drorygasse 1/1, 1030 Wien' as postal address, visitor entrance and company address; Spittelauer Lände 5 is listed only under 'Andere Standorte Wien' as the laboratory. '/1' is a staircase/door suffix, dropped for geocoding."
+ },
+ "FH Campus Wien": {
+  "sites": [
+   {
+    "name": "Campus Altes Landgut (Favoritenstraße 222-232)",
+    "addr": "Favoritenstraße 226, 1100 Wien",
+    "main": true,
+    "source": "https://www.hcw.ac.at/directions",
+    "verified": "secondary"
+   },
+   {
+    "name": "High Tech Campus Wien",
+    "addr": "Gutheil-Schoder-Gasse 8, 1100 Wien",
+    "main": false,
+    "source": "https://www.hcw.ac.at/directions",
+    "verified": "secondary"
+   }
+  ],
+  "notes": "CAUTION: hcw.ac.at did not respond to direct requests during this research (repeated timeouts), so nothing here was read on the institution's own page first-hand. Both entries rest on search-engine excerpts of hcw.ac.at/directions plus the city list, hence 'secondary'. The excerpts agree with the city list: main campus at Favoritenstraße 226 (buildings A-D), 222 (E, F) and 232 (G, H, I), treated here as one compact campus; High Tech Campus Wien at Gutheil-Schoder-Gasse 8-12, Objekt 3, 1100 Wien (number 8 used for geocoding). One hcw.ac.at info page reportedly gives Favoritenstraße 232 as the institution's location, so the house number of the main address (226 vs 232) should be checked on the live site; both are the same campus. The same excerpts name two cooperation sites for nursing programmes at partner hospitals, Barmherzige Brüder Wien (Johannes-von-Gott-Platz 1, 1020 Wien) and Vinzentinum Wien (Kundmanngasse 21, 1030 Wien); they are not included because they could not be read on the official page and are partner premises. Older documents mention sites at Muthgasse and the Vienna BioCenter; no current confirmation, not included."
+ },
+ "Gesundheit Österreich": {
+  "sites": [
+   {
+    "name": "Gesundheit Österreich GmbH",
+    "addr": "Stubenring 6, 1010 Wien",
+    "main": true,
+    "source": "https://goeg.at/kontakt",
+    "verified": "official"
+   },
+   {
+    "name": "Fonds Gesundes Österreich",
+    "addr": "Biberstraße 22, 1010 Wien",
+    "main": false,
+    "source": "https://goeg.at/kontakt",
+    "verified": "official"
+   },
+   {
+    "name": "GÖG Standort Aspernbrückengasse",
+    "addr": "Aspernbrückengasse 2, 1020 Wien",
+    "main": false,
+    "source": "https://goeg.at/kontakt",
+    "verified": "official"
+   }
+  ],
+  "notes": "Stubenring 6 is the postal address; the same building's entrance is Biberstraße 20, 1010 Wien (not a separate site, not listed). Fonds Gesundes Österreich is a business unit of GÖG and mainly a funding body; drop it if only research sites should appear."
+ },
+ "WIFO": {
+  "sites": [
+   {
+    "name": "WIFO",
+    "addr": "Arsenal Objekt 20, 1030 Wien",
+    "main": true,
+    "source": "https://www.wifo.ac.at/kontakt/",
+    "verified": "official"
+   }
+  ],
+  "notes": "Single site. The official address is 'Arsenal, Objekt 20, 1030 Wien'; the Arsenal has no conventional street/house number, so some geocoders fail on it and the point may need manual placement."
+ },
+ "FH Technikum Wien": {
+  "sites": [
+   {
+    "name": "Hauptstandort Höchstädtplatz",
+    "addr": "Höchstädtplatz 6, 1200 Wien",
+    "main": true,
+    "source": "https://technikum-wien.at/en/locations-contact",
+    "verified": "official"
+   },
+   {
+    "name": "ENERGYbase",
+    "addr": "Giefinggasse 6, 1210 Wien",
+    "main": false,
+    "source": "https://technikum-wien.at/en/locations-contact",
+    "verified": "official"
+   }
+  ],
+  "notes": "The official locations page lists exactly these two sites. The city list gives 'Höchstädtplatz 5'; the FH itself uses Höchstädtplatz 6 for the main campus, which matches the current main address. Dropped: Mariahilfer Straße 37-39 (labelled 'Geschäftsführung' in the city list, not on the official page and an administration office in any case)."
+ },
+ "Barmherzige Brüder Wien": {
+  "sites": [
+   {
+    "name": "Krankenhaus der Barmherzigen Brüder Wien",
+    "addr": "Johannes-von-Gott-Platz 1, 1020 Wien",
+    "main": true,
+    "source": "https://www.barmherzige-brueder.at/site/wien/home",
+    "verified": "official"
+   }
+  ],
+  "notes": "Single site. The hospital's pages do not list further hospital sites in Vienna."
+ },
+ "KLI Klosterneuburg": {
+  "sites": [
+   {
+    "name": "Konrad Lorenz Institut (KLI)",
+    "addr": "Martinstraße 12, 3400 Klosterneuburg",
+    "main": true,
+    "source": "https://www.kli.ac.at/en/contact",
+    "verified": "official"
+   }
+  ],
+  "notes": "Single site; it lies in Klosterneuburg, so main and outside are both true."
+ },
+ "Wolfgang Pauli Institute": {
+  "sites": [
+   {
+    "name": "Wolfgang Pauli Institut",
+    "addr": "Oskar-Morgenstern-Platz 1, 1090 Wien",
+    "main": true,
+    "source": "https://www.wpi.ac.at/address.php",
+    "verified": "official"
+   }
+  ],
+  "notes": "Single site, inside the University of Vienna mathematics building."
+ },
+ "MODUL University": {
+  "sites": [
+   {
+    "name": "Campus Kahlenberg",
+    "addr": "Am Kahlenberg 1, 1190 Wien",
+    "main": true,
+    "source": "https://www.modul.ac.at/",
+    "verified": "official"
+   }
+  ],
+  "notes": "Single Vienna site; the address is in the footer of modul.ac.at and no move or second Vienna location is mentioned there. The relocation reported by ORF concerns the Tourismusschulen MODUL (a school, moved to the WKO campus at Währinger Gürtel), not the university. Main address unchanged."
+ },
+ "KPH Wien/Krems": {
+  "sites": [
+   {
+    "name": "Campus Wien-Strebersdorf",
+    "addr": "Mayerweckstraße 1, 1210 Wien",
+    "main": true,
+    "source": "https://kphvie.ac.at/standorte/campus-wien-strebersdorf.html",
+    "verified": "official"
+   },
+   {
+    "name": "Campus Wien-Gersthof",
+    "addr": "Severin-Schreiber-Gasse 1, 1180 Wien",
+    "main": false,
+    "source": "https://kphvie.ac.at/standorte/campus-wien-gersthof.html",
+    "verified": "official"
+   },
+   {
+    "name": "Bildungszentrum Wien-Stephansplatz (Curhaus)",
+    "addr": "Stephansplatz 3, 1010 Wien",
+    "main": false,
+    "source": "https://kphvie.ac.at/standorte/bildungszentrum-wien-stephansplatz.html",
+    "verified": "official"
+   },
+   {
+    "name": "Bildungszentrum Wien-Singerstraße (Deutschordenshaus)",
+    "addr": "Singerstraße 7, 1010 Wien",
+    "main": false,
+    "source": "https://kphvie.ac.at/standorte/bildungszentrum-singerstrasse.html",
+    "verified": "official"
+   },
+   {
+    "name": "Campus St. Pölten",
+    "addr": "Wiener Straße 38, 3100 St. Pölten",
+    "main": false,
+    "source": "https://kphvie.ac.at/standorte/campus-st-poelten.html",
+    "verified": "official"
+   }
+  ],
+  "notes": "IMPORTANT: the institution now calls itself 'KPH Wien/Niederösterreich' on its own site, and Krems is no longer among its Standorte. The official list (kphvie.ac.at/standorte.html) names seven sites, none in Krems; the Lower Austrian campus is now St. Pölten (opening reported by the Land NÖ, programmes there from 2025/26). The former Campus Krems-Mitterau (Dr.-Gschmeidler-Straße 28, 3500 Krems) is therefore not included; only a 'Hort der Praxisvolksschule Krems-Mitterau' still appears in the contact list. I did not find an explicit official statement that Krems was closed, only its absence from the list. Gersthof's official address is 'Severin-Schreiber-Gasse 1/3'. The two Bildungszentren in the 1st district host continuing education for teachers (Fort- und Weiterbildung), not regular degree teaching; drop them if that is too thin. Left out: Bildungszentrum Wien-Mariahilfer Straße (Mariahilfer Straße 81/1/Top 16, 1060 Wien; visits by appointment only, use not described) and Campus Wien-Währing (Lacknergasse 87-89, 1180 Wien), which is not open yet: it is planned to replace Strebersdorf from the 2028/29 academic year, so the main address will change then. City-list entries under the old names 'Religionspädagogische Akademie' (Stephansplatz 3) and the two KPH entries are covered above; Lilienbrunngasse 19 and Rabbiner-Schneerson-Platz 1 belong to other institutions and are not KPH sites per the official list."
+ },
+ "BFW": {
+  "sites": [
+   {
+    "name": "BFW Schönbrunn (Direktion)",
+    "addr": "Seckendorff-Gudent-Weg 8, 1131 Wien",
+    "main": true,
+    "source": "https://www.bfw.gv.at/standorte/",
+    "verified": "official"
+   },
+   {
+    "name": "BFW Versuchsgarten Tulln",
+    "addr": "Bildereiche 2, 3430 Tulln",
+    "main": false,
+    "source": "https://www.bfw.gv.at/standorte/",
+    "verified": "official"
+   }
+  ],
+  "notes": "BFW writes the postcode as 1131 (the postal delivery code for this part of the 13th district); the starting file has 1130. Mariabrunn: NOT confirmed. BFW's current locations page and imprint list no Mariabrunn site in Vienna, and a web search found no current BFW address there (Mariabrunn was the seat until 1957), so it was left out. Other official sites far from Vienna, not included: Innsbruck (Rennweg 1), FAST Traunkirchen (Forstpark 1), FAST Ossiach (Ossiach 21)."
+ },
+ "SBA Research": {
+  "sites": [
+   {
+    "name": "SBA Research",
+    "addr": "Floragasse 7, 1040 Wien",
+    "main": true,
+    "source": "https://www.sba-research.org/contact/",
+    "verified": "official"
+   }
+  ],
+  "notes": "Single site (5th floor)."
+ },
+ "BEV": {
+  "sites": [
+   {
+    "name": "BEV Zentrale",
+    "addr": "Schiffamtsgasse 1-3, 1020 Wien",
+    "main": true,
+    "source": "https://www.bev.gv.at/Das-BEV/Kontakte-Standorte.html",
+    "verified": "official"
+   },
+   {
+    "name": "BEV Eichwesen und Physikalisch-technischer Prüfdienst",
+    "addr": "Arltgasse 35, 1160 Wien",
+    "main": false,
+    "source": "https://www.bev.gv.at/Das-BEV/Kontakte-Standorte.html",
+    "verified": "official"
+   }
+  ],
+  "notes": "Official address of the Zentrale is 'Schiffamtsgasse 1-3' (starting file has 'Schiffamtsgasse 1'). Arltgasse 35 houses Gruppe Eichwesen and the Physikalisch-technischer Prüfdienst (metrology). A third Vienna address, Kundenservice Vermessung & Geoinformation at Obere Donaustraße 55, 1020 Wien, is a customer service desk and was left out. Vermessungsämter and Eichämter in the provinces not checked."
+ },
+ "ABCSG": {
+  "sites": [
+   {
+    "name": "ABCSG Studienzentrale",
+    "addr": "Nußdorfer Platz 8, 1190 Wien",
+    "main": true,
+    "source": "https://www.abcsg.org/kontakt/",
+    "verified": "official"
+   }
+  ],
+  "notes": "Single site. ABCSG writes 'Nussdorfer Platz 8 (Eingang Heiligenstädterstraße 201)'; spelling normalised to 'Nußdorfer Platz'."
+ },
+ "FH des BFI Wien": {
+  "sites": [
+   {
+    "name": "Campus Wohlmutstraße",
+    "addr": "Wohlmutstraße 22, 1020 Wien",
+    "main": true,
+    "source": "https://www.fh-vie.ac.at/de/seite/kontakt",
+    "verified": "official"
+   },
+   {
+    "name": "Campus Media Quarter Marx",
+    "addr": "Maria-Jacobi-Gasse 1, 1030 Wien",
+    "main": false,
+    "source": "https://www.fh-vie.ac.at/de/seite/kontakt",
+    "verified": "official"
+   }
+  ],
+  "notes": "The official contact page lists two campuses. For Media Quarter Marx it gives '3., Media Quarter Marx 3.4, Maria Jacobi Gasse 1, 1. Stock' without a postcode; 1030 follows from the district and from the FH's English campus page as quoted in search results. Several degree programmes are taught there according to the FH's incoming-student page (seen via search excerpt only). Dropped: ENERGYbase, Giefinggasse 6 (city list), which the FH no longer lists. The institution now also calls itself 'Hochschule für Wirtschaft und Gesellschaft des BFI Wien' on its site."
+ },
+ "IHS Wien": {
+  "sites": [
+   {
+    "name": "Institut für Höhere Studien",
+    "addr": "Josefstädter Straße 39, 1080 Wien",
+    "main": true,
+    "source": "https://www.ihs.ac.at/de/ueber-uns/kontakt/",
+    "verified": "official"
+   }
+  ],
+  "notes": "Single site."
+ },
+ "Akademie der bildenden Künste Wien": {
+  "sites": [
+   {
+    "name": "Hauptgebäude Schillerplatz",
+    "addr": "Schillerplatz 3, 1010 Wien",
+    "main": true,
+    "source": "https://www.akbild.ac.at/de/universitaet/standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Atelierhaus",
+    "addr": "Lehárgasse 8, 1060 Wien",
+    "main": false,
+    "source": "https://www.akbild.ac.at/de/universitaet/standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Bildhauereiateliers",
+    "addr": "Kurzbauergasse 9, 1020 Wien",
+    "main": false,
+    "source": "https://www.akbild.ac.at/de/universitaet/standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Institutsgebäude Karl-Schweighofer-Gasse",
+    "addr": "Karl-Schweighofer-Gasse 3, 1070 Wien",
+    "main": false,
+    "source": "https://www.akbild.ac.at/de/universitaet/standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Ausweichquartier Kelsenstraße",
+    "addr": "Kelsenstraße 2, 1030 Wien",
+    "main": false,
+    "source": "https://www.akbild.ac.at/de/universitaet/standorte",
+    "verified": "official"
+   }
+  ],
+  "notes": "All four city-list entries are confirmed. Added: Kelsenstraße 2, which the Akademie itself calls a temporary 'Ausweichquartier' (ground floor and floors 2 to 4); according to an akbild.ac.at news item surfaced by search, the Institut für Konservierung-Restaurierung and the Institut für Naturwissenschaften und Technologie in der Kunst are housed there until the Ballonhalle in the Arsenal is converted (BIG press release 2026), so this entry will change again. The official page does not say which institute sits in Karl-Schweighofer-Gasse 3 (a secondary listing names the Institut für das künstlerische Lehramt). Left out as a pure exhibition space: Exhibit Eschenbachgasse, Eschenbachgasse 11, 1010 Wien (on the official list)."
+ },
+ "VIROS": {
+  "sites": [
+   {
+    "name": "VIROS im Hanusch-Krankenhaus",
+    "addr": "Heinrich-Collin-Straße 30, 1140 Wien",
+    "main": true,
+    "source": "https://www.viros.at/",
+    "verified": "official"
+   }
+  ],
+  "notes": "Single site, same address as Hanusch-Krankenhaus, so the two markers coincide."
+ },
+ "mdw Wien": {
+  "sites": [
+   {
+    "name": "mdw-Campus (Hauptgebäude)",
+    "addr": "Anton-von-Webern-Platz 1, 1030 Wien",
+    "main": true,
+    "source": "https://www.mdw.ac.at/25/",
+    "verified": "official"
+   },
+   {
+    "name": "Ungargasse",
+    "addr": "Ungargasse 14, 1030 Wien",
+    "main": false,
+    "source": "https://www.mdw.ac.at/25/",
+    "verified": "official"
+   },
+   {
+    "name": "Lothringerstraße",
+    "addr": "Lothringerstraße 18, 1030 Wien",
+    "main": false,
+    "source": "https://www.mdw.ac.at/25/",
+    "verified": "official"
+   },
+   {
+    "name": "Rennweg (ehem. Salesianerinnenkloster)",
+    "addr": "Rennweg 8, 1030 Wien",
+    "main": false,
+    "source": "https://www.mdw.ac.at/25/",
+    "verified": "official"
+   },
+   {
+    "name": "Metternichgasse",
+    "addr": "Metternichgasse 12, 1030 Wien",
+    "main": false,
+    "source": "https://www.mdw.ac.at/25/",
+    "verified": "official"
+   },
+   {
+    "name": "Seilerstätte (ehem. Ursulinenkloster)",
+    "addr": "Seilerstätte 26, 1010 Wien",
+    "main": false,
+    "source": "https://www.mdw.ac.at/25/",
+    "verified": "official"
+   },
+   {
+    "name": "Singerstraße",
+    "addr": "Singerstraße 26A, 1010 Wien",
+    "main": false,
+    "source": "https://www.mdw.ac.at/25/",
+    "verified": "official"
+   },
+   {
+    "name": "Schlosstheater Schönbrunn",
+    "addr": "Schönbrunner Schlossstraße 47, 1130 Wien",
+    "main": false,
+    "source": "https://www.mdw.ac.at/25/",
+    "verified": "official"
+   },
+   {
+    "name": "Palais Cumberland (Max Reinhardt Seminar)",
+    "addr": "Penzinger Straße 7-9, 1140 Wien",
+    "main": false,
+    "source": "https://www.mdw.ac.at/25/",
+    "verified": "official"
+   }
+  ],
+  "notes": "The official 'Kontakt & Standorte' page lists exactly these nine addresses. Singerstraße 26A has its entrance at Seilerstätte 8. The city-list entry 'Johannesgasse 8, St. Ursula' is the same former Ursuline convent complex that mdw now lists as Seilerstätte 26, so it is not a separate entry. Schlosstheater Schönbrunn is listed by mdw as a venue without institutes (stage for student productions); drop it if only institute buildings should appear. Dropped because they are not on the official list: Karlsplatz 1, Karlsplatz 2, Schubertring 14, Metternichgasse 8 (Palais Springer, now the Complexity Science Hub address), Rienößlgasse 12. The city list's 'Singerstraße 26' corresponds to the official 'Singerstraße 26A'."
+ },
+ "Webster Vienna": {
+  "sites": [
+   {
+    "name": "Palais Wenkheim",
+    "addr": "Praterstraße 23, 1020 Wien",
+    "main": true,
+    "source": "https://webster.ac.at/",
+    "verified": "official"
+   }
+  ],
+  "notes": "Single site, address taken from the footer of webster.ac.at. The city-list entry Berchtoldgasse 1, 1220 Wien is outdated (Webster moved to Palais Wenkheim in 2014) and is dropped. The current main address is correct."
+ },
+ "Fraunhofer Austria": {
+  "sites": [
+   {
+    "name": "Fraunhofer Austria Wien",
+    "addr": "Theresianumgasse 7, 1040 Wien",
+    "main": true,
+    "source": "https://www.fraunhofer.at/de/kontakt.html",
+    "verified": "official"
+   }
+  ],
+  "notes": "One Vienna site. Other Fraunhofer Austria sites are in Graz, Klagenfurt and Innsbruck, not included."
+ },
+ "FHWien der WKW": {
+  "sites": [
+   {
+    "name": "Campus Währinger Gürtel (wko campus wien)",
+    "addr": "Währinger Gürtel 97, 1180 Wien",
+    "main": true,
+    "source": "https://www.fh-wien.ac.at/kontakt/",
+    "verified": "official"
+   }
+  ],
+  "notes": "Single site, confirmed on the official contact page. No further locations found."
+ },
+ "Angewandte Wien": {
+  "sites": [
+   {
+    "name": "Hauptgebäude (Ferstel-Trakt, Schwanzer-Trakt)",
+    "addr": "Oskar-Kokoschka-Platz 2, 1010 Wien",
+    "main": true,
+    "source": "https://www.dieangewandte.at/universitaet/standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Expositur Vordere Zollamtsstraße (VZA7)",
+    "addr": "Vordere Zollamtsstraße 7, 1030 Wien",
+    "main": false,
+    "source": "https://www.dieangewandte.at/universitaet/standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Annex Georg-Coch-Platz (ehem. Postsparkasse)",
+    "addr": "Georg-Coch-Platz 2, 1010 Wien",
+    "main": false,
+    "source": "https://www.dieangewandte.at/universitaet/standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Expositur Salzgries",
+    "addr": "Salzgries 14, 1010 Wien",
+    "main": false,
+    "source": "https://www.dieangewandte.at/universitaet/standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Expositur Postgasse",
+    "addr": "Postgasse 6, 1010 Wien",
+    "main": false,
+    "source": "https://www.dieangewandte.at/universitaet/standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Expositur Rustenschacherallee",
+    "addr": "Rustenschacherallee 2-4, 1020 Wien",
+    "main": false,
+    "source": "https://www.dieangewandte.at/universitaet/standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Expositur Paulusplatz",
+    "addr": "Paulusplatz 5, 1030 Wien",
+    "main": false,
+    "source": "https://www.dieangewandte.at/universitaet/standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Annex Dampfschiffstraße",
+    "addr": "Dampfschiffstraße 4, 1030 Wien",
+    "main": false,
+    "source": "https://www.dieangewandte.at/universitaet/standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Expositur Eyzinggasse",
+    "addr": "Eyzinggasse 23, 1110 Wien",
+    "main": false,
+    "source": "https://www.dieangewandte.at/universitaet/standorte",
+    "verified": "official"
+   },
+   {
+    "name": "Expositur Siemensstraße",
+    "addr": "Siemensstraße 87-89, 1210 Wien",
+    "main": false,
+    "source": "https://www.dieangewandte.at/universitaet/standorte",
+    "verified": "official"
+   }
+  ],
+  "notes": "All ten addresses are on the university's own Standorte page. That page gives addresses only, not what each site houses, so the teaching/research use of the individual Exposituren and annexes (in particular Annex Dampfschiffstraße) was not checked individually. Left out as a pure exhibition space: Universitätsgalerie im Heiligenkreuzer Hof (Grashofgasse 3 / Schönlaterngasse 5, 1010 Wien), which is still on the official list. Dropped from the city list because they no longer appear on the official list: Dominikanerbastei 5, Franz-Josefs-Kai 5, Sterngasse 13, Am Heumarkt 27, Henslerstraße 3. The city list's 'Vordere Zollamtsstraße 3' is outdated; the official address is Vordere Zollamtsstraße 7."
+ },
+ "VRVis": {
+  "sites": [
+   {
+    "name": "VRVis (Ares Tower)",
+    "addr": "Donau-City-Straße 11, 1220 Wien",
+    "main": true,
+    "source": "https://www.vrvis.at/kontakt",
+    "verified": "official"
+   }
+  ],
+  "notes": "Single site."
+ }
+}

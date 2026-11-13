@@ -29,15 +29,15 @@ try { renderer = new THREE.WebGLRenderer({ canvas: $('scene'), antialias: true }
 catch { fail('noWebgl'); }
 
 const lightColour = c => 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b > 0.5;   // White and Lime spheres need black lettering
-let graph, wien;
+let graph, wien, city;
 /* The numbers are rebuilt every day on GitHub Pages. A copy of this page on another server asks there
    first, so it stays current without anyone copying files; without a connection, or after four seconds,
    it shows the data/graph.json it was shipped with. */
-const LIVE = 'https://benwwtf.github.io/forschungsnetz-wien/';
+const LIVE = 'https://benwwtf.github.io/forschungsnetz-wien-stadtmodell/';
 const json = (u, opt) => fetch(u, opt).then(r => r.ok ? r.json() : Promise.reject(new Error(u)));
 const current = location.href.startsWith(LIVE) ? Promise.reject()
   : json(LIVE + 'data/graph.json', { signal: AbortSignal.timeout(4000) }).then(g => Array.isArray(g.nodes) && Array.isArray(g.edges) ? g : Promise.reject());
-try { [graph, wien] = await Promise.all([current.catch(() => json('data/graph.json')), json('data/wien.json')]); }
+try { [graph, wien, city] = await Promise.all([current.catch(() => json('data/graph.json')), json('data/wien.json'), json('data/city.json')]); }
 catch { fail('noData'); }
 const nodes = graph.nodes, edges = graph.edges;
 nodes.forEach((n, i) => {
@@ -52,14 +52,14 @@ nodes.forEach(n => n.links.sort((x, y) => y.n - x.n));
 const own = n => n.count - n.joint;   // published without another Vienna institution: drawn as small arcs that leave the sphere and fall back to it
 
 if (new URLSearchParams(location.search).has('kiosk')) document.body.classList.add('kiosk');   // wall screen: every control within a child's reach
-const state = { lang: 'de', view: 'net', mix: 0, selected: null, hovered: null, tour: null, list: false, emph: null };
+const state = { lang: 'de', view: 'net', mix: 0, selected: null, site: null, hovered: null, tour: null, list: false, emph: null };   // site: index into the selected place's sites, once a visitor has gone to one
 
 // ── scene ──────────────────────────────────────────────────────────────────────────────────
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 const scene = new THREE.Scene();
 scene.background = BG;
 scene.fog = new THREE.Fog(BG, 200, 520);
-const camera = new THREE.PerspectiveCamera(42, 1, 1, 1200);
+const camera = new THREE.PerspectiveCamera(42, 1, 1, 1200);   // setView brings the near plane closer above the map
 camera.position.set(...HOME.net.pos);
 scene.add(camera, new THREE.AmbientLight(0xffffff, 1.5));
 const lamp = new THREE.DirectionalLight(0xffffff, 2.2);
@@ -140,6 +140,81 @@ scene.add(stalks);
 
 const map = buildMap();
 scene.add(map.group);
+
+/* The buildings around every research site, from the City of Vienna's 3D model: each one a prism
+   with its real outline and height (data/city.json, see build/city.mjs). One mesh for all of
+   them. Light and shadow are painted into the colours, so repainting a building is a few numbers. */
+const GROUND = new THREE.Color(css('--q-purple')).multiplyScalar(0.29), HOUSE = new THREE.Color(css('--q-purple-60'));
+const houses = buildHouses();
+scene.add(houses.mesh);
+function buildHouses() {
+  const pos = [], shade = [], index = [], first = [];
+  const sun = new THREE.Vector2(-0.55, 0.83);   // from the south-west
+  const ring = flat => { const pts = []; let x = 0, z = 0; for (let i = 0; i < flat.length; i += 2) { x += flat[i]; z += flat[i + 1]; pts.push(new THREE.Vector2(x / city.q, z / city.q)); } return pts; };
+  for (const [h, base, , ...flats] of city.b) {
+    const start = pos.length / 3;
+    first.push(start);
+    const rings = flats.map(ring), top = h / 10 * city.m, bottom = base / 10 * city.m;
+    for (const r of rings) for (const p of r) { pos.push(p.x, top, p.y); shade.push(1); }   // the roof
+    for (const tri of THREE.ShapeUtils.triangulateShape(rings[0], rings.slice(1))) index.push(start + tri[0], start + tri[1], start + tri[2]);
+    rings.forEach((r, hole) => {   // the walls: four corners each, so that every wall has its own light
+      const turn = Math.sign(THREE.ShapeUtils.area(r)) * (hole ? -1 : 1);   // which side of an edge is outside
+      r.forEach((a, i) => {
+        const b = r[(i + 1) % r.length], len = a.distanceTo(b) || 1, v = pos.length / 3;
+        const lit = 0.6 + 0.22 * turn * ((b.y - a.y) * sun.x - (b.x - a.x) * sun.y) / len;
+        pos.push(a.x, bottom, a.y, b.x, bottom, b.y, b.x, top, b.y, a.x, top, a.y);
+        shade.push(lit, lit, lit, lit);
+        index.push(v, v + 1, v + 2, v, v + 2, v + 3);
+      });
+    });
+  }
+  first.push(pos.length / 3);
+  const colour = new THREE.BufferAttribute(new Uint16Array(pos.length), 3, true);
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('color', colour); g.setIndex(index);
+  const material = new THREE.MeshBasicMaterial({ vertexColors: true, side: THREE.DoubleSide });
+  const mesh = new THREE.Mesh(g, material);
+  mesh.visible = false; mesh.frustumCulled = false;
+  const tint = (k, c) => {   // c: the colour of a selected place, or nothing for the plain model, which fades into the ground at the edge of its island
+    if (c) tmpColor.copy(c); else tmpColor.copy(GROUND).lerp(HOUSE, city.b[k][2] / 9);
+    for (let v = first[k]; v < first[k + 1]; v++) colour.setXYZ(v, tmpColor.r * shade[v], tmpColor.g * shade[v], tmpColor.b * shade[v]);
+  };
+  let lit = [];
+  return {
+    mesh,
+    top: k => city.b[k][0] / 10 * city.m,
+    start() { city.b.forEach((_, k) => tint(k)); colour.needsUpdate = true; },
+    light(list, c) { lit.forEach(k => tint(k)); lit = list; lit.forEach(k => tint(k, c)); colour.needsUpdate = true; },
+    fade(t) { mesh.visible = t > 0.01; mesh.scale.y = Math.max(t, 0.001); },   // the city grows out of the ground
+  };
+}
+
+/* Every address an institution works at is a site: a dot on the map, in the colour of its
+   institution. The sites of the selected place grow, get a white rim and hang on threads from its sphere. */
+const sites = nodes.flatMap(n => n.sites.map((s, k) => ({ ...s, node: n.i, k }))).filter(s => s.p);
+sites.forEach(s => {
+  s.own = city.own[s.a] ?? [];
+  s.at = new THREE.Vector3(s.p[0], (s.own.length ? Math.max(...s.own.map(houses.top)) : 0) + 0.04, s.p[1]);   // on the roof
+});
+nodes.forEach(n => { n.placed = sites.filter(s => s.node === n.i); });
+function disc() {
+  const c = document.createElement('canvas'); c.width = c.height = 64;
+  const g = c.getContext('2d'); g.beginPath(); g.arc(32, 32, 30, 0, 7); g.fillStyle = '#fff'; g.fill();
+  return new THREE.CanvasTexture(c);
+}
+const dotTexture = disc();
+const dots = (size, order) => {
+  const pts = new THREE.Points(new THREE.BufferGeometry(), new THREE.PointsMaterial({ map: dotTexture, size, sizeAttenuation: false, vertexColors: true, transparent: true, alphaTest: 0.5, opacity: 0, depthTest: order < 5 }));
+  pts.frustumCulled = false; pts.renderOrder = order; pts.visible = false; scene.add(pts);
+  return pts;
+};
+const fillDots = (pts, list, colour) => {
+  pts.geometry.setAttribute('position', new THREE.Float32BufferAttribute(list.flatMap(s => [s.at.x, s.at.y, s.at.z]), 3));
+  pts.geometry.setAttribute('color', new THREE.Float32BufferAttribute(list.flatMap(s => { tmpColor.set(colour ?? nodes[s.node].color); return [tmpColor.r, tmpColor.g, tmpColor.b]; }), 3));
+};
+const siteDots = dots(9, 4), siteRims = dots(22, 5), siteOn = dots(16, 6);
+const threads = new THREE.LineSegments(new THREE.BufferGeometry(), new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, depthWrite: false }));
+threads.frustumCulled = false; threads.visible = false; scene.add(threads);
 
 
 function buildMap() {
@@ -229,7 +304,16 @@ function placeNodes(time) {
   });
   at.needsUpdate = true;
   stalks.material.opacity = 0.55 * t * t; stalks.visible = t > 0.01;
-  map.fade(t);
+  map.fade(t); houses.fade(t);
+  const chosen = state.selected === null ? [] : nodes[state.selected].placed;
+  siteDots.visible = t > 0.01; siteDots.material.opacity = t * (chosen.length ? 0.45 : 0.9);
+  siteRims.visible = siteOn.visible = threads.visible = t > 0.01 && chosen.length > 0;
+  siteRims.material.opacity = siteOn.material.opacity = t; threads.material.opacity = 0.45 * t * t;
+  if (threads.visible) {
+    const line = threads.geometry.attributes.position, from = cur[state.selected];
+    chosen.forEach((s, k) => { line.setXYZ(2 * k, from.x, from.y, from.z); line.setXYZ(2 * k + 1, s.at.x, s.at.y, s.at.z); });
+    line.needsUpdate = true;
+  }
   placeEdges();
 }
 
@@ -241,7 +325,7 @@ function placeEdges() {
     const ctrl = curve[k].addVectors(a, b).multiplyScalar(0.5 * (1 + 0.32 * (1 - t)));
     ctrl.y += (a.distanceTo(b) * 0.3 + 2) * t;
     const hidden = em && !em.edge(e);   // lines outside the focus vanish
-    const w = width(e.n) * (1 - 0.45 * t);
+    const w = width(e.n) * (1 - 0.72 * t);   // thin above the map, where the houses are the picture
     for (let s = 0; s < SEG; s++) {
       bezier(a, ctrl, b, s / SEG, tmpA); bezier(a, ctrl, b, (s + 1) / SEG, tmpB);
       const len = tmpA.distanceTo(tmpB);
@@ -272,7 +356,7 @@ function placeEdges() {
   });
   arcMesh.instanceMatrix.needsUpdate = true;
   edgeMesh.instanceMatrix.needsUpdate = true;
-  edgeMesh.material.opacity = em ? 0.95 : 0.9 - 0.4 * t;   // over the map the arcs step back until a place is chosen
+  edgeMesh.material.opacity = em ? 0.95 - 0.5 * t : 0.9 - 0.4 * t;   // over the map the arcs step back: there the houses and sites are the picture
 }
 
 function moveFlecks(time) {
@@ -304,7 +388,7 @@ function paint() {
     m.transparent = !lit; m.opacity = lit ? 1 : 0.16; m.depthWrite = lit; m.needsUpdate = true;
     meshes[i].renderOrder = lit ? 0 : 1;
     m.emissiveIntensity = em && em.nodes.has(i) ? 0.6 : 0.35;
-    rims[i].visible = lit;
+    n.lit = lit;
   });
   edges.forEach((e, k) => {
     // on black, darker reads as fainter: one-off partnerships recede, close ones shine
@@ -351,14 +435,22 @@ function cardShift(dir, dist) {
   if (r.left < W / 2 && r.right > W / 2) return new THREE.Vector3().crossVectors(dir, right).multiplyScalar(-(H - r.top) / 2 / H * viewH);   // card below
   return right.multiplyScalar((W - r.left) / 2 / W * viewH * camera.aspect);                                                                 // card at the right
 }
-matchMedia('(orientation: portrait)').addEventListener('change', () => setTimeout(() => { if (state.selected === null) flyHome(); else flyToNode(state.selected); }, 100));   // after the layout has turned
+matchMedia('(orientation: portrait)').addEventListener('change', () => setTimeout(() => { if (state.selected === null) flyHome(); else if (state.site !== null && state.view === 'city') flyToSite(nodes[state.selected].placed[state.site]); else flyToNode(state.selected); }, 100));   // after the layout has turned
 
 function flyToNode(i) {
-  const n = nodes[i], target = new THREE.Vector3(...(state.view === 'net' ? n.net : n.city));
+  const n = nodes[i], dir = camera.position.clone().sub(controls.target).normalize();
+  if (state.view === 'net') { flyFacing(new THREE.Vector3(...n.net), dir, 125); return; }
+  // above the map: step back until every site of the place is in view
+  const target = new THREE.Vector3();
+  n.placed.forEach(s => target.add(s.at)); target.divideScalar(n.placed.length || 1); target.y = 0;
+  const spread = Math.max(0, ...n.placed.map(s => Math.hypot(s.at.x - target.x, s.at.z - target.z)));
+  dir.y = Math.max(dir.y, 0.9); dir.normalize();   // from well above, so the sphere does not stand in front of its own sites
+  flyFacing(target, dir, Math.min(190, 12 + 3.2 * spread));
+}
+function flyToSite(s) {   // close enough to tell the houses apart
   const dir = camera.position.clone().sub(controls.target).normalize();
-  if (state.view === 'city') { dir.y = Math.max(dir.y, 0.45); dir.normalize(); }
-  const dist = state.view === 'net' ? 125 : 90;
-  flyFacing(target, dir, dist);
+  dir.y = Math.max(dir.y, 0.55); dir.normalize();
+  flyFacing(new THREE.Vector3(s.at.x, 0, s.at.z), dir, 5.5);
 }
 
 /* Look at `target` from direction `dir`, clear of any open card. */
@@ -372,6 +464,8 @@ function setView(view) {
   state.view = view;
   $('viewNet').setAttribute('aria-pressed', view === 'net'); $('viewCity').setAttribute('aria-pressed', view === 'city');
   controls.maxPolarAngle = view === 'city' ? 1.42 : Math.PI;
+  controls.minDistance = view === 'city' ? 2.2 : 14;   // above the map a visitor may come down to the roofs
+  camera.near = view === 'city' ? 0.1 : 1; camera.updateProjectionMatrix();
   mixing = { from: state.mix, to: view === 'city' ? 1 : 0, start: performance.now(), ms: calm ? 1 : 1600 };
   if (state.selected !== null) flyToNode(state.selected); else flyHome();
 }
@@ -379,6 +473,7 @@ function setView(view) {
 // ── labels ─────────────────────────────────────────────────────────────────────────────────
 const labelBox = $('labels');
 const labels = nodes.map(n => { const el = document.createElement('div'); el.className = 'lbl'; el.textContent = n.id; labelBox.append(el); return { el, w: 0, h: 0 }; });
+const siteLabels = [];   // one per site of the selected place, made in select()
 const districtLabels = wien.districts.map(d => { const el = document.createElement('div'); el.className = 'lbl district'; el.textContent = d.nr + '.'; labelBox.append(el); return { el, at: new THREE.Vector3(d.at[0], 0, d.at[1]) }; });
 const qSite = new THREE.Vector3(wien.q[0], 1.5, wien.q[1]);   // the Q. on the city map, where the last egg waits
 const screen = nodes.map(() => ({ x: 0, y: 0, r: 0, depth: 0, visible: false }));
@@ -424,7 +519,10 @@ function project() {
   nodes.forEach((n, i) => {
     tmpA.copy(cur[i]).applyMatrix4(camera.matrixWorldInverse);
     const s = screen[i];
-    s.depth = -tmpA.z; s.visible = s.depth > 1;
+    // down among the houses a sphere floating at eye level would fill the screen: it steps aside
+    const inTheWay = state.mix > 0.6 && camera.position.distanceTo(cur[i]) < radiusNow(n) + 5;
+    meshes[i].visible = !inTheWay; rims[i].visible = n.lit && !inTheWay;
+    s.depth = -tmpA.z; s.visible = s.depth > 1 && !inTheWay;
     if (!s.visible) return;
     s.x = W / 2 + tmpA.x / s.depth * focal; s.y = H / 2 - tmpA.y / s.depth * focal; s.r = radiusNow(n) / s.depth * focal;
   });
@@ -432,7 +530,7 @@ function project() {
 
 function drawLabels() {
   const em = state.emph, placed = [];
-  const wanted = i => i === state.hovered || !em || em.nodes.has(i) || em.near.has(i);   // in the overview every place may show its name, biggest first, as many as fit
+  const wanted = i => i === state.hovered || !em || em.nodes.has(i) || (em.near.has(i) && !(state.mix > 0.6 && state.selected !== null));   // above the map a selected place shows its sites, not its partners' names   // in the overview every place may show its name, biggest first, as many as fit
   const order = nodes.map((_, i) => i).filter(i => screen[i].visible && wanted(i))
     .sort((a, b) => rank(a) - rank(b));
   function rank(i) { return (i === state.hovered || (em && em.nodes.has(i)) ? -1000 : 0) + i; }
@@ -457,6 +555,23 @@ function drawLabels() {
     l.el.classList.toggle('dark', inside && nodes[i].light);
   }
   labels.forEach((l, i) => l.el.classList.toggle('on', shown.has(i)));
+  // the sites of the selected place: the one a visitor went to first, then the main site, then as many as fit
+  const named = state.mix > 0.6 && state.selected !== null ? nodes[state.selected].placed : [];
+  const seq = named.map((_, k) => k).sort((a, b) => (b === state.site) - (a === state.site));
+  const lit = new Set();
+  for (const k of seq) {
+    const l = siteLabels[k]; if (!l) break;
+    tmpA.copy(named[k].at).project(camera);
+    if (tmpA.z >= 1) continue;
+    if (!l.w) { l.w = l.el.offsetWidth; l.h = l.el.offsetHeight; }
+    const box = { x: (tmpA.x + 1) / 2 * W - l.w / 2, y: (1 - tmpA.y) / 2 * H + 13, w: l.w, h: l.h };
+    if (box.x < 4 || box.x + box.w > W - 4 || box.y < 0 || box.y + box.h > H) continue;
+    if (placed.some(q => box.x < q.x + q.w + 6 && q.x < box.x + box.w + 6 && box.y < q.y + q.h && q.y < box.y + box.h)) continue;
+    placed.push(box); lit.add(k);
+    l.el.style.transform = `translate(${Math.round(box.x)}px,${Math.round(box.y)}px)`;
+    l.el.classList.toggle('strong', k === state.site);
+  }
+  siteLabels.forEach((l, k) => l.el.classList.toggle('on', lit.has(k)));
   placeEggs();
   const districtsOn = state.mix > 0.6;
   for (const d of districtLabels) {
@@ -494,8 +609,25 @@ function zoomInto(group) {
   flyTo(centre.clone().addScaledVector(dir.normalize(), dist), centre, 900);
   toast(t('crowd'), 2600);
 }
+/* A dot on the map under the finger: a site of the selected place if there is one, else the nearest. */
+function pickSite(x, y) {
+  let best = null, bestD = TOUCH;
+  for (const s of sites) {
+    tmpA.copy(s.at).project(camera);
+    if (tmpA.z >= 1) continue;
+    const d = Math.hypot((tmpA.x + 1) / 2 * W - x, (1 - tmpA.y) / 2 * H - y) - (s.node === state.selected ? TOUCH : 0);   // the lit ones win
+    if (d < bestD) { bestD = d; best = s; }
+  }
+  return best;
+}
 function tap(x, y) {
   const group = state.emph ? null : crowdAt(x, y), i = pick(x, y);
+  const onSphere = i !== null && Math.hypot(screen[i].x - x, screen[i].y - y) <= screen[i].r;
+  const site = state.mix > 0.6 && !onSphere && state.tour === null ? pickSite(x, y) : null;
+  if (site) {   // first tap: whose site is it? second tap: go there
+    if (site.node !== state.selected) select(site.node); else showSite(nodes[site.node].placed.indexOf(site));
+    return;
+  }
   if (group && !(i !== null && Math.hypot(screen[i].x - x, screen[i].y - y) <= screen[i].r)) { zoomInto(group); return; }
   if (state.tour !== null) { if (i === null) return; showTour(null); }   // a tap on a sphere during the tour leaves the tour for that place
   select(i);
@@ -614,11 +746,24 @@ document.querySelector('.mark').addEventListener('click', () => {
 let opener = null;   // what had focus before a card opened, to hand it back on closing
 function select(i) {
   if (i === null && state.selected === null && !state.list) return;
-  state.selected = i; state.list = false;
+  state.selected = i; state.site = null; state.list = false;
   state.emph = i === null ? null : focusNode(i);
   controls.autoRotate = !still && i === null;
-  paint(); renderPanel(true);
+  const chosen = i === null ? [] : nodes[i].placed;
+  const bright = i === null ? null : new THREE.Color(nodes[i].color).lerp(WHITE, 0.2);   // Berry alone is too dark for a house on a dark map
+  houses.light([...new Set(chosen.flatMap(s => s.own))], bright);
+  fillDots(siteRims, chosen, '#ffffff'); fillDots(siteOn, chosen);
+  threads.geometry.setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array(chosen.length * 6), 3));
+  siteLabels.splice(0).forEach(l => l.el.remove());
+  // on the map a site is named without its bracket; the details stay in the list
+  chosen.forEach(s => { const el = document.createElement('div'); el.className = 'lbl site'; el.textContent = s.n.replace(/\s*\([^)]*\)$/, '') || s.n; labelBox.append(el); siteLabels.push({ el, w: 0, h: 0 }); });
+  paint(); renderPanel(true); placed = false;
   if (i === null) flyHome(); else flyToNode(i);
+}
+function showSite(k) {
+  state.site = k;
+  if (state.view !== 'city') setView('city');
+  flyToSite(nodes[state.selected].placed[k]);
 }
 
 function renderPanel(takeFocus = false) {
@@ -647,6 +792,11 @@ function renderPanel(takeFocus = false) {
       ${sum ? `<h3>${t('topicsTitle')}</h3>
       <div class="mix">${mix.map(x => `<i style="flex:${x.v};background:${TOPIC_COLORS[x.d]}"></i>`).join('')}</div>
       <ul class="mix-key">${mix.map(x => `<li>${dot(TOPIC_COLORS[x.d])}<span>${t('topics')[x.d]}</span><span class="n">${Math.round(100 * x.v / sum)} %</span></li>`).join('')}</ul>` : ''}
+      ${n.sites.length > 1 ? `<h3>${fill(t('sitesTitle'), { n: n.sites.length })}</h3>
+      <div class="rows sites">${n.sites.map(s => { const k = n.placed.findIndex(x => x.a === s.a && x.n === s.n); return k < 0
+        ? `<div class="row off"><span>${esc(s.n)}<small>${esc(s.a)} · ${t('siteFar')}</small></span></div>`
+        : `<button type="button" class="row" data-site="${k}"><span>${esc(s.n)}<small>${esc(s.a)}</small></span></button>`; }).join('')}</div>
+      <p class="note">${t('sitesNote')}</p>` : ''}
       <h3>${t('partnersTitle')}</h3>
       <div class="rows">${n.links.slice(0, 8).map(l => `<button type="button" class="row" data-node="${l.other}">${dot(nodes[l.other].color)}<span>${esc(nodes[l.other].id)}</span><span class="n">${num(l.n)}</span></button>`).join('')}</div>
       <p class="note">${fill(t('partnersNote'), { n: n.links.length })}</p></div>`;
@@ -664,6 +814,7 @@ function renderPanel(takeFocus = false) {
   };
   $('panelClose').onclick = () => select(null);
   panel.querySelectorAll('[data-node]').forEach(b => { b.onclick = () => select(+b.dataset.node); });
+  panel.querySelectorAll('[data-site]').forEach(b => { b.onclick = () => showSite(+b.dataset.site); });
 }
 
 function showTour(step) {
@@ -791,6 +942,7 @@ function frame(now) {
 document.fonts.ready.then(() => labels.forEach(l => { l.w = 0; }));   // label widths were measured in the fallback font
 resize();
 { const [pos, target] = home(); camera.position.copy(pos); controls.target.copy(target); }
+houses.start(); fillDots(siteDots, sites);
 placeNodes(0);
 arcs.forEach((arc, k) => { for (let s = 0; s < ASEG; s++) arcMesh.setColorAt(k * ASEG + s, tmpColor.copy(meshes[arc.i].userData.base).lerp(WHITE, 0.45)); });
 paint();

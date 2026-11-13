@@ -1,0 +1,1298 @@
+{
+ "Universitätsring 1, 1010 Wien": {
+  "lat": 48.213018714231154,
+  "lon": 16.360860679989948,
+  "by": "wien",
+  "found": "Universitätsring 1 UNIVERSITÄT"
+ },
+ "Universitätsstraße 7, 1010 Wien": {
+  "lat": 48.21412441991477,
+  "lon": 16.357787999526064,
+  "by": "wien",
+  "found": "Universitätsstraße 7"
+ },
+ "Schottenbastei 10-16, 1010 Wien": {
+  "lat": 48.214061498994916,
+  "lon": 16.365010061540826,
+  "by": "wien",
+  "found": "Schottenbastei 10-16"
+ },
+ "Liebiggasse 5, 1010 Wien": {
+  "lat": 48.21332631666477,
+  "lon": 16.35755178318525,
+  "by": "wien",
+  "found": "Liebiggasse 5"
+ },
+ "Schenkenstraße 8-10, 1010 Wien": {
+  "lat": 48.2108561687541,
+  "lon": 16.36302914405978,
+  "by": "wien",
+  "found": "Schenkenstraße 8"
+ },
+ "Schenkenstraße 4, 1010 Wien": {
+  "lat": 48.21085366934851,
+  "lon": 16.363709434133924,
+  "by": "wien",
+  "found": "Schenkenstraße 4"
+ },
+ "Hanuschgasse 3, 1010 Wien": {
+  "lat": 48.2040927813736,
+  "lon": 16.36808662207285,
+  "by": "wien",
+  "found": "Hanuschgasse 3"
+ },
+ "Postgasse 7, 1010 Wien": {
+  "lat": 48.20854480301841,
+  "lon": 16.378350485465162,
+  "by": "wien",
+  "found": "Postgasse 7"
+ },
+ "Postgasse 9, 1010 Wien": {
+  "lat": 48.20926344605434,
+  "lon": 16.3788511878608,
+  "by": "wien",
+  "found": "Postgasse 9"
+ },
+ "Rathausstraße 19, 1010 Wien": {
+  "lat": 48.213768336320044,
+  "lon": 16.35704535314804,
+  "by": "wien",
+  "found": "Rathausstraße 19"
+ },
+ "Renngasse 6-8, 1010 Wien": {
+  "lat": 48.21223252607714,
+  "lon": 16.366835481521885,
+  "by": "wien",
+  "found": "Renngasse 6-8"
+ },
+ "Dominikanerbastei 16, 1010 Wien": {
+  "lat": 48.20997171340139,
+  "lon": 16.380145330957955,
+  "by": "wien",
+  "found": "Dominikanerbastei 14-18"
+ },
+ "Wiesingerstraße 4, 1010 Wien": {
+  "lat": 48.21040577740167,
+  "lon": 16.38071229351765,
+  "by": "wien",
+  "found": "Wiesingerstraße 4"
+ },
+ "Ebendorferstraße 10, 1010 Wien": {
+  "lat": 48.21316530537163,
+  "lon": 16.35820068616655,
+  "by": "wien",
+  "found": "Ebendorferstraße 10"
+ },
+ "Freyung 6, 1010 Wien": {
+  "lat": 48.212072433642135,
+  "lon": 16.364433857185738,
+  "by": "wien",
+  "found": "Freyung 6 Stand"
+ },
+ "Schottengasse 10, 1010 Wien": {
+  "lat": 48.21443680695512,
+  "lon": 16.36229107017239,
+  "by": "wien",
+  "found": "Schottengasse 10"
+ },
+ "Wächtergasse 1, 1010 Wien": {
+  "lat": 48.21225581403123,
+  "lon": 16.367186953040505,
+  "by": "wien",
+  "found": "Wächtergasse 1"
+ },
+ "Grillparzerstraße 7, 1010 Wien": {
+  "lat": 48.21251339981428,
+  "lon": 16.357175091982114,
+  "by": "wien",
+  "found": "Grillparzerstraße 7"
+ },
+ "Apostelgasse 23, 1030 Wien": {
+  "lat": 48.198220435835225,
+  "lon": 16.396932554751977,
+  "by": "wien",
+  "found": "Apostelgasse 23"
+ },
+ "Campus-Vienna-Biocenter 5, 1030 Wien": {
+  "lat": 48.18819530100792,
+  "lon": 16.402160772617126,
+  "by": "wien",
+  "found": "Campus-Vienna-Biocenter 5"
+ },
+ "Dr.-Bohr-Gasse 1, 1030 Wien": {
+  "lat": 48.18974603801562,
+  "lon": 16.4024197866134,
+  "by": "wien",
+  "found": "Dr.-Bohr-Gasse 1"
+ },
+ "Dr.-Bohr-Gasse 9, 1030 Wien": {
+  "lat": 48.18856671301456,
+  "lon": 16.40059252384252,
+  "by": "wien",
+  "found": "Dr.-Bohr-Gasse 9 Inst.f.Genetik"
+ },
+ "Djerassiplatz 1, 1030 Wien": {
+  "lat": 48.19060499933079,
+  "lon": 16.401922040225813,
+  "by": "wien",
+  "found": "Djerassiplatz 1"
+ },
+ "Rennweg 14, 1030 Wien": {
+  "lat": 48.19520242265042,
+  "lon": 16.383709040553523,
+  "by": "wien",
+  "found": "Rennweg 14"
+ },
+ "Vordere Zollamtsstraße 3, 1030 Wien": {
+  "lat": 48.2097459084394,
+  "lon": 16.385006505786972,
+  "by": "wien",
+  "found": "Vordere Zollamtsstraße 3"
+ },
+ "Zieglergasse 6, 1070 Wien": {
+  "lat": 48.197947155839906,
+  "lon": 16.34578168140652,
+  "by": "wien",
+  "found": "Zieglergasse 6/1"
+ },
+ "Alser Straße 23, 1080 Wien": {
+  "lat": 48.214834844824416,
+  "lon": 16.35059086118916,
+  "by": "wien",
+  "found": "Alser Straße 23"
+ },
+ "Spitalgasse 2, 1090 Wien": {
+  "lat": 48.21697448436924,
+  "lon": 16.351473552581023,
+  "by": "wien",
+  "found": "Spitalgasse 2"
+ },
+ "Augasse 2-6, 1090 Wien": {
+  "lat": 48.23189965749431,
+  "lon": 16.357764539657232,
+  "by": "wien",
+  "found": "Augasse 2-6"
+ },
+ "Berggasse 7, 1090 Wien": {
+  "lat": 48.217825170095715,
+  "lon": 16.36069505185018,
+  "by": "wien",
+  "found": "Berggasse 7"
+ },
+ "Boltzmanngasse 5, 1090 Wien": {
+  "lat": 48.22174401482192,
+  "lon": 16.355713569848884,
+  "by": "wien",
+  "found": "Boltzmanngasse 5"
+ },
+ "Boltzmanngasse 3, 1090 Wien": {
+  "lat": 48.221307171131656,
+  "lon": 16.356484808307556,
+  "by": "wien",
+  "found": "Boltzmanngasse 3"
+ },
+ "Boltzmanngasse 9, 1090 Wien": {
+  "lat": 48.22244548757673,
+  "lon": 16.355694188482584,
+  "by": "wien",
+  "found": "Boltzmanngasse 9"
+ },
+ "Ferstelgasse 5, 1090 Wien": {
+  "lat": 48.216114021757484,
+  "lon": 16.357118704470786,
+  "by": "wien",
+  "found": "Ferstelgasse 5"
+ },
+ "Hörlgasse 6, 1090 Wien": {
+  "lat": 48.216129478569975,
+  "lon": 16.361624623989975,
+  "by": "wien",
+  "found": "Hörlgasse 6"
+ },
+ "Josef-Holaubek-Platz 2, 1090 Wien": {
+  "lat": 48.232787148749495,
+  "lon": 16.35893277967108,
+  "by": "wien",
+  "found": "Josef-Holaubek-Platz 2"
+ },
+ "Kolingasse 14-16, 1090 Wien": {
+  "lat": 48.21615567553745,
+  "lon": 16.36384119486403,
+  "by": "wien",
+  "found": "Kolingasse 14"
+ },
+ "Maria-Theresien-Straße 9, 1090 Wien": {
+  "lat": 48.2154517702589,
+  "lon": 16.36349444897724,
+  "by": "wien",
+  "found": "Maria-Theresien-Straße 9"
+ },
+ "Oskar-Morgenstern-Platz 1, 1090 Wien": {
+  "lat": 48.21926321505538,
+  "lon": 16.36724919218913,
+  "by": "wien",
+  "found": "Oskar-Morgenstern-Platz 1"
+ },
+ "Porzellangasse 33a, 1090 Wien": {
+  "lat": 48.22184382094483,
+  "lon": 16.360513407223046,
+  "by": "wien",
+  "found": "Porzellangasse 33A"
+ },
+ "Porzellangasse 4, 1090 Wien": {
+  "lat": 48.219257162196364,
+  "lon": 16.363465390433543,
+  "by": "wien",
+  "found": "Porzellangasse 4-6"
+ },
+ "Pramergasse 9, 1090 Wien": {
+  "lat": 48.22229688854926,
+  "lon": 16.362979017022262,
+  "by": "wien",
+  "found": "Pramergasse 9"
+ },
+ "Rooseveltplatz 2, 1090 Wien": {
+  "lat": 48.214758798675504,
+  "lon": 16.358272150321554,
+  "by": "wien",
+  "found": "Rooseveltplatz 2"
+ },
+ "Sensengasse 3, 1090 Wien": {
+  "lat": 48.21978691190862,
+  "lon": 16.353491129538376,
+  "by": "wien",
+  "found": "Sensengasse 3/1"
+ },
+ "Sensengasse 3a, 1090 Wien": {
+  "lat": 48.220158256505236,
+  "lon": 16.35454875080896,
+  "by": "wien",
+  "found": "Sensengasse 3A/4"
+ },
+ "Sensengasse 8, 1090 Wien": {
+  "lat": 48.2202129722534,
+  "lon": 16.35541947603215,
+  "by": "wien",
+  "found": "Sensengasse 8"
+ },
+ "Strudlhofgasse 4, 1090 Wien": {
+  "lat": 48.22174401482192,
+  "lon": 16.355713569848884,
+  "by": "wien",
+  "found": "Strudlhofgasse 4"
+ },
+ "Währinger Straße 17, 1090 Wien": {
+  "lat": 48.218443133918726,
+  "lon": 16.357809199205093,
+  "by": "wien",
+  "found": "Währinger Straße 17"
+ },
+ "Währinger Straße 29, 1090 Wien": {
+  "lat": 48.2200220949623,
+  "lon": 16.3561879640133,
+  "by": "wien",
+  "found": "Währinger Straße 29"
+ },
+ "Währinger Straße 38-42, 1090 Wien": {
+  "lat": 48.22100263573588,
+  "lon": 16.356629224241566,
+  "by": "wien",
+  "found": "Währinger Straße 38"
+ },
+ "Wasagasse 12, 1090 Wien": {
+  "lat": 48.21719673641042,
+  "lon": 16.36105943029761,
+  "by": "wien",
+  "found": "Wasagasse 12"
+ },
+ "Auf der Schmelz 6, 1150 Wien": {
+  "lat": 48.20384751577483,
+  "lon": 16.317050990697762,
+  "by": "wien",
+  "found": "Auf der Schmelz 6"
+ },
+ "Türkenschanzstraße 17, 1180 Wien": {
+  "lat": 48.23143187228844,
+  "lon": 16.334175985549706,
+  "by": "wien",
+  "found": "Türkenschanzstraße 17"
+ },
+ "Franz-Klein-Gasse 1, 1190 Wien": {
+  "lat": 48.233514889625845,
+  "lon": 16.348993448655676,
+  "by": "wien",
+  "found": "Franz-Klein-Gasse 1(KURATORIUM Z.FÖRD.DER WU)"
+ },
+ "Haidlhof 204, 2540 Bad Vöslau": {
+  "lat": 47.9678857,
+  "lon": 16.1439948,
+  "by": "nominatim",
+  "found": "Gutshof Haidlhof, 204, Haidlhof, Katastralgemeinde Gainfarn, Großau, Bad Vöslau, Bezirk Baden, Niederösterreich, 2540, Österreich"
+ },
+ "Dr. Carl Kupelwieser Promenade 5, 3293 Lunz am See": {
+  "lat": 47.8515359,
+  "lon": 15.0421216,
+  "by": "nominatim",
+  "found": "WasserCluster Lunz am See, 5, Dr. Carl Kupelwieser-Promenade, Katastralgemeinde Lunzamt, Lunz am See, Bezirk Scheibbs, Niederösterreich, 3293, Österreich"
+ },
+ "Fischerau 13, 4645 Grünau im Almtal": {
+  "lat": 47.8142556,
+  "lon": 13.9488756,
+  "by": "nominatim",
+  "found": "Zufahrt Fischerau, Grünau im Almtal, Bezirk Gmunden, Oberösterreich, 4645, Österreich"
+ },
+ "Schlossbergweg 18, 9523 Landskron": {
+  "lat": 46.6431946,
+  "lon": 13.9008633,
+  "by": "nominatim",
+  "found": "Affenberg Landskron, 18, Schloßbergweg, Sankt Andrä, Landskron, Villach, Kärnten, 9523, Österreich"
+ },
+ "Spitalgasse 23, 1090 Wien": {
+  "lat": 48.21969167073691,
+  "lon": 16.351624953301297,
+  "by": "wien",
+  "found": "Spitalgasse 23"
+ },
+ "Währinger Gürtel 18-20, 1090 Wien": {
+  "lat": 48.220731259950725,
+  "lon": 16.346181619895003,
+  "by": "wien",
+  "found": "Währinger Gürtel 18-20 AKH"
+ },
+ "Lazarettgasse 14, 1090 Wien": {
+  "lat": 48.21795350055095,
+  "lon": 16.34746029769803,
+  "by": "wien",
+  "found": "Lazarettgasse 14C  SCHULE"
+ },
+ "Borschkegasse 8a, 1090 Wien": {
+  "lat": 48.21824940753923,
+  "lon": 16.345073348264695,
+  "by": "wien",
+  "found": "Borschkegasse 8A Inst.f.Krebsf.-Tumorbio."
+ },
+ "Spitalgasse 4, 1090 Wien": {
+  "lat": 48.216819080450406,
+  "lon": 16.352775979480743,
+  "by": "wien",
+  "found": "Spitalgasse 4 Uni-Campus"
+ },
+ "Sensengasse 2, 1090 Wien": {
+  "lat": 48.21895571238974,
+  "lon": 16.356521018195846,
+  "by": "wien",
+  "found": "Sensengasse 2A"
+ },
+ "Sensengasse 2a, 1090 Wien": {
+  "lat": 48.21895571238974,
+  "lon": 16.356521018195846,
+  "by": "wien",
+  "found": "Sensengasse 2A"
+ },
+ "Währinger Straße 25, 1090 Wien": {
+  "lat": 48.21931399277056,
+  "lon": 16.356570683508142,
+  "by": "wien",
+  "found": "Währinger Straße 25"
+ },
+ "Währinger Straße 25a, 1090 Wien": {
+  "lat": 48.219582976416746,
+  "lon": 16.354454746254962,
+  "by": "wien",
+  "found": "Währinger Straße 25A Zahnklinik d.Univ.Wien"
+ },
+ "Währinger Straße 13, 1090 Wien": {
+  "lat": 48.21771256932864,
+  "lon": 16.358521569651742,
+  "by": "wien",
+  "found": "Währinger Straße 13"
+ },
+ "Währinger Straße 13a, 1090 Wien": {
+  "lat": 48.21811356175087,
+  "lon": 16.35813122142305,
+  "by": "wien",
+  "found": "Währinger Straße 13A"
+ },
+ "Schwarzspanierstraße 17, 1090 Wien": {
+  "lat": 48.21702687256645,
+  "lon": 16.358340277408576,
+  "by": "wien",
+  "found": "Schwarzspanierstraße 17"
+ },
+ "Währinger Straße 10, 1090 Wien": {
+  "lat": 48.21637473022991,
+  "lon": 16.360767965502873,
+  "by": "wien",
+  "found": "Währinger Straße 10"
+ },
+ "Kinderspitalgasse 15, 1090 Wien": {
+  "lat": 48.21614329062815,
+  "lon": 16.342307936586234,
+  "by": "wien",
+  "found": "Kinderspitalgasse 15"
+ },
+ "Lazarettgasse 19, 1090 Wien": {
+  "lat": 48.21727567809837,
+  "lon": 16.34838193982872,
+  "by": "wien",
+  "found": "Lazarettgasse 19"
+ },
+ "Karlsplatz 13, 1040 Wien": {
+  "lat": 48.198982398223194,
+  "lon": 16.369904040408013,
+  "by": "wien",
+  "found": "Karlsplatz 13 Technische Universität Wien"
+ },
+ "Resselgasse 3-5, 1040 Wien": {
+  "lat": 48.19870711483985,
+  "lon": 16.368016012913102,
+  "by": "wien",
+  "found": "Resselgasse 3"
+ },
+ "Karlsgasse 11-13, 1040 Wien": {
+  "lat": 48.19721453507777,
+  "lon": 16.37011702733257,
+  "by": "wien",
+  "found": "Karlsgasse 11"
+ },
+ "Argentinierstraße 8, 1040 Wien": {
+  "lat": 48.197641757928665,
+  "lon": 16.371462342409572,
+  "by": "wien",
+  "found": "Argentinierstraße 8"
+ },
+ "Paniglgasse 16, 1040 Wien": {
+  "lat": 48.19810869982392,
+  "lon": 16.3689923762599,
+  "by": "wien",
+  "found": "Paniglgasse 16"
+ },
+ "Wiedner Hauptstraße 7-9, 1040 Wien": {
+  "lat": 48.19870711483985,
+  "lon": 16.368016012913102,
+  "by": "wien",
+  "found": "Wiedner Hauptstraße 7"
+ },
+ "Wiedner Hauptstraße 8-10, 1040 Wien": {
+  "lat": 48.19871299162615,
+  "lon": 16.367576272287405,
+  "by": "wien",
+  "found": "Wiedner Hauptstraße 8-10"
+ },
+ "Getreidemarkt 9, 1060 Wien": {
+  "lat": 48.20075176084092,
+  "lon": 16.363709930673046,
+  "by": "wien",
+  "found": "Getreidemarkt 9 Obj. 1"
+ },
+ "Gußhausstraße 25-29, 1040 Wien": {
+  "lat": 48.196443702100765,
+  "lon": 16.37109200993867,
+  "by": "wien",
+  "found": "Gußhausstraße 25 Obj. 2"
+ },
+ "Gußhausstraße 28-30, 1040 Wien": {
+  "lat": 48.196445057507255,
+  "lon": 16.368934144147662,
+  "by": "wien",
+  "found": "Gußhausstraße 28"
+ },
+ "Favoritenstraße 9-11, 1040 Wien": {
+  "lat": 48.195166904043376,
+  "lon": 16.36967622827695,
+  "by": "wien",
+  "found": "Favoritenstraße 9-11"
+ },
+ "Favoritenstraße 16, 1040 Wien": {
+  "lat": 48.194590254442176,
+  "lon": 16.36968647807226,
+  "by": "wien",
+  "found": "Favoritenstraße 16(BETRIEB)"
+ },
+ "Taubstummengasse 11, 1040 Wien": {
+  "lat": 48.19497895122748,
+  "lon": 16.37116405227094,
+  "by": "wien",
+  "found": "Taubstummengasse 11"
+ },
+ "Theresianumgasse 27, 1040 Wien": {
+  "lat": 48.191480292682854,
+  "lon": 16.373502784585774,
+  "by": "wien",
+  "found": "Theresianumgasse 27"
+ },
+ "Stadionallee 2, 1020 Wien": {
+  "lat": 48.196553080351705,
+  "lon": 16.412477693931486,
+  "by": "wien",
+  "found": "Stadionallee 2"
+ },
+ "Franz-Grill-Straße 4, 1030 Wien": {
+  "lat": 48.181052337466994,
+  "lon": 16.397074290652043,
+  "by": "wien",
+  "found": "Franz-Grill-Straße 4"
+ },
+ "Engerthstraße 119, 1200 Wien": {
+  "lat": 48.234267467319384,
+  "lon": 16.391954062293756,
+  "by": "wien",
+  "found": "Engerthstraße 119"
+ },
+ "Seestadtstraße 27, 1220 Wien": {
+  "lat": 48.22336663358689,
+  "lon": 16.509463079958387,
+  "by": "wien",
+  "found": "Seestadtstraße 27"
+ },
+ "Schlossplatz 1, 2361 Laxenburg": {
+  "lat": 48.0677839,
+  "lon": 16.3576303,
+  "by": "nominatim",
+  "found": "Schloss Laxenburg Blauer Hof, 1, Schlossplatz, Katastralgemeinde Laxenburg, Laxenburg, Bezirk Mödling, Niederösterreich, 2361, Österreich"
+ },
+ "Gregor-Mendel-Straße 33, 1180 Wien": {
+  "lat": 48.236563927930106,
+  "lon": 16.337549738630972,
+  "by": "wien",
+  "found": "Gregor-Mendel-Straße 33"
+ },
+ "Peter-Jordan-Straße 65, 1180 Wien": {
+  "lat": 48.23691142757169,
+  "lon": 16.33501486091987,
+  "by": "wien",
+  "found": "Peter-Jordan-Straße 65"
+ },
+ "Peter-Jordan-Straße 63, 1180 Wien": {
+  "lat": 48.23673732170461,
+  "lon": 16.335244928843252,
+  "by": "wien",
+  "found": "Peter-Jordan-Straße 63A"
+ },
+ "Peter-Jordan-Straße 70, 1190 Wien": {
+  "lat": 48.23723914409728,
+  "lon": 16.335934042389198,
+  "by": "wien",
+  "found": "Peter-Jordan-Straße 70 Schule"
+ },
+ "Peter-Jordan-Straße 76, 1190 Wien": {
+  "lat": 48.237273939824746,
+  "lon": 16.33477172830071,
+  "by": "wien",
+  "found": "Peter-Jordan-Straße 76"
+ },
+ "Peter-Jordan-Straße 82, 1190 Wien": {
+  "lat": 48.23742881510622,
+  "lon": 16.33170546234114,
+  "by": "wien",
+  "found": "Peter-Jordan-Straße 82"
+ },
+ "Muthgasse 18, 1190 Wien": {
+  "lat": 48.24695294677838,
+  "lon": 16.367588732820572,
+  "by": "wien",
+  "found": "Muthgasse 18"
+ },
+ "Muthgasse 11, 1190 Wien": {
+  "lat": 48.24702535373852,
+  "lon": 16.366199228911512,
+  "by": "wien",
+  "found": "Muthgasse 11"
+ },
+ "Muthgasse 107, 1190 Wien": {
+  "lat": 48.25264539227915,
+  "lon": 16.369645668640086,
+  "by": "wien",
+  "found": "Muthgasse 107"
+ },
+ "Am Brigittenauer Sporn 3, 1200 Wien": {
+  "lat": 48.25830485228613,
+  "lon": 16.37000908675523,
+  "by": "wien",
+  "found": "Am Brigittenauer Sporn 3"
+ },
+ "Schottenfeldgasse 29, 1070 Wien": {
+  "lat": 48.19982172256259,
+  "lon": 16.343051094007475,
+  "by": "wien",
+  "found": "Schottenfeldgasse 29"
+ },
+ "Sowinetzgasse 1, 1210 Wien": {
+  "lat": 48.28865926675036,
+  "lon": 16.42879188640838,
+  "by": "wien",
+  "found": "Sowinetzgasse 1"
+ },
+ "Knödelhüttenstraße 37, 1140 Wien": {
+  "lat": 48.21910264228684,
+  "lon": 16.241033419073336,
+  "by": "wien",
+  "found": "Knödelhüttenstraße 37 Seminargebäude"
+ },
+ "Schloßhofer Straße 31, 2301 Groß-Enzersdorf": {
+  "lat": 48.1992779,
+  "lon": 16.5616791,
+  "by": "nominatim",
+  "found": "BOKU Wien, Versuchsgarten Groß-Enzersdorf, 31, Schloßhofer Straße, Katastralgemeinde Großenzersdorf, Neu-Oberhausen, Groß-Enzersdorf, Bezirk Gänserndorf, Niederösterreich, 2301, Österreich"
+ },
+ "Konrad-Lorenz-Straße 24, 3430 Tulln an der Donau": {
+  "lat": 48.3204364,
+  "lon": 16.0691107,
+  "by": "nominatim",
+  "found": "Universitäts- und Forschungszentrum Tulln (UFT), 24, Konrad-Lorenz-Straße, Katastralgemeinde Tulln, Tulln an der Donau, Bezirk Tulln, Niederösterreich, 3430, Österreich"
+ },
+ "Konrad-Lorenz-Straße 20, 3430 Tulln an der Donau": {
+  "lat": 48.3195439,
+  "lon": 16.0666816,
+  "by": "nominatim",
+  "found": "Interuniversitäres Department für Agrarbiotechnologie (IFA-Tulln), 20, Konrad-Lorenz-Straße, Katastralgemeinde Tulln, Tulln an der Donau, Bezirk Tulln, Niederösterreich, 3430, Österreich"
+ },
+ "Heuberg 82, 7212 Forchtenstein": {
+  "lat": 47.7030255,
+  "lon": 16.3041024,
+  "by": "nominatim",
+  "found": "Heubergstraße, Katastralgemeinde Neustift an der Rosalia, Forchtenstein-Rosalia, Forchtenstein, Bezirk Mattersburg, Burgenland, 7212, Österreich"
+ },
+ "Dr.-Ignaz-Seipel-Platz 2, 1010 Wien": {
+  "lat": 48.20883992520145,
+  "lon": 16.37720654861053,
+  "by": "wien",
+  "found": "Dr.-Ignaz-Seipel-Platz 2"
+ },
+ "Bäckerstraße 13, 1010 Wien": {
+  "lat": 48.208450535894364,
+  "lon": 16.378154644997274,
+  "by": "wien",
+  "found": "Bäckerstraße 13"
+ },
+ "Dr.-Bohr-Gasse 3, 1030 Wien": {
+  "lat": 48.18944393979896,
+  "lon": 16.401819144699026,
+  "by": "wien",
+  "found": "Dr.-Bohr-Gasse 3"
+ },
+ "Helmut-Qualtinger-Gasse 2, 1030 Wien": {
+  "lat": 48.18843450653651,
+  "lon": 16.403119339753896,
+  "by": "wien",
+  "found": "Helmut-Qualtinger-Gasse 2"
+ },
+ "Am Campus 1, 3400 Klosterneuburg": {
+  "lat": 48.3114581,
+  "lon": 16.2589512,
+  "by": "nominatim",
+  "found": "ISTA (Institute of Science and Technology Austria), 1, Am Campus, Katastralgemeinde Gugging, Maria Gugging, Klosterneuburg, Bezirk Tulln, Niederösterreich, 3400, Österreich"
+ },
+ "Giefinggasse 4, 1210 Wien": {
+  "lat": 48.26921463097489,
+  "lon": 16.426764987935783,
+  "by": "wien",
+  "found": "Giefinggasse 4"
+ },
+ "Argentinierstraße 2, 1040 Wien": {
+  "lat": 48.198158782473655,
+  "lon": 16.37115734190572,
+  "by": "wien",
+  "found": "Argentinierstraße 2"
+ },
+ "2444 Seibersdorf": {
+  "lat": 47.9616086,
+  "lon": 16.5138392,
+  "by": "nominatim",
+  "found": "2444, Katastralgemeinde Seibersdorf, Seibersdorf, Bezirk Baden, Niederösterreich, Österreich"
+ },
+ "Konrad-Lorenz-Straße 24, 3430 Tulln": {
+  "lat": 48.3204364,
+  "lon": 16.0691107,
+  "by": "nominatim",
+  "found": "Universitäts- und Forschungszentrum Tulln (UFT), 24, Konrad-Lorenz-Straße, Katastralgemeinde Tulln, Tulln an der Donau, Bezirk Tulln, Niederösterreich, 3430, Österreich"
+ },
+ "Welthandelsplatz 1, 1020 Wien": {
+  "lat": 48.2145622357905,
+  "lon": 16.40648998898474,
+  "by": "wien",
+  "found": "Welthandelsplatz 1 Obj. A D"
+ },
+ "Campus-Vienna-Biocenter 1, 1030 Wien": {
+  "lat": 48.18948624850478,
+  "lon": 16.402842170512564,
+  "by": "wien",
+  "found": "Campus-Vienna-Biocenter 1"
+ },
+ "Sanatoriumstraße 2, 1140 Wien": {
+  "lat": 48.205737149639795,
+  "lon": 16.273144650295773,
+  "by": "wien",
+  "found": "Sanatoriumstraße 2 G"
+ },
+ "Julius-Tandler-Platz 3, 1090 Wien": {
+  "lat": 48.22628252833736,
+  "lon": 16.36122831329954,
+  "by": "wien",
+  "found": "Julius-Tandler-Platz 3"
+ },
+ "Reizenpfenninggasse 1, 1140 Wien": {
+  "lat": 48.211959739784355,
+  "lon": 16.28471621645942,
+  "by": "wien",
+  "found": "Reizenpfenninggasse 1A"
+ },
+ "Donaueschingenstraße 13, 1200 Wien": {
+  "lat": 48.23658803014571,
+  "lon": 16.38384620975639,
+  "by": "wien",
+  "found": "Donaueschingenstraße 13"
+ },
+ "Veterinärplatz 1, 1210 Wien": {
+  "lat": 48.25186322625771,
+  "lon": 16.429405144095213,
+  "by": "wien",
+  "found": "Veterinärplatz 1 Obj. 1"
+ },
+ "Savoyenstraße 1, 1160 Wien": {
+  "lat": 48.21991692651681,
+  "lon": 16.283318357754258,
+  "by": "wien",
+  "found": "Savoyenstraße 1 Obj. 1"
+ },
+ "Kremesberg 13, 2563 Pottenstein": {
+  "lat": 47.9531109,
+  "lon": 16.1159329,
+  "by": "nominatim",
+  "found": "Lehr- und Forschungsgut Kremesberg, 13, Kremesberg, Katastralgemeinde Pottenstein, Veitsau, Pottenstein, Bezirk Baden, Niederösterreich, 2563, Österreich"
+ },
+ "Dörfles 48, 2115 Ernstbrunn": {
+  "lat": 48.543334,
+  "lon": 16.3512324,
+  "by": "nominatim",
+  "found": "48, Katastralgemeinde Dörfles, Dörfles, Ernstbrunn, Bezirk Korneuburg, Niederösterreich, 2115, Österreich"
+ },
+ "Freudplatz 1, 1020 Wien": {
+  "lat": 48.215220319440306,
+  "lon": 16.40507058078549,
+  "by": "wien",
+  "found": "Freudplatz 1"
+ },
+ "Welthandelsplatz 3, 1020 Wien": {
+  "lat": 48.215220319440306,
+  "lon": 16.40507058078549,
+  "by": "wien",
+  "found": "Welthandelsplatz 3"
+ },
+ "Salztorgasse 5, 1010 Wien": {
+  "lat": 48.21366818538627,
+  "lon": 16.37329246512871,
+  "by": "wien",
+  "found": "Salztorgasse 5"
+ },
+ "Faulmanngasse 4, 1040 Wien": {
+  "lat": 48.198756123516,
+  "lon": 16.36567634355488,
+  "by": "wien",
+  "found": "Faulmanngasse 4(BUEROHAUS)"
+ },
+ "Thomas-Klestil-Platz 7, 1030 Wien": {
+  "lat": 48.19448388675764,
+  "lon": 16.41018447913787,
+  "by": "wien",
+  "found": "Thomas-Klestil-Platz 7/1"
+ },
+ "Langobardenstraße 122, 1220 Wien": {
+  "lat": 48.21868695625691,
+  "lon": 16.463990653822393,
+  "by": "wien",
+  "found": "Langobardenstraße 122"
+ },
+ "Wolkersbergenstraße 1, 1130 Wien": {
+  "lat": 48.16896357648641,
+  "lon": 16.277961702622903,
+  "by": "wien",
+  "found": "Wolkersbergenstraße 1"
+ },
+ "Montleartstraße 37, 1160 Wien": {
+  "lat": 48.20920277930489,
+  "lon": 16.303708668359008,
+  "by": "wien",
+  "found": "Montleartstraße 37 Kiosk"
+ },
+ "Metternichgasse 8, 1030 Wien": {
+  "lat": 48.19699498120341,
+  "lon": 16.382321832683648,
+  "by": "wien",
+  "found": "Metternichgasse 8(HOCHSCHULE)"
+ },
+ "Burgring 7, 1010 Wien": {
+  "lat": 48.20574002728848,
+  "lon": 16.360560923463094,
+  "by": "wien",
+  "found": "Burgring 7"
+ },
+ "Lange Gasse 28, 2404 Petronell": {
+  "lat": 48.1157077,
+  "lon": 16.8645221,
+  "by": "nominatim",
+  "found": "Langegasse, Katastralgemeinde Petronell, Petronell-Carnuntum, Bezirk Bruck an der Leitha, Niederösterreich, 2404, Österreich"
+ },
+ "Kinderspitalgasse 6, 1090 Wien": {
+  "lat": 48.215941805476945,
+  "lon": 16.344341453080908,
+  "by": "wien",
+  "found": "Kinderspitalgasse 6"
+ },
+ "Zimmermannplatz 10, 1090 Wien": {
+  "lat": 48.216731607817856,
+  "lon": 16.344072580520336,
+  "by": "wien",
+  "found": "Zimmermannplatz 10"
+ },
+ "Spargelfeldstraße 191, 1220 Wien": {
+  "lat": 48.25259914868931,
+  "lon": 16.48303932615569,
+  "by": "wien",
+  "found": "Spargelfeldstraße 191"
+ },
+ "Traisengasse 5, 1200 Wien": {
+  "lat": 48.2342465676808,
+  "lon": 16.38470245737309,
+  "by": "wien",
+  "found": "Traisengasse 5"
+ },
+ "Possingergasse 38, 1160 Wien": {
+  "lat": 48.209595670942676,
+  "lon": 16.318471566115843,
+  "by": "wien",
+  "found": "Possingergasse 38"
+ },
+ "Robert-Koch-Gasse 17, 2340 Mödling": {
+  "lat": 48.0783754,
+  "lon": 16.3050516,
+  "by": "nominatim",
+  "found": "Institut für veterinärmedizinische Untersuchungen Mödling, 17, Robert-Koch-Gasse, Schöffelstadt, Katastralgemeinde Mödling, Mödling, Bezirk Mödling, Niederösterreich, 2340, Österreich"
+ },
+ "Gutshofstraße 12, 2286 Fuchsenbigl": {
+  "lat": 48.2018241,
+  "lon": 16.7470513,
+  "by": "nominatim",
+  "found": "12, Gutshofstraße, Katastralgemeinde Fuchsenbigl, Fuchsenbigl, Haringsee, Bezirk Gänserndorf, Niederösterreich, 2286, Österreich"
+ },
+ "Hohe Warte 38, 1190 Wien": {
+  "lat": 48.24846455793185,
+  "lon": 16.355634227083097,
+  "by": "wien",
+  "found": "Hohe Warte 38 Obj. 1"
+ },
+ "Neulinggasse 38, 1030 Wien": {
+  "lat": 48.19956202016359,
+  "lon": 16.38575161950668,
+  "by": "wien",
+  "found": "Neulinggasse 38"
+ },
+ "Heinrich-Collin-Straße 30, 1140 Wien": {
+  "lat": 48.19890728702474,
+  "lon": 16.29363114100687,
+  "by": "wien",
+  "found": "Heinrich-Collin-Straße 30"
+ },
+ "Speisinger Straße 109, 1130 Wien": {
+  "lat": 48.16380988038392,
+  "lon": 16.281058438532558,
+  "by": "wien",
+  "found": "Speisinger Straße 109 Portier"
+ },
+ "Quellenstraße 51, 1100 Wien": {
+  "lat": 48.17386746386369,
+  "lon": 16.388435006755664,
+  "by": "wien",
+  "found": "Quellenstraße 51-55"
+ },
+ "Drorygasse 1, 1030 Wien": {
+  "lat": 48.19954069709599,
+  "lon": 16.407188032124704,
+  "by": "wien",
+  "found": "Drorygasse 1/1"
+ },
+ "Favoritenstraße 226, 1100 Wien": {
+  "lat": 48.157732992448736,
+  "lon": 16.382287520878563,
+  "by": "wien",
+  "found": "Favoritenstraße 226"
+ },
+ "Gutheil-Schoder-Gasse 8, 1100 Wien": {
+  "lat": 48.16316134712746,
+  "lon": 16.336619902727286,
+  "by": "wien",
+  "found": "Gutheil-Schoder-Gasse 8"
+ },
+ "Stubenring 6, 1010 Wien": {
+  "lat": 48.21024718988904,
+  "lon": 16.3821755185728,
+  "by": "wien",
+  "found": "Stubenring 6"
+ },
+ "Aspernbrückengasse 2, 1020 Wien": {
+  "lat": 48.21335331608932,
+  "lon": 16.38272164790753,
+  "by": "wien",
+  "found": "Aspernbrückengasse 2"
+ },
+ "Arsenal Objekt 20, 1030 Wien": {
+  "lat": 48.18155011515094,
+  "lon": 16.389860452763894,
+  "by": "wien",
+  "found": "Arsenal 20"
+ },
+ "Höchstädtplatz 6, 1200 Wien": {
+  "lat": 48.23932092371137,
+  "lon": 16.377450653498506,
+  "by": "wien",
+  "found": "Höchstädtplatz 6 Fachhochschule Technikum"
+ },
+ "Giefinggasse 6, 1210 Wien": {
+  "lat": 48.26959028247071,
+  "lon": 16.426868028339104,
+  "by": "wien",
+  "found": "Giefinggasse 6/1"
+ },
+ "Johannes-von-Gott-Platz 1, 1020 Wien": {
+  "lat": 48.215674663912615,
+  "lon": 16.381999934525126,
+  "by": "wien",
+  "found": "Johannes-von-Gott-Platz 1 Krankenhaus"
+ },
+ "Martinstraße 12, 3400 Klosterneuburg": {
+  "lat": 48.3109243,
+  "lon": 16.323854,
+  "by": "nominatim",
+  "found": "12, Martinstraße, Katastralgemeinde Klosterneuburg, Klosterneuburg, Bezirk Tulln, Niederösterreich, 3400, Österreich"
+ },
+ "Am Kahlenberg 1, 1190 Wien": {
+  "lat": 48.27477958872078,
+  "lon": 16.33607764463113,
+  "by": "wien",
+  "found": "Am Kahlenberg 1 Universität"
+ },
+ "Mayerweckstraße 1, 1210 Wien": {
+  "lat": 48.294224620844155,
+  "lon": 16.380995861595984,
+  "by": "wien",
+  "found": "Mayerweckstraße 1(SCHULE)"
+ },
+ "Severin-Schreiber-Gasse 1, 1180 Wien": {
+  "lat": 48.23137738394688,
+  "lon": 16.331427216920744,
+  "by": "wien",
+  "found": "Severin-Schreiber-Gasse 1"
+ },
+ "Stephansplatz 3, 1010 Wien": {
+  "lat": 48.208012497364564,
+  "lon": 16.372839669591553,
+  "by": "wien",
+  "found": "Stephansplatz 3"
+ },
+ "Singerstraße 7, 1010 Wien": {
+  "lat": 48.207448728766416,
+  "lon": 16.37362485969284,
+  "by": "wien",
+  "found": "Singerstraße 7"
+ },
+ "Wiener Straße 38, 3100 St. Pölten": {
+  "lat": 48.2043253,
+  "lon": 15.6282069,
+  "by": "nominatim",
+  "found": "KPH Campus St. Pölten, 38, Wiener Straße, Regierungsviertel, Katastralgemeinde St. Pölten, St. Pölten, Niederösterreich, 3100, Österreich"
+ },
+ "Seckendorff-Gudent-Weg 8, 1131 Wien": {
+  "lat": 48.1782684,
+  "lon": 16.3029803,
+  "by": "nominatim",
+  "found": "Bundesamt für Wald, 8, Seckendorff-Gudent-Weg, Katastralgemeinde Hietzing, Hietzing, Wien, 1130, Österreich"
+ },
+ "Bildereiche 2, 3430 Tulln": {
+  "lat": 48.3578709,
+  "lon": 16.0552436,
+  "by": "nominatim",
+  "found": "Zur Bildereiche, Katastralgemeinde Tulln, Tulln an der Donau, Bezirk Tulln, Niederösterreich, 3430, Österreich"
+ },
+ "Floragasse 7, 1040 Wien": {
+  "lat": 48.19452631350141,
+  "lon": 16.368426898270453,
+  "by": "wien",
+  "found": "Floragasse 7"
+ },
+ "Arltgasse 35, 1160 Wien": {
+  "lat": 48.20914547261386,
+  "lon": 16.319081756222275,
+  "by": "wien",
+  "found": "Arltgasse 35"
+ },
+ "Nußdorfer Platz 8, 1190 Wien": {
+  "lat": 48.260599235833766,
+  "lon": 16.366940396579658,
+  "by": "wien",
+  "found": "Nußdorfer Platz 8"
+ },
+ "Wohlmutstraße 22, 1020 Wien": {
+  "lat": 48.219149345038375,
+  "lon": 16.40327459563075,
+  "by": "wien",
+  "found": "Wohlmutstraße 22"
+ },
+ "Maria-Jacobi-Gasse 1, 1030 Wien": {
+  "lat": 48.18895694702025,
+  "lon": 16.404607524025266,
+  "by": "wien",
+  "found": "Maria-Jacobi-Gasse 1/1 MQM 3.1"
+ },
+ "Josefstädter Straße 39, 1080 Wien": {
+  "lat": 48.20970302407769,
+  "lon": 16.347608095510896,
+  "by": "wien",
+  "found": "Josefstädter Straße 39"
+ },
+ "Schillerplatz 3, 1010 Wien": {
+  "lat": 48.20163137223815,
+  "lon": 16.365236209734423,
+  "by": "wien",
+  "found": "Schillerplatz 3"
+ },
+ "Kurzbauergasse 9, 1020 Wien": {
+  "lat": 48.212287933036286,
+  "lon": 16.39671494620145,
+  "by": "wien",
+  "found": "Kurzbauergasse 9 AKADEMIE"
+ },
+ "Karl-Schweighofer-Gasse 3, 1070 Wien": {
+  "lat": 48.20176510397729,
+  "lon": 16.357910321494717,
+  "by": "wien",
+  "found": "Karl-Schweighofer-Gasse 3"
+ },
+ "Kelsenstraße 2, 1030 Wien": {
+  "lat": 48.18646371791258,
+  "lon": 16.39109439998149,
+  "by": "wien",
+  "found": "Kelsenstraße 2"
+ },
+ "Anton-von-Webern-Platz 1, 1030 Wien": {
+  "lat": 48.20182919206458,
+  "lon": 16.384750367168415,
+  "by": "wien",
+  "found": "Anton-von-Webern-Platz 1"
+ },
+ "Lothringerstraße 18, 1030 Wien": {
+  "lat": 48.200374034868545,
+  "lon": 16.37728305059963,
+  "by": "wien",
+  "found": "Lothringerstraße 18"
+ },
+ "Rennweg 8, 1030 Wien": {
+  "lat": 48.19655112726814,
+  "lon": 16.38105512033446,
+  "by": "wien",
+  "found": "Rennweg 8"
+ },
+ "Metternichgasse 12, 1030 Wien": {
+  "lat": 48.196586970242095,
+  "lon": 16.382291334817207,
+  "by": "wien",
+  "found": "Metternichgasse 12"
+ },
+ "Singerstraße 26A, 1010 Wien": {
+  "lat": 48.206341922429544,
+  "lon": 16.375538548735786,
+  "by": "wien",
+  "found": "Singerstraße 26A"
+ },
+ "Schönbrunner Schlossstraße 47, 1130 Wien": {
+  "lat": 48.18684744933873,
+  "lon": 16.306940407638393,
+  "by": "wien",
+  "found": "Schönbrunner Schloßstraße 47 Bauhof"
+ },
+ "Penzinger Straße 7-9, 1140 Wien": {
+  "lat": 48.18975265815445,
+  "lon": 16.3134454080192,
+  "by": "wien",
+  "found": "Penzinger Straße 7"
+ },
+ "Praterstraße 23, 1020 Wien": {
+  "lat": 48.21402312795503,
+  "lon": 16.382949257619995,
+  "by": "wien",
+  "found": "Praterstraße 23"
+ },
+ "Theresianumgasse 7, 1040 Wien": {
+  "lat": 48.192482970538805,
+  "lon": 16.37738648658802,
+  "by": "wien",
+  "found": "Theresianumgasse 7"
+ },
+ "Währinger Gürtel 97, 1180 Wien": {
+  "lat": 48.2265794113948,
+  "lon": 16.34920086745633,
+  "by": "wien",
+  "found": "Währinger Gürtel 97"
+ },
+ "Vordere Zollamtsstraße 7, 1030 Wien": {
+  "lat": 48.2083839363748,
+  "lon": 16.38446057236031,
+  "by": "wien",
+  "found": "Vordere Zollamtsstraße 7"
+ },
+ "Georg-Coch-Platz 2, 1010 Wien": {
+  "lat": 48.209972835578654,
+  "lon": 16.381195083189827,
+  "by": "wien",
+  "found": "Georg-Coch-Platz 2"
+ },
+ "Salzgries 14, 1010 Wien": {
+  "lat": 48.21346758999659,
+  "lon": 16.3711494814264,
+  "by": "wien",
+  "found": "Salzgries 14"
+ },
+ "Postgasse 6, 1010 Wien": {
+  "lat": 48.20909949368579,
+  "lon": 16.37910857390283,
+  "by": "wien",
+  "found": "Postgasse 6"
+ },
+ "Rustenschacherallee 2-4, 1020 Wien": {
+  "lat": 48.211296816860894,
+  "lon": 16.398183762815826,
+  "by": "wien",
+  "found": "Rustenschacherallee 2-4"
+ },
+ "Paulusplatz 5, 1030 Wien": {
+  "lat": 48.19249429050495,
+  "lon": 16.401624650926124,
+  "by": "wien",
+  "found": "Paulusplatz 5"
+ },
+ "Dampfschiffstraße 4, 1030 Wien": {
+  "lat": 48.212695635303774,
+  "lon": 16.3881886050785,
+  "by": "wien",
+  "found": "Dampfschiffstraße 4"
+ },
+ "Eyzinggasse 23, 1110 Wien": {
+  "lat": 48.18193190631571,
+  "lon": 16.4191489656433,
+  "by": "wien",
+  "found": "Eyzinggasse 23"
+ },
+ "Siemensstraße 87-89, 1210 Wien": {
+  "lat": 48.27065720679278,
+  "lon": 16.421974350424357,
+  "by": "wien",
+  "found": "Siemensstraße 87 Obj. 1"
+ },
+ "Donau-City-Straße 11, 1220 Wien": {
+  "lat": 48.23368810706086,
+  "lon": 16.411667775585073,
+  "by": "wien",
+  "found": "Donau-City-Straße 11"
+ },
+ "Rooseveltplatz 3, 1090 Wien": {
+  "lat": 48.21499758455868,
+  "lon": 16.358188017360614,
+  "by": "wien",
+  "found": "Rooseveltplatz 3"
+ },
+ "Feistmantelstraße 4, 1180 Wien": {
+  "lat": 48.2361716489652,
+  "lon": 16.33501568470506,
+  "by": "wien",
+  "found": "Feistmantelstraße 4"
+ },
+ "Nußdorfer Straße 64, 1090 Wien": {
+  "lat": 48.2281750736329,
+  "lon": 16.35502042746768,
+  "by": "wien",
+  "found": "Nußdorfer Straße 64"
+ },
+ "Biberstraße 22, 1010 Wien": {
+  "lat": 48.210397866839436,
+  "lon": 16.381393917508355,
+  "by": "wien",
+  "found": "Biberstraße 22"
+ },
+ "Lehárgasse 8, 1060 Wien": {
+  "lat": 48.199735910729565,
+  "lon": 16.362054628025763,
+  "by": "wien",
+  "found": "Lehargasse 8"
+ },
+ "Ungargasse 14, 1030 Wien": {
+  "lat": 48.20300551960702,
+  "lon": 16.38680253615923,
+  "by": "wien",
+  "found": "Ungargasse 14"
+ },
+ "Seilerstätte 26, 1010 Wien": {
+  "lat": 48.2046889909518,
+  "lon": 16.37302981455149,
+  "by": "wien",
+  "found": "Seilerstätte 26 STUDENTENHEIM"
+ },
+ "Spittelauer Lände 5, 1090 Wien": {
+  "lat": 48.22726035665463,
+  "lon": 16.363968727581753,
+  "by": "wien",
+  "found": "Spittelauer Lände 5(BETRIEB)"
+ },
+ "Schiffamtsgasse 1-3, 1020 Wien": {
+  "lat": 48.218655635312025,
+  "lon": 16.373022893866498,
+  "by": "wien",
+  "found": "Schiffamtsgasse 1-3"
+ },
+ "Oskar-Kokoschka-Platz 2, 1010 Wien": {
+  "lat": 48.208394826842834,
+  "lon": 16.382250010502062,
+  "by": "wien",
+  "found": "Oskar-Kokoschka-Platz 2"
+ },
+ "Hofburg, Batthyanystiege, 1010 Wien": {
+  "lat": 48.206558115100336,
+  "lon": 16.36494422373045,
+  "by": "wien, object 'Hofburg'",
+  "found": "Hofburg"
+ },
+ "Welthandelsplatz 1, Gebäude D1, 1020 Wien": {
+  "lat": 48.21275335,
+  "lon": 16.40991277,
+  "by": "wien, university layer",
+  "found": "2., Welthandelsplatz 1 Obj. D 1"
+ },
+ "Welthandelsplatz 1, Gebäude D2, 1020 Wien": {
+  "lat": 48.21221087,
+  "lon": 16.4098479,
+  "by": "wien, university layer",
+  "found": "2., Welthandelsplatz 1 Obj. D 2"
+ },
+ "Welthandelsplatz 1, Gebäude D3, 1020 Wien": {
+  "lat": 48.21396906,
+  "lon": 16.40642193,
+  "by": "wien, university layer",
+  "found": "2., Welthandelsplatz 1 Obj. D 3"
+ },
+ "Welthandelsplatz 1, Gebäude D4, 1020 Wien": {
+  "lat": 48.21457534,
+  "lon": 16.40736371,
+  "by": "wien, university layer",
+  "found": "2., Welthandelsplatz 1 Obj. D 4"
+ },
+ "Welthandelsplatz 1, Gebäude AD, 1020 Wien": {
+  "lat": 48.21462588,
+  "lon": 16.40627331,
+  "by": "wien, university layer",
+  "found": "2., Welthandelsplatz 1 Obj. A D"
+ },
+ "Welthandelsplatz 1, Gebäude EA, 1020 Wien": {
+  "lat": 48.2156681,
+  "lon": 16.40623201,
+  "by": "wien, university layer",
+  "found": "2., Welthandelsplatz 1 Obj. E A"
+ }
+}

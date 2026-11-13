@@ -10,14 +10,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { KM, project, simplify } from './geo.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.dirname(HERE);
 const CACHE = path.join(HERE, 'cache', 'collaboration.json');
 const API = 'https://research.wwtf.at/api/v1/collaboration.json';
-const KM = 5;                        // scene units per kilometre in the city view
-const CENTRE = { lat: 48.2083, lon: 16.3731 };   // Stephansplatz
-const CITY_SCALE = 0.6;            // spheres shrink over the map, where they sit closer together
+const CITY_SCALE = 0.4;            // spheres shrink over the map, so they do not cover the buildings below
 const Q_SITE = { lat: 48.2083572, lon: 16.3776293 };   // Wollzeile 27a, where the exhibition stands (geocoded with Nominatim)
 const DOMAINS = ['Physical Sciences', 'Life Sciences', 'Health Sciences', 'Social Sciences'];
 
@@ -43,6 +42,24 @@ const nodes = api.institutions.map(n => ({   // the API lists them largest first
 const index = Object.fromEntries(nodes.map((n, i) => [n.id, i]));
 const edges = api.pairs.map(p => ({ a: index[p.a], b: index[p.b], n: p.joint }));
 
+/* Most institutions work at several addresses. build/sites.json lists them (researched by hand,
+   with a source for each), build/site-coords.json holds where they are (geocode-sites.py).
+   The sphere floats above the main site; sites further than MAP_KM from the centre are only named. */
+const MAP_KM = 22;
+const siteList = JSON.parse(fs.readFileSync(path.join(HERE, 'sites.json'), 'utf8'));
+const siteCoords = JSON.parse(fs.readFileSync(path.join(HERE, 'site-coords.json'), 'utf8'));
+for (const n of nodes) {
+  n.sites = (siteList[n.id]?.sites ?? []).map(s => {
+    const c = siteCoords[s.addr], p = c && project(c.lat, c.lon);
+    const site = { n: s.name, a: s.addr };
+    if (p && Math.hypot(...p) <= MAP_KM * KM) site.p = p.map(v => Math.round(v * 1000) / 1000);
+    if (s.main) site.m = 1;
+    return site;
+  }).sort((a, b) => (b.m ?? 0) - (a.m ?? 0) || !a.p - !b.p);   // main site first, sites off the map last
+  const main = n.sites.find(s => s.m && s.p);
+  n.at = main ? main.p : project(coords[n.id].lat, coords[n.id].lon);
+}
+
 layoutNetwork(nodes, edges);
 layoutCity(nodes);
 
@@ -50,7 +67,7 @@ const round = v => Math.round(v * 100) / 100;
 fs.mkdirSync(path.join(ROOT, 'data'), { recursive: true });
 fs.writeFileSync(path.join(ROOT, 'data', 'graph.json'), JSON.stringify({
   from: api.from, to: api.to, total: api.outputs, joint: api.joint, perWeek: api.outputs_per_week, cityScale: CITY_SCALE,
-  nodes: nodes.map(n => ({ ...n, r: round(n.r), net: n.net.map(round), city: n.city.map(round) })),
+  nodes: nodes.map(n => ({ ...n, at: undefined, r: round(n.r), net: n.net.map(round), city: n.city.map(round) })),
   edges,
 }));
 // The map layers are not committed (see fetch-map.sh); without them the committed wien.json stays.
@@ -124,8 +141,8 @@ function layoutNetwork(nodes, edges) {
    pulls the crowded first district apart; spheres are drawn at CITY_SCALE of their radius. */
 function layoutCity(nodes) {
   const pos = nodes.map(n => {
-    const [x, z] = project(coords[n.id].lat, coords[n.id].lon);
-    return [x, n.r * CITY_SCALE + 1 + 13 * Math.sqrt(n.count / maxCount), z];
+    const [x, z] = n.at;
+    return [x, n.r * CITY_SCALE + 1.2 + 7 * Math.sqrt(n.count / maxCount), z];
   });
   separate(pos, nodes.map(n => n.r * CITY_SCALE), 0.8, [1]);   // push apart vertically only
   // The Academy of Sciences stood half behind TU Wien, its bigger neighbour to the south.
@@ -174,9 +191,6 @@ function separate(pos, radii, gap, axes) {
 
 function sub(a, b) { return [a[0] - b[0], a[1] - b[1], a[2] - b[2]]; }
 function round2(v) { return Math.round(v * 100) / 100; }
-function project(lat, lon) {   // east = +x, south = +z, scene units
-  return [(lon - CENTRE.lon) * 111.32 * Math.cos(CENTRE.lat * Math.PI / 180) * KM, -(lat - CENTRE.lat) * 111.32 * KM];
-}
 
 /* Districts and the main waters from data.wien.gv.at (WFS, CC BY 4.0), simplified. */
 function buildMap() {
@@ -204,24 +218,3 @@ function centroid(ring) {
   return [round2(cx / (3 * a)), round2(cz / (3 * a))];
 }
 
-function simplify(pts, tol) {   // Douglas-Peucker
-  if (pts.length < 3) return pts;
-  const keep = new Uint8Array(pts.length), last = pts.length - 1; keep[0] = keep[last] = 1;
-  let stack = [[0, last]];
-  if (pts[0][0] === pts[last][0] && pts[0][1] === pts[last][1]) {   // closed ring: split at the point farthest from the start
-    let far = 0, at = 0;
-    pts.forEach((q, i) => { const d = Math.hypot(q[0] - pts[0][0], q[1] - pts[0][1]); if (d > far) { far = d; at = i; } });
-    keep[at] = 1; stack = [[0, at], [at, last]];
-  }
-  while (stack.length) {
-    const [a, b] = stack.pop();
-    const [ax, az] = pts[a], [bx, bz] = pts[b], dx = bx - ax, dz = bz - az, len = Math.hypot(dx, dz) || 1e-9;
-    let worst = 0, at = -1;
-    for (let i = a + 1; i < b; i++) {
-      const d = Math.abs((pts[i][0] - ax) * dz - (pts[i][1] - az) * dx) / len;
-      if (d > worst) { worst = d; at = i; }
-    }
-    if (worst > tol) { keep[at] = 1; stack.push([a, at], [at, b]); }
-  }
-  return pts.filter((_, i) => keep[i]);
-}
