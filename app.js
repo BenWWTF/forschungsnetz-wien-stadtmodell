@@ -190,7 +190,8 @@ function buildHouses() {
 }
 
 /* Every address an institution works at is a site: a dot on the map, in the colour of its
-   institution. The sites of the selected place grow, get a white rim and hang on threads from its sphere. */
+   institution. That is the overview. Once a place is selected, the map shows that place alone and
+   its sites become pins (placePins). */
 const sites = nodes.flatMap(n => n.sites.map((s, k) => ({ ...s, node: n.i, k }))).filter(s => s.p);
 sites.forEach(s => {
   s.own = city.own[s.a] ?? [];
@@ -212,9 +213,11 @@ const fillDots = (pts, list, colour) => {
   pts.geometry.setAttribute('position', new THREE.Float32BufferAttribute(list.flatMap(s => [s.at.x, s.at.y, s.at.z]), 3));
   pts.geometry.setAttribute('color', new THREE.Float32BufferAttribute(list.flatMap(s => { tmpColor.set(colour ?? nodes[s.node].color); return [tmpColor.r, tmpColor.g, tmpColor.b]; }), 3));
 };
-const siteDots = dots(9, 4), siteRims = dots(22, 5), siteOn = dots(16, 6);
-const threads = new THREE.LineSegments(new THREE.BufferGeometry(), new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, depthWrite: false }));
-threads.frustumCulled = false; threads.visible = false; scene.add(threads);
+const siteDots = dots(9, 4);
+/* Three levels above the map, each with one job: the city (who is where), one place (where is it
+   everywhere), one site (what does it look like). At the second and third level the map belongs
+   to the selected place: the other spheres, their dots and all lines step aside. */
+const solo = () => state.view === 'city' && state.selected !== null;
 
 
 function buildMap() {
@@ -303,28 +306,20 @@ function placeNodes(time) {
     at.setXYZ(2 * i + 1, p.x, p.y, p.z);
   });
   at.needsUpdate = true;
-  stalks.material.opacity = 0.55 * t * t; stalks.visible = t > 0.01;
+  stalks.material.opacity = 0.55 * t * t; stalks.visible = t > 0.01 && !solo();
   map.fade(t); houses.fade(t);
-  const chosen = state.selected === null ? [] : nodes[state.selected].placed;
-  siteDots.visible = t > 0.01; siteDots.material.opacity = t * (chosen.length ? 0.45 : 0.9);
-  siteRims.visible = siteOn.visible = threads.visible = t > 0.01 && chosen.length > 0;
-  siteRims.material.opacity = siteOn.material.opacity = t; threads.material.opacity = 0.45 * t * t;
-  if (threads.visible) {
-    const line = threads.geometry.attributes.position, from = cur[state.selected];
-    chosen.forEach((s, k) => { line.setXYZ(2 * k, from.x, from.y, from.z); line.setXYZ(2 * k + 1, s.at.x, s.at.y, s.at.z); });
-    line.needsUpdate = true;
-  }
+  siteDots.visible = t > 0.01 && !solo(); siteDots.material.opacity = 0.9 * t;
   placeEdges();
 }
 
 function placeEdges() {
-  const t = state.mix, em = state.emph;
+  const t = state.mix, em = state.emph, alone = solo();
   edges.forEach((e, k) => {
     const a = cur[e.a], b = cur[e.b];
     // in the network a line bows outward, away from the centre; above the map it arches upward
     const ctrl = curve[k].addVectors(a, b).multiplyScalar(0.5 * (1 + 0.32 * (1 - t)));
     ctrl.y += (a.distanceTo(b) * 0.3 + 2) * t;
-    const hidden = em && !em.edge(e);   // lines outside the focus vanish
+    const hidden = alone || (em && !em.edge(e));   // lines outside the focus vanish
     const w = width(e.n) * (1 - 0.72 * t);   // thin above the map, where the houses are the picture
     for (let s = 0; s < SEG; s++) {
       bezier(a, ctrl, b, s / SEG, tmpA); bezier(a, ctrl, b, (s + 1) / SEG, tmpB);
@@ -337,7 +332,7 @@ function placeEdges() {
     }
   });
   arcs.forEach((arc, k) => {
-    const i = arc.i, p = cur[i], r = radiusNow(nodes[i]), hidden = em && !em.nodes.has(i) && !em.near.has(i);
+    const i = arc.i, p = cur[i], r = radiusNow(nodes[i]), hidden = alone || (em && !em.nodes.has(i) && !em.near.has(i));
     const dir = tmpC.copy(outward[i]).addScaledVector(arc.lean, 0.8).normalize();          // where on the sphere the arc stands
     const side = tmpB.crossVectors(dir, arc.twist).normalize().multiplyScalar(arc.span);  // how far apart its two feet are
     arc.from.copy(dir).add(side).normalize().multiplyScalar(r).add(p);
@@ -360,7 +355,7 @@ function placeEdges() {
 }
 
 function moveFlecks(time) {
-  const em = state.emph, at = fleckCloud.geometry.attributes.position, sec = time / 1000;
+  const em = solo() ? { edge: () => false, nodes: new Set(), near: new Set() } : state.emph, at = fleckCloud.geometry.attributes.position, sec = time / 1000;
   flecks.forEach((f, j) => {
     if (f.edge !== undefined) {
       const e = edges[f.edge], a = cur[e.a], b = cur[e.b];
@@ -432,7 +427,10 @@ function cardShift(dir, dist) {
   if (card.hidden) return new THREE.Vector3();
   const r = card.getBoundingClientRect(), viewH = 2 * dist * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
   const right = new THREE.Vector3().crossVectors(UP, dir).normalize();
-  if (r.left < W / 2 && r.right > W / 2) return new THREE.Vector3().crossVectors(dir, right).multiplyScalar(-(H - r.top) / 2 / H * viewH);   // card below
+  if (r.left < W / 2 && r.right > W / 2) {   // card below: aim at the middle of what the card and the bar at the top leave free
+    const bar = document.querySelector('.top').getBoundingClientRect().bottom - 28;   // its last 28 px are a fade
+    return new THREE.Vector3().crossVectors(dir, right).multiplyScalar(-(H / 2 - (Math.min(bar, r.top - 80) + r.top) / 2) / H * viewH);
+  }
   return right.multiplyScalar((W - r.left) / 2 / W * viewH * camera.aspect);                                                                 // card at the right
 }
 matchMedia('(orientation: portrait)').addEventListener('change', () => setTimeout(() => { if (state.selected === null) flyHome(); else if (state.site !== null && state.view === 'city') flyToSite(nodes[state.selected].placed[state.site]); else flyToNode(state.selected); }, 100));   // after the layout has turned
@@ -444,7 +442,7 @@ function flyToNode(i) {
   const target = new THREE.Vector3();
   n.placed.forEach(s => target.add(s.at)); target.divideScalar(n.placed.length || 1); target.y = 0;
   const spread = Math.max(0, ...n.placed.map(s => Math.hypot(s.at.x - target.x, s.at.z - target.z)));
-  dir.y = Math.max(dir.y, 0.9); dir.normalize();   // from well above, so the sphere does not stand in front of its own sites
+  dir.y = Math.max(dir.y, 0.75); dir.normalize();
   flyFacing(target, dir, Math.min(190, 12 + 3.2 * spread));
 }
 function flyToSite(s) {   // close enough to tell the houses apart
@@ -468,12 +466,13 @@ function setView(view) {
   camera.near = view === 'city' ? 0.1 : 1; camera.updateProjectionMatrix();
   mixing = { from: state.mix, to: view === 'city' ? 1 : 0, start: performance.now(), ms: calm ? 1 : 1600 };
   if (state.selected !== null) flyToNode(state.selected); else flyHome();
+  if (view === 'net') state.site = null;
+  paint(); renderCrumbs(); placed = false;
 }
 
 // ── labels ─────────────────────────────────────────────────────────────────────────────────
 const labelBox = $('labels');
 const labels = nodes.map(n => { const el = document.createElement('div'); el.className = 'lbl'; el.textContent = n.id; labelBox.append(el); return { el, w: 0, h: 0 }; });
-const siteLabels = [];   // one per site of the selected place, made in select()
 const districtLabels = wien.districts.map(d => { const el = document.createElement('div'); el.className = 'lbl district'; el.textContent = d.nr + '.'; labelBox.append(el); return { el, at: new THREE.Vector3(d.at[0], 0, d.at[1]) }; });
 const qSite = new THREE.Vector3(wien.q[0], 1.5, wien.q[1]);   // the Q. on the city map, where the last egg waits
 const screen = nodes.map(() => ({ x: 0, y: 0, r: 0, depth: 0, visible: false }));
@@ -519,8 +518,8 @@ function project() {
   nodes.forEach((n, i) => {
     tmpA.copy(cur[i]).applyMatrix4(camera.matrixWorldInverse);
     const s = screen[i];
-    // down among the houses a sphere floating at eye level would fill the screen: it steps aside
-    const inTheWay = state.mix > 0.6 && camera.position.distanceTo(cur[i]) < radiusNow(n) + 5;
+    // spheres step aside when the map shows one place alone, and when one would float right in front of the camera
+    const inTheWay = solo() || (state.mix > 0.6 && camera.position.distanceTo(cur[i]) < radiusNow(n) + 5);
     meshes[i].visible = !inTheWay; rims[i].visible = n.lit && !inTheWay;
     s.depth = -tmpA.z; s.visible = s.depth > 1 && !inTheWay;
     if (!s.visible) return;
@@ -555,23 +554,7 @@ function drawLabels() {
     l.el.classList.toggle('dark', inside && nodes[i].light);
   }
   labels.forEach((l, i) => l.el.classList.toggle('on', shown.has(i)));
-  // the sites of the selected place: the one a visitor went to first, then the main site, then as many as fit
-  const named = state.mix > 0.6 && state.selected !== null ? nodes[state.selected].placed : [];
-  const seq = named.map((_, k) => k).sort((a, b) => (b === state.site) - (a === state.site));
-  const lit = new Set();
-  for (const k of seq) {
-    const l = siteLabels[k]; if (!l) break;
-    tmpA.copy(named[k].at).project(camera);
-    if (tmpA.z >= 1) continue;
-    if (!l.w) { l.w = l.el.offsetWidth; l.h = l.el.offsetHeight; }
-    const box = { x: (tmpA.x + 1) / 2 * W - l.w / 2, y: (1 - tmpA.y) / 2 * H + 13, w: l.w, h: l.h };
-    if (box.x < 4 || box.x + box.w > W - 4 || box.y < 0 || box.y + box.h > H) continue;
-    if (placed.some(q => box.x < q.x + q.w + 6 && q.x < box.x + box.w + 6 && box.y < q.y + q.h && q.y < box.y + box.h)) continue;
-    placed.push(box); lit.add(k);
-    l.el.style.transform = `translate(${Math.round(box.x)}px,${Math.round(box.y)}px)`;
-    l.el.classList.toggle('strong', k === state.site);
-  }
-  siteLabels.forEach((l, k) => l.el.classList.toggle('on', lit.has(k)));
+  placePins(placed);
   placeEggs();
   const districtsOn = state.mix > 0.6;
   for (const d of districtLabels) {
@@ -580,6 +563,91 @@ function drawLabels() {
     d.el.classList.toggle('on', on);
     if (on) d.el.style.transform = `translate(${Math.round((tmpA.x + 1) / 2 * W - 8)}px,${Math.round((1 - tmpA.y) / 2 * H - 9)}px)`;
   }
+}
+
+/* The sites of the selected place, as pins. Pins that would overlap on screen merge into one
+   bubble with their number; it splits again as the camera comes closer, the way map apps do it. */
+const pinBox = $('pins'), MERGE = 46;   // a bubble is 40 px wide: two must not touch
+let pins = [], groups = [];
+function makePins(list, colour) {
+  pinBox.replaceChildren();
+  pins = list.map((s, k) => {
+    const el = document.createElement('button');
+    el.type = 'button'; el.className = 'pin'; el.hidden = true; el.style.setProperty('--c', colour);
+    el.innerHTML = '<i></i><span></span>';
+    el.lastChild.textContent = s.short = s.n.replace(/\s*\([^)]*\)$/, '') || s.n;   // on the map without its bracket; the list has the details
+    el.onclick = () => pinTap(k);
+    pinBox.append(el);
+    return { el, s, w: 0, h: 0, state: '' };
+  });
+}
+function placePins(taken) {
+  pinBox.hidden = !solo() || state.mix < 0.6;
+  if (pinBox.hidden) return;
+  const card = $('panel').getBoundingClientRect();
+  groups = [];
+  const seq = pins.map((_, k) => k).sort((a, b) => (b === state.site) - (a === state.site));   // the site a visitor went to keeps its own pin
+  for (const k of seq) {
+    tmpA.copy(pins[k].s.at).project(camera);
+    if (tmpA.z >= 1) continue;
+    const x = (tmpA.x + 1) / 2 * W, y = (1 - tmpA.y) / 2 * H;
+    if (x < -20 || x > W + 20 || y < -20 || y > H + 20) continue;
+    const g = groups.find(g => Math.hypot(g.x - x, g.y - y) < MERGE);
+    if (g) g.members.push(k); else groups.push({ x, y, members: [k] });
+  }
+  const lead = new Map(groups.map(g => [g.members[0], g]));
+  pins.forEach((pin, k) => {
+    const g = lead.get(k);
+    pin.el.hidden = !g;
+    if (!g) return;
+    const many = g.members.length > 1;
+    let named = false;
+    if (!many) {
+      if (!pin.w) { pin.w = pin.el.lastChild.offsetWidth; pin.h = pin.el.lastChild.offsetHeight; }
+      const box = { x: g.x - pin.w / 2, y: g.y + 16, w: pin.w, h: pin.h };
+      named = box.x >= 4 && box.x + box.w <= Math.min(W - 4, card.width && card.left > W / 2 ? card.left - 4 : W) && box.y + box.h <= (card.width && card.left < W / 2 ? card.top : H)
+        && !groups.some(o => o !== g && o.x > box.x - 22 && o.x < box.x + box.w + 22 && o.y > box.y - 22 && o.y < box.y + box.h + 22)
+        && !taken.some(q => box.x < q.x + q.w + 6 && q.x < box.x + box.w + 6 && box.y < q.y + q.h && q.y < box.y + box.h);
+      if (named) taken.push(box);
+    }
+    pin.el.style.transform = `translate(${Math.round(g.x)}px,${Math.round(g.y)}px)`;
+    const now = `${g.members.length}|${named}|${k === state.site}`;
+    if (now === pin.state) return;   // the page is only touched when something changed
+    pin.state = now;
+    pin.el.className = 'pin' + (many ? ' many' : '') + (named ? ' named' : '') + (k === state.site ? ' focus' : '');
+    pin.el.firstChild.textContent = many ? g.members.length : '';
+    pin.el.setAttribute('aria-label', many ? fill(t('pinMany'), { n: g.members.length }) : pin.s.short);
+  });
+}
+function pinTap(k) {
+  const g = groups.find(g => g.members[0] === k);
+  if (!g || g.members.length === 1) { showSite(k); return; }
+  // a bubble: come close enough for its sites to stand apart; if they never will, visit the first
+  const centre = new THREE.Vector3(); g.members.forEach(m => centre.add(pins[m].s.at)); centre.divideScalar(g.members.length); centre.y = 0;
+  const spread = Math.max(...g.members.map(m => Math.hypot(pins[m].s.at.x - centre.x, pins[m].s.at.z - centre.z)));
+  const here = camera.position.distanceTo(controls.target), dist = Math.min(here * 0.55, Math.max(4.5, 3.4 * spread + 3));
+  if (here < 7 || spread < 0.05) { showSite(k); return; }
+  state.site = null; renderCrumbs();
+  const dir = camera.position.clone().sub(controls.target).normalize();
+  flyFacing(centre, dir, dist);
+}
+
+/* Where am I? City, place, site: each step can be tapped to go back up, and the arrows walk from site to site. */
+function renderCrumbs() {
+  const el = $('crumbs'), on = solo() && state.tour === null;
+  el.hidden = !on; document.body.classList.toggle('solo', on);
+  if (!on) return;
+  const n = nodes[state.selected], list = n.placed, site = state.site === null ? null : list[state.site];
+  el.innerHTML = `<button type="button" class="crumb" data-go="city">${t('crumbCity')}</button><span aria-hidden="true">›</span>
+    <button type="button" class="crumb" data-go="place"${site ? '' : ' aria-current="true"'}>${esc(n.id)}</button>
+    ${site ? `<span aria-hidden="true">›</span><b class="crumb" aria-current="true">${esc(site.short)}</b>` : ''}
+    ${list.length > 1 ? `<span class="step"><button type="button" data-go="prev" aria-label="${t('sitePrev')}">‹</button><span>${fill(t('siteCount'), { i: site ? state.site + 1 : '·', n: list.length })}</span><button type="button" data-go="next" aria-label="${t('siteNext')}">›</button></span>` : ''}`;
+  el.querySelectorAll('[data-go]').forEach(b => { b.onclick = () => {
+    const go = b.dataset.go, at = state.site;
+    if (go === 'city') select(null);
+    else if (go === 'place') { state.site = null; renderCrumbs(); flyToNode(state.selected); }
+    else showSite(go === 'next' ? (at === null ? 0 : (at + 1) % list.length) : ((at ?? 0) - 1 + list.length) % list.length);
+  }; });
 }
 
 // ── pointer ────────────────────────────────────────────────────────────────────────────────
@@ -609,13 +677,13 @@ function zoomInto(group) {
   flyTo(centre.clone().addScaledVector(dir.normalize(), dist), centre, 900);
   toast(t('crowd'), 2600);
 }
-/* A dot on the map under the finger: a site of the selected place if there is one, else the nearest. */
+/* A dot on the map under the finger, while the map shows all places. */
 function pickSite(x, y) {
   let best = null, bestD = TOUCH;
   for (const s of sites) {
     tmpA.copy(s.at).project(camera);
     if (tmpA.z >= 1) continue;
-    const d = Math.hypot((tmpA.x + 1) / 2 * W - x, (1 - tmpA.y) / 2 * H - y) - (s.node === state.selected ? TOUCH : 0);   // the lit ones win
+    const d = Math.hypot((tmpA.x + 1) / 2 * W - x, (1 - tmpA.y) / 2 * H - y);
     if (d < bestD) { bestD = d; best = s; }
   }
   return best;
@@ -623,11 +691,9 @@ function pickSite(x, y) {
 function tap(x, y) {
   const group = state.emph ? null : crowdAt(x, y), i = pick(x, y);
   const onSphere = i !== null && Math.hypot(screen[i].x - x, screen[i].y - y) <= screen[i].r;
+  if (solo()) return;   // the map shows one place: its pins are buttons, and a tap beside them should not throw the visitor out
   const site = state.mix > 0.6 && !onSphere && state.tour === null ? pickSite(x, y) : null;
-  if (site) {   // first tap: whose site is it? second tap: go there
-    if (site.node !== state.selected) select(site.node); else showSite(nodes[site.node].placed.indexOf(site));
-    return;
-  }
+  if (site) { select(site.node); return; }
   if (group && !(i !== null && Math.hypot(screen[i].x - x, screen[i].y - y) <= screen[i].r)) { zoomInto(group); return; }
   if (state.tour !== null) { if (i === null) return; showTour(null); }   // a tap on a sphere during the tour leaves the tour for that place
   select(i);
@@ -750,19 +816,15 @@ function select(i) {
   state.emph = i === null ? null : focusNode(i);
   controls.autoRotate = !still && i === null;
   const chosen = i === null ? [] : nodes[i].placed;
-  const bright = i === null ? null : new THREE.Color(nodes[i].color).lerp(WHITE, 0.2);   // Berry alone is too dark for a house on a dark map
-  houses.light([...new Set(chosen.flatMap(s => s.own))], bright);
-  fillDots(siteRims, chosen, '#ffffff'); fillDots(siteOn, chosen);
-  threads.geometry.setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array(chosen.length * 6), 3));
-  siteLabels.splice(0).forEach(l => l.el.remove());
-  // on the map a site is named without its bracket; the details stay in the list
-  chosen.forEach(s => { const el = document.createElement('div'); el.className = 'lbl site'; el.textContent = s.n.replace(/\s*\([^)]*\)$/, '') || s.n; labelBox.append(el); siteLabels.push({ el, w: 0, h: 0 }); });
-  paint(); renderPanel(true); placed = false;
+  houses.light([...new Set(chosen.flatMap(s => s.own))], i === null ? null : new THREE.Color(nodes[i].color).lerp(WHITE, 0.2));   // Berry alone is too dark for a house on a dark map
+  makePins(chosen, i === null ? '' : nodes[i].color);
+  paint(); renderPanel(true); renderCrumbs(); placed = false;
   if (i === null) flyHome(); else flyToNode(i);
 }
 function showSite(k) {
   state.site = k;
   if (state.view !== 'city') setView('city');
+  renderCrumbs();
   flyToSite(nodes[state.selected].placed[k]);
 }
 
@@ -822,7 +884,8 @@ function showTour(step) {
   const open = step !== null;
   $('tour').hidden = !open; $('dock').hidden = open;
   if (!open) { state.emph = null; controls.autoRotate = !still; paint(); setView('net'); flyHome(); renderPanel(); return; }
-  state.selected = null; state.list = false; renderPanel();
+  if (state.selected !== null) select(null);   // also puts out the lit houses and pins
+  state.list = false; renderPanel(); renderCrumbs();
   const s = TOUR[step], f = facts();
   $('tourCount').textContent = fill(t('step'), { i: step + 1, n: TOUR.length });
   $('tourTitle').textContent = s[state.lang].title;
@@ -855,7 +918,7 @@ function applyTexts() {
   $('legendTopics').innerHTML = TOPIC_COLORS.map((c, d) => `<li>${dot(c)}${t('topics')[d]}</li>`).join('');
   showFound();
   $('aboutBody').innerHTML = aboutHtml(state.lang, { ...facts(), to: new Date(graph.to).toLocaleDateString(state.lang === 'de' ? 'de-DE' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) });
-  renderPanel();
+  renderPanel(); renderCrumbs();
   if (state.tour !== null) showTour(state.tour);
 }
 

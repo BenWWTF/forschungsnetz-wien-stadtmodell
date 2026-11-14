@@ -8,8 +8,11 @@ the map shows the buildings of the City of Vienna's 3D city model around every r
 is no longer one point but all of its sites.
 
 - **Network view**: every sphere is a research institution in Vienna, every line stands for jointly authored publications.
-- **City map view**: every sphere floats above its main site; dots mark all sites of all institutions. Selecting a
-  place lights up its houses and ties its sites to the sphere with threads. A tap on a site flies down to it.
+- **City map view**, in three levels with one job each:
+  1. *Vienna*: every sphere floats above its main site, small dots mark all sites of all institutions, lines show who publishes with whom.
+  2. *One place*: after a tap on a sphere or dot the map belongs to that institution. Other spheres, dots and all lines step aside; its houses light up and its sites become pins. Pins that would overlap merge into a bubble with their number, which splits when tapped.
+  3. *One site*: a tap on a pin or on a row of the site list flies down to roof level. Arrows walk from site to site.
+  A breadcrumb (Wien › place › site) shows the level and leads back up.
 - **Tour**: six steps that teach how to read the graphic, ending with what it leaves out.
 - German and English, touch first, resets itself after 90 seconds without input (`?idle=30` changes the seconds).
 
