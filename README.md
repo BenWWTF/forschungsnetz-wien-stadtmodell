@@ -3,6 +3,8 @@
 A 3D model of the collaboration map from the [Vienna Research Radar](https://research.wwtf.at/collaboration.html) (WWTF),
 built as a prototype for an exhibition on science literacy aimed at children and adolescents.
 
+Live: https://benwwtf.github.io/forschungsnetz-wien-stadtmodell/
+
 This is a fork of [forschungsnetz-wien](https://github.com/BenWWTF/forschungsnetz-wien). It differs in the city map:
 the map shows the buildings of the City of Vienna's 3D city model around every research site, and an institution
 is no longer one point but all of its sites.
