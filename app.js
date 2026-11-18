@@ -12,6 +12,8 @@ const LINE = new THREE.Color(css('--q-purple-40')), LINE_ON = new THREE.Color(cs
 const SEG = 14;                 // cylinder pieces per line, so lines can curve
 const IDLE_MS = (+new URLSearchParams(location.search).get('idle') || 90) * 1000;   // ?idle=30 sets the seconds until the exhibit resets itself
 const HOME = { net: { pos: [0, 45, 262], target: [0, -6, 0] }, city: { pos: [0, 100, 150], target: [0, 0, 8] } };
+const LIMITS = { net: { near: 14, far: 380, tilt: Math.PI }, city: { near: 2.2, far: 260, tilt: 1.42 } };   // above the map a visitor may come down to the roofs, but not under the ground
+const MAP_REACH = 110;   // scene units from the middle of the map to the farthest site on it
 const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
 let still = calm;   // no continuous motion: set by the system preference or by the pause button
 const TOUCH = 24;   // px: half a fingertip, the least a sphere offers as a target
@@ -67,7 +69,7 @@ lamp.position.set(-0.5, 0.8, 1);
 camera.add(lamp);   // light travels with the viewer, so no sphere is ever in the dark
 
 const controls = new OrbitControls(camera, renderer.domElement);
-Object.assign(controls, { enableDamping: true, dampingFactor: 0.08, enablePan: false, minDistance: 14, maxDistance: 380, autoRotate: !calm, autoRotateSpeed: 0.5 });
+Object.assign(controls, { enableDamping: true, dampingFactor: 0.08, enablePan: false, screenSpacePanning: false, minDistance: LIMITS.net.near, maxDistance: LIMITS.net.far, autoRotate: !calm, autoRotateSpeed: 0.5 });
 
 const ball = new THREE.SphereGeometry(1, 40, 28);
 const cur = nodes.map(n => new THREE.Vector3(...n.net));
@@ -272,6 +274,7 @@ function buildMap() {
 // ── positions, lines, highlight ────────────────────────────────────────────────────────────
 const ease = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 const UP = new THREE.Vector3(0, 1, 0), AXIS_Z = new THREE.Vector3(0, 0, 1), tmpA = new THREE.Vector3(), tmpB = new THREE.Vector3(), tmpC = new THREE.Vector3();
+const TURN = 2 * Math.PI, FLOOR = new THREE.Plane(UP, 0), MID = new THREE.Vector3(...HOME.city.target);   // a full turn, the ground of the map, its middle
 const dummy = new THREE.Object3D(), tmpColor = new THREE.Color();
 const radiusNow = n => n.r * (1 - (1 - graph.cityScale) * state.mix);
 const bezier = (a, ctrl, b, u, out) => out.copy(a).multiplyScalar((1 - u) * (1 - u)).addScaledVector(ctrl, 2 * u * (1 - u)).addScaledVector(b, u * u);
@@ -417,9 +420,26 @@ let placed = false;   // false forces one redraw of positions while motion is pa
 // ── camera moves ───────────────────────────────────────────────────────────────────────────
 let flight = null, mixing = null;
 
+/* A flight turns around the point it looks at and changes its distance by the same factor in the
+   same time, so a zoom looks even from start to end. The point looked at travels at the pace of the
+   picture: fast while the camera is far, slowly once it is close. A long way at a short distance is
+   flown as a hop. */
 function flyTo(pos, target, ms = 1300) {
+  aimLens(); zoom.left = 0;
   if (calm) { camera.position.copy(pos); controls.target.copy(target); return; }
-  flight = { p0: camera.position.clone(), t0: controls.target.clone(), p1: pos.clone(), t1: target.clone(), start: performance.now(), ms };
+  const from = new THREE.Spherical().setFromVector3(tmpA.subVectors(camera.position, controls.target)), to = new THREE.Spherical().setFromVector3(tmpA.subVectors(pos, target));
+  to.theta = from.theta + ((to.theta - from.theta) % TURN + 1.5 * TURN) % TURN - TURN / 2;   // the short way round
+  const rise = Math.log(Math.max(1, 0.9 * controls.target.distanceTo(target) / Math.sqrt(from.radius * to.radius)));
+  const dist = k => Math.exp(Math.log(from.radius) * (1 - k) + Math.log(to.radius) * k + 4 * k * (1 - k) * rise);
+  const way = [0];   // ground covered up to each of 32 steps, when the pace follows the distance
+  for (let i = 1; i <= 32; i++) way.push(way[i - 1] + dist((i - 0.5) / 32));
+  flight = { t0: controls.target.clone(), t1: target.clone(), from, to, dist, way, start: performance.now(), ms: ms * Math.min(1.7, 1 + 0.4 * rise) };
+}
+function fly(now) {   // the frame's clock may still be a moment behind the click that started the flight
+  const f = flight, k = ease(THREE.MathUtils.clamp((now - f.start) / f.ms, 0, 1)), at = k * 32, i = Math.min(31, Math.floor(at));
+  controls.target.lerpVectors(f.t0, f.t1, (f.way[i] + (f.way[i + 1] - f.way[i]) * (at - i)) / f.way[32]);
+  camera.position.setFromSphericalCoords(f.dist(k), f.from.phi + (f.to.phi - f.from.phi) * k, f.from.theta + (f.to.theta - f.from.theta) * k).add(controls.target);
+  if (k === 1) flight = null;
 }
 const upright = matchMedia('(max-width: 900px) and (orientation: portrait)');   // the phone layout of style.css
 
@@ -429,24 +449,64 @@ function home() {
     if (state.view === 'net') target.y -= 12; else target.z += 16;
     pos.sub(new THREE.Vector3(...h.target)).multiplyScalar(state.view === 'net' ? 1.08 : 1.25).add(target);
   }
-  const dir = pos.clone().sub(target), dist = dir.length(), shift = cardShift(dir.normalize(), dist);
-  return [pos.add(shift), target.add(shift)];
+  return [pos, target];
 }
 function flyHome() { flyTo(...home()); }
 
-/* How far the camera must step aside so that what it looks at sits in the part of the screen
-   an open card leaves free. Measured from the card itself, so every layout is covered:
-   side panel, bottom sheet, tour card. */
-function cardShift(dir, dist) {
+/* An open card covers part of the screen. The picture is shifted so that its centre, the point the
+   camera turns around and zooms into, sits in the middle of what the card leaves free. Measured from
+   the card itself, so every layout is covered: side panel, bottom sheet, tour card. */
+const lens = { x: 0, y: 0, toX: 0, toY: 0 };   // px from the middle of the screen: now, and where it is heading
+function aimLens() {
   const card = state.tour !== null ? $('tour') : $('panel');
-  if (card.hidden) return new THREE.Vector3();
-  const r = card.getBoundingClientRect(), viewH = 2 * dist * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
-  const right = new THREE.Vector3().crossVectors(UP, dir).normalize();
-  if (r.left < W / 2 && r.right > W / 2) {   // card below: aim at the middle of what the card and the bar at the top leave free
+  lens.toX = lens.toY = 0;
+  if (card.hidden) return;
+  const r = card.getBoundingClientRect();
+  if (r.left < W / 2 && r.right > W / 2) {   // card below: the middle of what the card and the bar at the top leave free
     const bar = document.querySelector('.top').getBoundingClientRect().bottom - 28;   // its last 28 px are a fade
-    return new THREE.Vector3().crossVectors(dir, right).multiplyScalar(-(H / 2 - (Math.min(bar, r.top - 80) + r.top) / 2) / H * viewH);
+    lens.toY = (Math.min(bar, r.top - 80) + r.top) / 2 - H / 2;
+  } else lens.toX = (r.left - W) / 2;   // card at the right
+}
+function moveLens(dt) {
+  const dx = lens.toX - lens.x, dy = lens.toY - lens.y;
+  if (!dx && !dy) return;
+  const k = calm || Math.hypot(dx, dy) < 0.5 ? 1 : 1 - Math.exp(-dt * 5);
+  lens.x += dx * k; lens.y += dy * k;
+  camera.setViewOffset(W, H, -lens.x, -lens.y, W, H);
+}
+
+/* Each view has its limits. They close in behind the camera instead of pulling it, so a change of
+   view starts where the visitor is. */
+function rein() {
+  const lim = LIMITS[state.view], d = tmpA.subVectors(camera.position, controls.target).length(), tilt = Math.acos(THREE.MathUtils.clamp(tmpA.y / d, -1, 1));
+  controls.minDistance = Math.min(lim.near, Math.max(controls.minDistance, d));
+  controls.maxDistance = Math.max(lim.far, Math.min(controls.maxDistance, d));
+  controls.maxPolarAngle = Math.max(lim.tilt, Math.min(controls.maxPolarAngle, tilt));
+}
+/* On the map a visitor may wander, but not off it: the further out the camera, the closer to the middle it looks. */
+function keepOnMap() {
+  if (state.view !== 'city') return;
+  const far = LIMITS.city.far, reach = MAP_REACH * THREE.MathUtils.clamp((far - camera.position.distanceTo(controls.target)) / (far - 60), 0, 1);
+  const over = tmpA.subVectors(controls.target, MID).length() - reach;
+  if (over <= 0) return;
+  tmpA.setLength(over); camera.position.sub(tmpA); controls.target.sub(tmpA);
+}
+
+/* The wheel zooms towards the spot under the pointer on the map, and towards the middle in the
+   network, which has no ground to point at. Each turn of the wheel is spread over a few frames. */
+const zoom = { left: 0, x: 0, y: 0 };   // left: how much is still to come, as the logarithm of the factor
+function zoomStep(dt) {
+  if (!zoom.left) return;
+  const part = Math.abs(zoom.left) < 0.002 ? zoom.left : zoom.left * (1 - Math.exp(-dt * 14));
+  zoom.left -= part;
+  const anchor = tmpB.copy(controls.target);
+  if (state.view === 'city') {
+    ndc.set(zoom.x / W * 2 - 1, 1 - zoom.y / H * 2); ray.setFromCamera(ndc, camera);
+    if (ray.ray.intersectPlane(FLOOR, tmpC) && tmpC.distanceTo(MID) < MAP_REACH) anchor.copy(tmpC);
   }
-  return right.multiplyScalar((W - r.left) / 2 / W * viewH * camera.aspect);                                                                 // card at the right
+  camera.position.sub(anchor).multiplyScalar(Math.exp(part)).add(anchor);
+  controls.target.sub(anchor).multiplyScalar(Math.exp(part)).add(anchor);
+  keepOnMap();
 }
 matchMedia('(orientation: portrait)').addEventListener('change', () => setTimeout(() => { if (state.selected === null) flyHome(); else if (state.site !== null && state.view === 'city') flyToSite(nodes[state.selected].placed[state.site]); else flyToNode(state.selected); }, 100));   // after the layout has turned
 
@@ -466,18 +526,13 @@ function flyToSite(s) {   // close enough to tell the houses apart
   flyFacing(new THREE.Vector3(s.at.x, 0, s.at.z), dir, 5.5);
 }
 
-/* Look at `target` from direction `dir`, clear of any open card. */
-function flyFacing(target, dir, dist) {
-  const centre = target.clone().add(cardShift(dir, dist));
-  flyTo(centre.clone().addScaledVector(dir, dist), centre);
-}
+function flyFacing(target, dir, dist) { flyTo(target.clone().addScaledVector(dir, dist), target); }
 
 function setView(view) {
   if (view === state.view) return;
   state.view = view;
   $('viewNet').setAttribute('aria-pressed', view === 'net'); $('viewCity').setAttribute('aria-pressed', view === 'city');
-  controls.maxPolarAngle = view === 'city' ? 1.42 : Math.PI;
-  controls.minDistance = view === 'city' ? 2.2 : 14;   // above the map a visitor may come down to the roofs
+  controls.enablePan = controls.zoomToCursor = view === 'city';   // the map can be pushed with two fingers, and a pinch zooms where the fingers are
   camera.near = view === 'city' ? 0.1 : 1; camera.updateProjectionMatrix();
   mixing = { from: state.mix, to: view === 'city' ? 1 : 0, start: performance.now(), ms: calm ? 1 : 1600 };
   if (state.selected !== null) flyToNode(state.selected); else flyHome();
@@ -539,7 +594,7 @@ function project() {
     meshes[i].visible = !inTheWay; rims[i].visible = n.lit && !inTheWay;
     s.depth = -tmpA.z; s.visible = s.depth > 1 && !inTheWay;
     if (!s.visible) return;
-    s.x = W / 2 + tmpA.x / s.depth * focal; s.y = H / 2 - tmpA.y / s.depth * focal; s.r = radiusNow(n) / s.depth * focal;
+    s.x = W / 2 + lens.x + tmpA.x / s.depth * focal; s.y = H / 2 + lens.y - tmpA.y / s.depth * focal; s.r = radiusNow(n) / s.depth * focal;
   });
 }
 
@@ -741,8 +796,8 @@ function endGrab() {
   grab = null; controls.enabled = true; canvas.classList.remove('grabbing');
 }
 canvas.addEventListener('pointerdown', e => {
-  down = { x: e.clientX, y: e.clientY, t: performance.now() }; flight = null; document.body.classList.add('used');
-  if (grab || !e.isPrimary) { endGrab(); return; }   // a second finger means zoom, not drag
+  down = { x: e.clientX, y: e.clientY, t: performance.now() }; document.body.classList.add('used');
+  if (grab || !e.isPrimary) { endGrab(); flight = null; return; }   // a second finger means zoom, not drag
   const i = pick(e.clientX, e.clientY), em = state.emph;
   if (i !== null && (!em || em.nodes.has(i) || em.near.has(i))) holdTimer = setTimeout(() => { holdTimer = null; startGrab(i, e); }, HOLD_MS);
 });
@@ -757,13 +812,22 @@ canvas.addEventListener('pointermove', e => {
     if (pointOnPlane(e, grab.plane, tmpB)) grab.target.copy(tmpB).add(grab.slip).sub(rest[grab.i]).clampLength(0, REACH);
     return;
   }
-  if (holdTimer && down && Math.hypot(e.clientX - down.x, e.clientY - down.y) > 8) { clearTimeout(holdTimer); holdTimer = null; }   // moved at once: this is a turn
+  if (down && e.buttons && Math.hypot(e.clientX - down.x, e.clientY - down.y) > 8) { flight = null; clearTimeout(holdTimer); holdTimer = null; }   // moved at once: this is a turn, and it takes over from a flight; a mere tap does not stop one
   if (e.pointerType !== 'mouse') return;
   state.hovered = pick(e.clientX, e.clientY);
   canvas.classList.toggle('pick', state.hovered !== null);
 });
 canvas.addEventListener('pointerleave', () => { state.hovered = null; });
-for (const type of ['pointerdown', 'pointermove', 'touchmove', 'scroll', 'keydown', 'wheel']) addEventListener(type, () => { lastInput = performance.now(); }, { passive: true, capture: true });
+let lastAct = -1e9;   // the last deliberate input: the slow turn waits for the visitor to finish
+for (const type of ['pointerdown', 'pointerup', 'pointermove', 'touchmove', 'scroll', 'keydown', 'wheel']) addEventListener(type, () => { lastInput = performance.now(); if (type !== 'pointermove') lastAct = lastInput; }, { passive: true, capture: true });
+addEventListener('wheel', e => {
+  if (e.target !== canvas && !pinBox.contains(e.target)) return;
+  e.preventDefault(); e.stopPropagation();   // kept from OrbitControls, which zooms in jolts and only into the middle
+  const turn = THREE.MathUtils.clamp(e.deltaY * (e.deltaMode === 1 ? 33 : e.deltaMode === 2 ? 300 : 1) * (e.ctrlKey ? 8 : 1), -300, 300);   // lines and pages in pixels; ctrl marks a pinch on a trackpad
+  const here = camera.position.distanceTo(controls.target);
+  zoom.left = Math.log(THREE.MathUtils.clamp(here * Math.exp(zoom.left + turn * 0.0018), controls.minDistance, controls.maxDistance) / here);
+  zoom.x = e.clientX; zoom.y = e.clientY; flight = null;
+}, { capture: true, passive: false });
 
 // ── panel, tour, texts ─────────────────────────────────────────────────────────────────────
 const t = key => STRINGS[state.lang][key];
@@ -987,9 +1051,9 @@ let warned = false;
 function resize() {
   W = innerWidth; H = innerHeight;
   renderer.setSize(W, H, false);
-  camera.aspect = W / H;
   camera.fov = W < H ? 58 : 42;   // portrait screens need a wider view to hold the whole network
-  camera.updateProjectionMatrix();
+  aimLens();
+  camera.setViewOffset(W, H, -lens.x, -lens.y, W, H);   // sets the aspect and the projection as well
 }
 addEventListener('resize', resize);
 
@@ -1002,18 +1066,17 @@ function frame(now) {
     if (u === 1) mixing = null;
   }
   let moving = false;   // physics in steps of at most 1/60 s, so a slow screen does not slow the springs down
-  for (let left = Math.min(0.1, (now - lastFrame) / 1000); left > 1e-4; left -= 1 / 60) moving = ripple(Math.min(left, 1 / 60));
+  const dt = Math.min(0.1, (now - lastFrame) / 1000);
+  for (let left = dt; left > 1e-4; left -= 1 / 60) moving = ripple(Math.min(left, 1 / 60));
   lastFrame = now;
   if (mixing || !still || !placed || moving) { placeNodes(now); moveFlecks(now); placed = true; }
   if (partyUntil) sparkle(now);
-  if (flight) {
-    const u = Math.min(1, (now - flight.start) / flight.ms), k = ease(u);
-    camera.position.lerpVectors(flight.p0, flight.p1, k);
-    controls.target.lerpVectors(flight.t0, flight.t1, k);
-    if (u === 1) flight = null;
-  }
-  controls.autoRotateSpeed = state.view === 'city' ? 0.3 : 0.5;
+  if (flight) fly(now);
+  zoomStep(dt); moveLens(dt); rein();
+  controls.autoRotateSpeed = (state.view === 'city' ? 0.3 : 0.5) * THREE.MathUtils.smoothstep(now - lastAct, 2500, 4500);
+  tmpB.copy(controls.target);
   controls.update();
+  if (!flight && !tmpB.equals(controls.target)) keepOnMap();   // pushed or pinched
   camera.updateMatrixWorld();
   renderer.render(scene, camera);
   project();

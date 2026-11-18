@@ -15,6 +15,7 @@ is no longer one point but all of its sites.
   2. *One place*: after a tap on a sphere or dot the map belongs to that institution. Other spheres, dots and all lines step aside; its houses light up and its sites become pins. Pins that would overlap merge into a bubble with their number, which splits when tapped.
   3. *One site*: a tap on a pin or on a row of the site list flies down to roof level. Arrows walk from site to site.
   A breadcrumb (Wien › place › site) shows the level and leads back up.
+- **Moving around**: a drag turns the model around the thing in the middle of the free part of the screen, also while a card is open. On the map the wheel or a pinch zooms towards the spot under the pointer or between the fingers, and two fingers (or the right mouse button) push the map; it cannot be pushed off its edge, and zooming out brings it back to the middle. Flights between places change distance evenly and fly long ways as a hop.
 - **Tour**: six steps that teach how to read the graphic, ending with what it leaves out.
 - German and English, touch first, resets itself after 90 seconds without input (`?idle=30` changes the seconds).
 
