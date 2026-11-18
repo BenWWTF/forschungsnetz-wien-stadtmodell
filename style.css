@@ -71,7 +71,6 @@ h1 { font-size: clamp(26px, 3.6vw, 48px); line-height: 1.02; }
 .dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; display: inline-block; border: 1.5px solid currentColor; }   /* the ring keeps White and Lime visible on any surface */
 .key-ball { width: 14px; height: 14px; border-radius: 50%; border: 2px solid currentColor; flex-shrink: 0; }
 .key-line { width: 14px; height: 3px; border-radius: 2px; background: var(--q-purple-40); flex-shrink: 0; }
-.key-ring { width: 14px; height: 9px; border-radius: 9px 9px 0 0; border: 2px solid currentColor; border-bottom: 0; flex-shrink: 0; }
 .key-site { width: 8px; height: 8px; margin: 0 3px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
 .legend p:first-of-type { margin-top: 6px; }
 .legend p { margin-top: -1px; }

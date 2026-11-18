@@ -51,7 +51,7 @@ nodes.forEach((n, i) => {
 });
 edges.forEach(e => { nodes[e.a].links.push({ other: e.b, n: e.n }); nodes[e.b].links.push({ other: e.a, n: e.n }); });
 nodes.forEach(n => n.links.sort((x, y) => y.n - x.n));
-const own = n => n.count - n.joint;   // published without another Vienna institution: drawn as small arcs that leave the sphere and fall back to it
+const own = n => n.count - n.joint;   // published without another Vienna institution
 
 if (new URLSearchParams(location.search).has('kiosk')) document.body.classList.add('kiosk');   // wall screen: every control within a child's reach
 const state = { lang: 'de', view: 'net', mix: 0, selected: null, site: null, hovered: null, tour: null, list: false, emph: null };   // site: index into the selected place's sites, once a visitor has gone to one
@@ -98,31 +98,10 @@ function softDot() {   // round, soft-edged sprite for the travelling lights
 }
 const glow = softDot();
 
-/* In-house work, drawn like the prominences of the sun: small arcs that rise from a sphere and
-   fall back to it. The more a place publishes without a Vienna partner, the more arcs (1 to 7). */
-const ASEG = 8;
-const maxOwn = Math.max(...nodes.map(own));
-const seeded = k => { const x = Math.sin(k * 127.1) * 43758.5453; return x - Math.floor(x); };   // repeatable pseudo-random 0…1
-const arcs = [];
-nodes.forEach((n, i) => {
-  if (!own(n)) return;
-  const count = Math.max(1, Math.round(7 * Math.log2(own(n) + 1) / Math.log2(maxOwn + 1)));
-  for (let j = 0; j < count; j++) {
-    const k = i * 31 + j * 7, unit = o => new THREE.Vector3(seeded(k + o) - 0.5, seeded(k + o + 1) - 0.5, seeded(k + o + 2) - 0.5).normalize();
-    arcs.push({ i, lean: unit(1), twist: unit(5), rise: 1.5 + 0.35 * seeded(k + 9), span: 0.2 + 0.16 * seeded(k + 11),   // low and narrow: a flare on the surface, not a ring around it
-      from: new THREE.Vector3(), top: new THREE.Vector3(), to: new THREE.Vector3() });
-  }
-});
-const arcMesh = new THREE.InstancedMesh(new THREE.CylinderGeometry(1, 1, 1, 5, 1, true),
-  new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.9, depthWrite: false }), arcs.length * ASEG);
-arcMesh.frustumCulled = false; arcMesh.renderOrder = 2;
-scene.add(arcMesh);
-const outward = nodes.map(() => new THREE.Vector3());   // away from the centre of the network, upward above the map
 
-/* Small lights that travel along the lines, in both directions, and around the rings. */
+/* Small lights that travel along the lines, in both directions. */
 const flecks = [];
 edges.forEach((e, k) => { const count = 1 + Math.round(3 * strength(e)); for (let j = 0; j < count; j++) flecks.push({ edge: k, u0: (j + (k * 0.37) % 1) / count, dir: (j + k) % 2 ? 1 : -1 }); });
-arcs.forEach((a, k) => flecks.push({ arc: k, u0: seeded(k + 3) }));
 const fleckCloud = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(new Float32Array(flecks.length * 3), 3)),
   new THREE.PointsMaterial({ map: glow, size: 2.6, transparent: true, opacity: 0.95, blending: THREE.AdditiveBlending, depthWrite: false }));
 fleckCloud.frustumCulled = false; fleckCloud.renderOrder = 3; fleckCloud.visible = !still;
@@ -319,7 +298,6 @@ function placeNodes(time) {
     rest[i].copy(p); p.add(off[i]);
     meshes[i].position.copy(p); meshes[i].scale.setScalar(grab && grab.i === i ? r * 1.12 : r);
     rims[i].position.copy(p); rims[i].scale.setScalar(r + 0.28);
-    outward[i].copy(p).normalize().lerp(UP, t).normalize();
     at.setXYZ(2 * i, n.ground[0], 0, n.ground[1]);
     at.setXYZ(2 * i + 1, p.x, p.y, p.z);
   });
@@ -349,43 +327,18 @@ function placeEdges() {
       edgeMesh.setMatrixAt(k * SEG + s, dummy.matrix);
     }
   });
-  arcs.forEach((arc, k) => {
-    const i = arc.i, p = cur[i], r = radiusNow(nodes[i]), hidden = alone || (em && !em.nodes.has(i) && !em.near.has(i));
-    const dir = tmpC.copy(outward[i]).addScaledVector(arc.lean, 0.8).normalize();          // where on the sphere the arc stands
-    const side = tmpB.crossVectors(dir, arc.twist).normalize().multiplyScalar(arc.span);  // how far apart its two feet are
-    arc.from.copy(dir).add(side).normalize().multiplyScalar(r).add(p);
-    arc.to.copy(dir).sub(side).normalize().multiplyScalar(r).add(p);
-    arc.top.copy(p).addScaledVector(dir, r * arc.rise);
-    const w = 0.03 * r + 0.08;
-    for (let s = 0; s < ASEG; s++) {
-      bezier(arc.from, arc.top, arc.to, s / ASEG, tmpA); bezier(arc.from, arc.top, arc.to, (s + 1) / ASEG, tmpB);
-      const len = tmpA.distanceTo(tmpB);
-      dummy.position.addVectors(tmpA, tmpB).multiplyScalar(0.5);
-      dummy.quaternion.setFromUnitVectors(UP, tmpB.sub(tmpA).normalize());
-      if (hidden) dummy.scale.setScalar(0); else dummy.scale.set(w, len * 1.06, w);
-      dummy.updateMatrix();
-      arcMesh.setMatrixAt(k * ASEG + s, dummy.matrix);
-    }
-  });
-  arcMesh.instanceMatrix.needsUpdate = true;
   edgeMesh.instanceMatrix.needsUpdate = true;
-  edgeMesh.material.opacity = em ? 0.95 - 0.5 * t : 0.9 - 0.4 * t;   // over the map the arcs step back: there the houses and sites are the picture
+  edgeMesh.material.opacity = em ? 0.95 - 0.5 * t : 0.9 - 0.4 * t;   // over the map the lines step back: there the houses and sites are the picture
 }
 
 function moveFlecks(time) {
   const em = solo() ? { edge: () => false, nodes: new Set(), near: new Set() } : state.emph, at = fleckCloud.geometry.attributes.position, sec = time / 1000;
   flecks.forEach((f, j) => {
-    if (f.edge !== undefined) {
-      const e = edges[f.edge], a = cur[e.a], b = cur[e.b];
-      if (em && !em.edge(e)) { at.setXYZ(j, 0, 1e6, 0); return; }
-      let u = (f.u0 + sec * 9 / (a.distanceTo(b) + 1)) % 1;   // the same speed on every line
-      if (f.dir < 0) u = 1 - u;
-      bezier(a, curve[f.edge], b, u, tmpA);
-    } else {
-      const arc = arcs[f.arc];
-      if (em && !em.nodes.has(arc.i) && !em.near.has(arc.i)) { at.setXYZ(j, 0, 1e6, 0); return; }
-      bezier(arc.from, arc.top, arc.to, (f.u0 + sec * 0.22) % 1, tmpA);
-    }
+    const e = edges[f.edge], a = cur[e.a], b = cur[e.b];
+    if (em && !em.edge(e)) { at.setXYZ(j, 0, 1e6, 0); return; }
+    let u = (f.u0 + sec * 9 / (a.distanceTo(b) + 1)) % 1;   // the same speed on every line
+    if (f.dir < 0) u = 1 - u;
+    bezier(a, curve[f.edge], b, u, tmpA);
     at.setXYZ(j, tmpA.x, tmpA.y, tmpA.z);
   });
   at.needsUpdate = true;
@@ -933,7 +886,7 @@ function renderPanel(takeFocus = false) {
       <p class="badge"><b>${num(n.count)}</b><span>${fill(t('heroUnit'), facts())}</span></p></div>
       <div class="body"><h3>${t('togetherTitle')}</h3>
       <div class="together"><i style="width:${pct}%"></i></div>
-      <p class="note">${fill(t('togetherNote'), { n: `<b>${num(n.joint)}</b>`, pct })}${own(n) ? ' ' + fill(t('ringNote'), { n: num(own(n)) }) : ''}</p>
+      <p class="note">${fill(t('togetherNote'), { n: `<b>${num(n.joint)}</b>`, pct })}${own(n) ? ' ' + fill(t('otherNote'), { n: num(own(n)) }) : ''}</p>
       ${sum ? `<h3>${t('topicsTitle')}</h3>
       <div class="mix">${mix.map(x => `<i style="flex:${x.v};background:${TOPIC_COLORS[x.d]}"></i>`).join('')}</div>
       <ul class="mix-key">${mix.map(x => `<li>${dot(TOPIC_COLORS[x.d])}<span>${t('topics')[x.d]}</span><span class="n">${Math.round(100 * x.v / sum)} %</span></li>`).join('')}</ul>` : ''}
@@ -1089,7 +1042,6 @@ resize();
 { const [pos, target] = home(); camera.position.copy(pos); controls.target.copy(target); }
 houses.start(); fillDots(siteDots, sites);
 placeNodes(0);
-arcs.forEach((arc, k) => { for (let s = 0; s < ASEG; s++) arcMesh.setColorAt(k * ASEG + s, tmpColor.copy(meshes[arc.i].userData.base).lerp(WHITE, 0.45)); });
 paint();
 applyTexts();
 requestAnimationFrame(frame);
