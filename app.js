@@ -11,7 +11,7 @@ const WHITE = new THREE.Color('#ffffff');
 const LINE = new THREE.Color(css('--q-purple-40')), LINE_ON = new THREE.Color(css('--q-purple-20'));   // a tint no topic uses
 const SEG = 14;                 // cylinder pieces per line, so lines can curve
 const IDLE_MS = (+new URLSearchParams(location.search).get('idle') || 90) * 1000;   // ?idle=30 sets the seconds until the exhibit resets itself
-const HOME = { net: { pos: [0, 45, 262], target: [0, -6, 0] }, city: { pos: [0, 100, 150], target: [0, 0, 8] } };
+const HOME = { net: { pos: [0, 45, 262], target: [0, -6, 0] }, city: { pos: [0, 110, 172], target: [0, 0, 16] } };   // the map down to IIASA in the south, clear of the buttons
 const LIMITS = { net: { near: 14, far: 380, tilt: Math.PI }, city: { near: 2.2, far: 260, tilt: 1.42 } };   // above the map a visitor may come down to the roofs, but not under the ground
 const MAP_REACH = 110;   // scene units from the middle of the map to the farthest site on it
 const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -51,7 +51,6 @@ nodes.forEach((n, i) => {
 });
 edges.forEach(e => { nodes[e.a].links.push({ other: e.b, n: e.n }); nodes[e.b].links.push({ other: e.a, n: e.n }); });
 nodes.forEach(n => n.links.sort((x, y) => y.n - x.n));
-const own = n => n.count - n.joint;   // published without another Vienna institution
 
 if (new URLSearchParams(location.search).has('kiosk')) document.body.classList.add('kiosk');   // wall screen: every control within a child's reach
 const state = { lang: 'de', view: 'net', mix: 0, selected: null, site: null, hovered: null, tour: null, list: false, emph: null };   // site: index into the selected place's sites, once a visitor has gone to one
@@ -421,24 +420,25 @@ function home() {
   const h = HOME[state.view], pos = new THREE.Vector3(...h.pos), target = new THREE.Vector3(...h.target);
   if (upright.matches) {   // narrow screen: step back until the width fits, and sit above the bottom row
     if (state.view === 'net') target.y -= 12; else target.z += 16;
-    pos.sub(new THREE.Vector3(...h.target)).multiplyScalar(state.view === 'net' ? 1.08 : 1.25).add(target);
+    pos.sub(new THREE.Vector3(...h.target)).multiplyScalar(state.view === 'net' ? 1.08 : 1.45).add(target);
   }
-  return [pos, target];
+  aimLens();   // a card below leaves less height: step back until the picture fits into what is free
+  return [pos.sub(target).multiplyScalar(THREE.MathUtils.clamp((upright.matches ? 0.5 : 0.72) / lens.room, 1, 1.35)).add(target), target];
 }
 function flyHome() { flyTo(...home()); }
 
 /* An open card covers part of the screen. The picture is shifted so that its centre, the point the
    camera turns around and zooms into, sits in the middle of what the card leaves free. Measured from
    the card itself, so every layout is covered: side panel, bottom sheet, tour card. */
-const lens = { x: 0, y: 0, toX: 0, toY: 0 };   // px from the middle of the screen: now, and where it is heading
+const lens = { x: 0, y: 0, toX: 0, toY: 0, room: 1 };   // px from the middle of the screen: now, and where it is heading; room: the share of the height a card below leaves free
 function aimLens() {
   const card = state.tour !== null ? $('tour') : $('panel');
-  lens.toX = lens.toY = 0;
+  lens.toX = lens.toY = 0; lens.room = 1;
   if (card.hidden) return;
   const r = card.getBoundingClientRect();
   if (r.left < W / 2 && r.right > W / 2) {   // card below: the middle of what the card and the bar at the top leave free
     const bar = document.querySelector('.top').getBoundingClientRect().bottom - 28;   // its last 28 px are a fade
-    lens.toY = (Math.min(bar, r.top - 80) + r.top) / 2 - H / 2;
+    lens.toY = (Math.min(bar, r.top - 80) + r.top) / 2 - H / 2; lens.room = Math.max(0.2, (r.top - bar) / H);
   } else lens.toX = (r.left - W) / 2;   // card at the right
 }
 function moveLens(dt) {
@@ -451,16 +451,17 @@ function moveLens(dt) {
 
 /* Each view has its limits. They close in behind the camera instead of pulling it, so a change of
    view starts where the visitor is. */
+const farthest = () => LIMITS[state.view].far * (state.view === 'city' && upright.matches ? 1.4 : 1);   // an upright screen needs more distance to hold the map's width
 function rein() {
-  const lim = LIMITS[state.view], d = tmpA.subVectors(camera.position, controls.target).length(), tilt = Math.acos(THREE.MathUtils.clamp(tmpA.y / d, -1, 1));
+  const lim = LIMITS[state.view], far = farthest(), d = tmpA.subVectors(camera.position, controls.target).length(), tilt = Math.acos(THREE.MathUtils.clamp(tmpA.y / d, -1, 1));
   controls.minDistance = Math.min(lim.near, Math.max(controls.minDistance, d));
-  controls.maxDistance = Math.max(lim.far, Math.min(controls.maxDistance, d));
+  controls.maxDistance = Math.max(far, Math.min(controls.maxDistance, d));
   controls.maxPolarAngle = Math.max(lim.tilt, Math.min(controls.maxPolarAngle, tilt));
 }
 /* On the map a visitor may wander, but not off it: the further out the camera, the closer to the middle it looks. */
 function keepOnMap() {
   if (state.view !== 'city') return;
-  const far = LIMITS.city.far, reach = MAP_REACH * THREE.MathUtils.clamp((far - camera.position.distanceTo(controls.target)) / (far - 60), 0, 1);
+  const far = farthest(), reach = MAP_REACH * THREE.MathUtils.clamp((far - camera.position.distanceTo(controls.target)) / (far - 60), 0, 1);
   const over = tmpA.subVectors(controls.target, MID).length() - reach;
   if (over <= 0) return;
   tmpA.setLength(over); camera.position.sub(tmpA); controls.target.sub(tmpA);
@@ -512,7 +513,7 @@ function setView(view) {
   mixing = { from: state.mix, to: view === 'city' ? 1 : 0, start: performance.now(), ms: calm ? 1 : 1600 };
   if (state.selected !== null) flyToNode(state.selected); else flyHome();
   if (view === 'net') state.site = null;
-  paint(); renderCrumbs(); placed = false;
+  paint(); renderPanel(); renderCrumbs(); placed = false;
 }
 
 // ── labels ─────────────────────────────────────────────────────────────────────────────────
@@ -574,7 +575,8 @@ function project() {
 }
 
 function drawLabels() {
-  const em = state.emph, placed = [];
+  const em = state.emph, placed = [], key = $('legend').getBoundingClientRect();
+  if (key.width) placed.push({ x: key.x, y: key.y, w: key.width, h: key.height });   // no name under the legend
   const wanted = i => i === state.hovered || !em || em.nodes.has(i) || (em.near.has(i) && !(state.mix > 0.6 && state.selected !== null));   // above the map a selected place shows its sites, not its partners' names   // in the overview every place may show its name, biggest first, as many as fit
   const order = nodes.map((_, i) => i).filter(i => screen[i].visible && wanted(i))
     .sort((a, b) => rank(a) - rank(b));
@@ -900,26 +902,25 @@ function renderPanel(takeFocus = false) {
       <div class="body"><p class="note" id="noMatch" hidden>${t('noMatch')}</p><div class="rows">${nodes.map(n => `<button type="button" class="row" data-node="${n.i}">${dot(n.color)}<span>${esc(n.id)}</span><span class="n">${num(n.count)}</span></button>`).join('')}</div></div>`;
   } else {
     const n = nodes[i], name = state.lang === 'de' ? n.name : n.en, sum = n.dom.reduce((a, b) => a + b, 0);
-    const pct = Math.round(100 * n.joint / n.count);
     const mix = n.dom.map((v, d) => ({ v, d })).filter(x => x.v).sort((a, b) => b.v - a.v);
+    const sites = n.sites.length > 1 ? `<h3>${fill(t('sitesTitle'), { n: n.sites.length })}</h3>
+      <div class="rows sites">${n.sites.map(s => { const k = n.placed.findIndex(x => x.a === s.a && x.n === s.n); return k < 0
+        ? `<div class="row off"><span>${esc(s.n)}<small>${esc(s.a)} · ${t('siteFar')}</small></span></div>`
+        : `<button type="button" class="row" data-site="${k}"><span>${esc(s.n)}<small>${esc(s.a)}</small></span></button>`; }).join('')}</div>
+      <p class="note">${t('sitesNote')}</p>` : '';
+    const partners = `<h3>${t('partnersTitle')}</h3>
+      <p class="note lead">${fill(t('togetherNote'), { n: `<b>${num(n.joint)}</b>`, count: num(n.count) })}</p>
+      <div class="rows">${n.links.slice(0, 8).map(l => `<button type="button" class="row" data-node="${l.other}">${dot(nodes[l.other].color)}<span>${esc(nodes[l.other].id)}</span><span class="n">${num(l.n)}</span></button>`).join('')}</div>
+      <p class="note">${fill(t('partnersNote'), { n: n.links.length })}</p>`;
+    // what is researched comes first; then what the current view is about: partners in the network, sites above the map
     panel.innerHTML = `<div class="head on-light has-badge">${close}<p class="tag">${t('kind')[n.type]}</p><h2>${esc(name)}</h2>
       ${name !== n.id ? `<p class="also">${t('short')} ${esc(n.id)}</p>` : ''}
       ${n.members.length ? `<p class="also">${t('members')} ${esc(n.members.join(', '))}</p>` : ''}
       <p class="badge"><b>${num(n.count)}</b><span>${fill(t('heroUnit'), facts())}</span></p></div>
-      <div class="body"><h3>${t('togetherTitle')}</h3>
-      <div class="together"><i style="width:${pct}%"></i></div>
-      <p class="note">${fill(t('togetherNote'), { n: `<b>${num(n.joint)}</b>`, pct })}${own(n) ? ' ' + fill(t('otherNote'), { n: num(own(n)) }) : ''}</p>
-      ${sum ? `<h3>${t('topicsTitle')}</h3>
+      <div class="body">${sum ? `<h3>${t('topicsTitle')}</h3>
       <div class="mix">${mix.map(x => `<i style="flex:${x.v};background:${TOPIC_COLORS[x.d]}"></i>`).join('')}</div>
       <ul class="mix-key">${mix.map(x => `<li>${dot(TOPIC_COLORS[x.d])}<span>${t('topics')[x.d]}</span><span class="n">${Math.round(100 * x.v / sum)} %</span></li>`).join('')}</ul>` : ''}
-      ${n.sites.length > 1 ? `<h3>${fill(t('sitesTitle'), { n: n.sites.length })}</h3>
-      <div class="rows sites">${n.sites.map(s => { const k = n.placed.findIndex(x => x.a === s.a && x.n === s.n); return k < 0
-        ? `<div class="row off"><span>${esc(s.n)}<small>${esc(s.a)} · ${t('siteFar')}</small></span></div>`
-        : `<button type="button" class="row" data-site="${k}"><span>${esc(s.n)}<small>${esc(s.a)}</small></span></button>`; }).join('')}</div>
-      <p class="note">${t('sitesNote')}</p>` : ''}
-      <h3>${t('partnersTitle')}</h3>
-      <div class="rows">${n.links.slice(0, 8).map(l => `<button type="button" class="row" data-node="${l.other}">${dot(nodes[l.other].color)}<span>${esc(nodes[l.other].id)}</span><span class="n">${num(l.n)}</span></button>`).join('')}</div>
-      <p class="note">${fill(t('partnersNote'), { n: n.links.length })}</p></div>`;
+      ${state.view === 'city' ? sites + partners : partners + sites}</div>`;
   }
   panel.scrollTop = 0;
   if (takeFocus) panel.focus({ preventScroll: true });
@@ -987,7 +988,7 @@ $('tourStart').onclick = () => showTour(0);
 $('tourBack').onclick = () => showTour(state.tour - 1);
 $('tourNext').onclick = () => showTour(state.tour === TOUR.length - 1 ? null : state.tour + 1);
 $('tourClose').onclick = () => showTour(null);
-$('listOpen').onclick = () => { if (state.selected !== null) select(null); state.list = !state.list; renderPanel(true); };
+$('listOpen').onclick = () => { if (state.selected !== null) select(null); state.list = !state.list; renderPanel(true); flyHome(); };   // the picture moves into what the list leaves free
 $('homeBtn').onclick = () => {   // back to the overview of the current view, whatever the visitor did to the camera
   if (state.tour !== null) { showTour(null); return; }
   if (state.selected !== null || state.list) select(null); else { controls.autoRotate = !still; flyHome(); }

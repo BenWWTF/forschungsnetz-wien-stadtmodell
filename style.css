@@ -104,6 +104,7 @@ b.crumb { display: inline-block; line-height: 40px; cursor: default; }
 .step button:hover { background: var(--q-lime); color: var(--q-black); }
 .step span { width: 78px; text-align: center; }   /* fixed, so the right arrow does not move between 9 and 10 */
 body.solo #subtitle { display: none; }
+body.solo .legend p:not(.found) { display: none; }   /* one place alone: no spheres, lines or dots left to explain */
 .egg { position: absolute; left: 0; top: 0; width: 48px; height: 48px; padding: 9px; border: 2px solid var(--q-black); border-radius: 50%; background: var(--q-white); color: var(--q-black); cursor: pointer; pointer-events: auto; animation: egg 2.4s ease-in-out infinite; }
 .egg svg { display: block; width: 100%; height: 100%; }
 .egg.done { background: var(--q-lime); }
@@ -132,6 +133,11 @@ body.still .band-track { animation-play-state: paused; }
 /* wall screen (?kiosk): the view and language switches move down into a child's reach */
 .kiosk .controls { position: fixed; right: var(--edge); bottom: var(--foot); }
 .kiosk .panel { bottom: calc(var(--foot) + 66px); }
+@media (max-width: 1300px) {   /* an upright wall screen has no room for three groups in one row: the switches sit above the buttons */
+  .kiosk .controls { left: var(--edge); right: var(--edge); bottom: calc(var(--foot) + 62px); justify-content: center; }
+  .kiosk .legend { bottom: calc(var(--foot) + 128px); }
+  .kiosk .panel { bottom: calc(var(--foot) + 128px); }
+}
 .dock { position: fixed; left: 50%; transform: translateX(-50%); bottom: var(--foot); display: flex; gap: 10px; }
 
 /* place card: Lime head with black type, dark body for the data colours */
@@ -154,10 +160,9 @@ body.busy .dock { display: none; }   /* a card is open: its own buttons lead on 
 .head.has-badge + .body { padding-top: 34px; }
 .head.has-badge + .body h3:first-child { max-width: calc(100% - 156px); margin-top: 0; }
 .panel h3 { font-size: 18px; font-weight: 600; margin: 24px 0 10px; }
-.together { height: 14px; border-radius: 7px; background: rgba(255, 255, 255, .2); overflow: hidden; }
-.together i { display: block; height: 100%; background: var(--q-lime); border-radius: 7px 0 0 7px; min-width: 4px; }
 .note { font: 400 16px/1.4 var(--q-font-copy); margin-top: 8px; }
 .note b { font-weight: 700; }
+.note.lead { margin: 0 0 10px; }
 .mix { display: flex; gap: 2px; height: 14px; border-radius: 7px; overflow: hidden; }
 .mix i { display: block; height: 100%; min-width: 3px; }
 .mix-key { margin-top: 10px; display: grid; gap: 4px; font-size: 16px; }
@@ -179,7 +184,7 @@ body.busy .dock { display: none; }   /* a card is open: its own buttons lead on 
 .tour #tourBody p + p, .tour #tourBody ul { margin-top: 8px; }
 .tour #tourBody ul { background: var(--q-white); border-radius: 12px; padding: 10px 14px; }   /* on White, the Lime and White swatches stay apart */
 .tour #tourBody li { display: flex; align-items: center; gap: 10px; font-family: var(--q-font-intro); font-weight: 500; }
-.tour-nav { display: flex; gap: 10px; margin-top: 16px; flex-shrink: 0; }
+.tour-nav { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; flex-shrink: 0; }
 .tour-nav .quiet { margin-left: auto; }
 
 dialog { max-width: min(640px, calc(100vw - 32px)); max-height: calc(100vh - 32px); background: var(--q-white); color: var(--q-black); border: 0; border-radius: var(--q-radius-card); padding: 26px 28px 0; user-select: text; -webkit-user-select: text; }
