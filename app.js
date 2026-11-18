@@ -237,9 +237,11 @@ function buildMap() {
     flat(d.ring, land, 0);
     group.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(d.ring.map(([x, z]) => new THREE.Vector3(x, 0.05, z))), border));
   }
-  for (const [x, z, r] of city.ground) {   // sites beyond the city limits stand on a patch of their own
-    const g = new THREE.CircleGeometry(r, 64); g.rotateX(-Math.PI / 2);
-    const m = new THREE.Mesh(g, land); m.position.set(x, 0, z); group.add(m);
+  // The municipalities around Vienna that carry a research site: the same ground (the houses fade into it), with fainter borders, so that Vienna stays the figure.
+  const outline = mat(css('--q-purple-60'), 0.4, THREE.LineBasicMaterial);
+  for (const d of wien.around) {
+    flat(d.ring, land, -0.02);
+    group.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(d.ring.map(([x, z]) => new THREE.Vector3(x, 0.03, z))), outline));
   }
   wien.lakes.forEach(ring => flat(ring, water, 0.08));
   for (const r of wien.rivers) {   // a river is a line in the source data: draw it as a ribbon of its real width
@@ -477,7 +479,8 @@ function setView(view) {
 // ── labels ─────────────────────────────────────────────────────────────────────────────────
 const labelBox = $('labels');
 const labels = nodes.map(n => { const el = document.createElement('div'); el.className = 'lbl'; el.textContent = n.id; labelBox.append(el); return { el, w: 0, h: 0 }; });
-const districtLabels = wien.districts.map(d => { const el = document.createElement('div'); el.className = 'lbl district'; el.textContent = d.nr + '.'; labelBox.append(el); return { el, at: new THREE.Vector3(d.at[0], 0, d.at[1]) }; });
+const districtLabels = [...wien.districts.map(d => [d.nr + '.', d.at]), ...wien.around.filter(d => d.at).map(d => [d.name, d.at])]   // districts by number, the surrounding municipalities by name
+  .map(([text, at]) => { const el = document.createElement('div'); el.className = 'lbl district'; el.textContent = text; labelBox.append(el); return { el, w: 0, at: new THREE.Vector3(at[0], 0, at[1]) }; });
 const qSite = new THREE.Vector3(wien.q[0], 1.5, wien.q[1]);   // the Q. on the city map, where the last egg waits
 const screen = nodes.map(() => ({ x: 0, y: 0, r: 0, depth: 0, visible: false }));
 
@@ -565,7 +568,7 @@ function drawLabels() {
     tmpA.copy(d.at).project(camera);
     const on = districtsOn && tmpA.z < 1;
     d.el.classList.toggle('on', on);
-    if (on) d.el.style.transform = `translate(${Math.round((tmpA.x + 1) / 2 * W - 8)}px,${Math.round((1 - tmpA.y) / 2 * H - 9)}px)`;
+    if (on) { d.w ||= d.el.offsetWidth; d.el.style.transform = `translate(${Math.round((tmpA.x + 1) / 2 * W - d.w / 2)}px,${Math.round((1 - tmpA.y) / 2 * H - 9)}px)`; }
   }
 }
 
@@ -1009,7 +1012,7 @@ function frame(now) {
   resetIfIdle(now);
 }
 
-document.fonts.ready.then(() => labels.forEach(l => { l.w = 0; }));   // label widths were measured in the fallback font
+document.fonts.ready.then(() => [...labels, ...districtLabels].forEach(l => { l.w = 0; }));   // label widths were measured in the fallback font
 resize();
 { const [pos, target] = home(); camera.position.copy(pos); controls.target.copy(target); }
 houses.start(); fillDots(siteDots, sites);

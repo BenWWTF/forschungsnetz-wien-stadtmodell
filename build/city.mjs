@@ -103,13 +103,6 @@ for (const s of sites) {
   own[s.addr] = kept.map((b, k) => ((s.grounds && inside(b.c, s.grounds)) || (hit && (b === hit || (hit.geb != null && b.geb === hit.geb) || (hit.bezug && b.bezug === hit.bezug)))) ? k : -1).filter(k => k >= 0);
 }
 
-/* The map's ground ends at the city limits. A site beyond them gets a round patch of ground,
-   wide enough for everything drawn around it. */
-const ground = sites.filter(s => !/,\s*1\d{3}\s+Wien/.test(s.addr)).map(s => {
-  const reach = Math.max(0, ...kept.filter(b => Math.hypot(b.c[0] - s.p[0], b.c[1] - s.p[1]) <= RADIUS || (s.grounds && inside(b.c, s.grounds))).map(b => Math.hypot(b.c[0] - s.p[0], b.c[1] - s.p[1])));
-  return [...s.p, reach + 60 * M].map(v => Math.round(v * 1000) / 1000);
-}).filter(g => g[2] > 60 * M);
-
 const pack = ring => {   // outline as integers: first point, then steps; the closing point is dropped
   const pts = simplify(ring, 0.4 * M).slice(0, -1).map(p => p.map(v => Math.round(v * Q)));
   const out = [];
@@ -124,7 +117,7 @@ const bad = buildings.filter(b => b[3].length < 6).length;
 if (bad) throw new Error(`${bad} outlines collapsed while simplifying`);
 
 const file = path.join(path.dirname(HERE), 'data', 'city.json');
-fs.writeFileSync(file, JSON.stringify({ q: Q, m: M, b: buildings, own, ground }));
+fs.writeFileSync(file, JSON.stringify({ q: Q, m: M, b: buildings, own }));
 const sizes = Object.values(own).map(l => l.length).sort((a, b) => b - a);
 console.log(`${federal.length} of the outlines read come from the federal model (outside Vienna)`);
 console.log(`${buildings.length} buildings around ${sites.length} sites, ${(fs.statSync(file).size / 1e6).toFixed(2)} MB`);
