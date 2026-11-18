@@ -1,7 +1,7 @@
 # Wer forscht mit wem in Wien? Stadtmodell
 
 A 3D model of the collaboration map from the [Vienna Research Radar](https://research.wwtf.at/collaboration.html) (WWTF),
-built as a prototype for an exhibition on science literacy aimed at children and adolescents.
+built for an exhibition on science literacy aimed at children and adolescents.
 
 Live: https://benwwtf.github.io/forschungsnetz-wien-stadtmodell/
 

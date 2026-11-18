@@ -125,7 +125,7 @@ export function aboutHtml(lang, f) {
   const link = (href, text) => `<a href="${href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
   const radar = link('https://research.wwtf.at/collaboration.html', 'Vienna Research Radar');
   if (lang === 'de') return `<h2>Über das Netz</h2>
-    <p>Ein Prototyp für eine Ausstellung über Wissenschaft, gestaltet im Erscheinungsbild des Q., aber kein offizielles Angebot des Q. Der Prototyp zeigt, welche Wiener Forschungsorte gemeinsam veröffentlichen, und will nebenbei üben, wie man eine Datengrafik liest.</p>
+    <p>Ein 3D-Modell für eine Ausstellung über Wissenschaft, gestaltet im Erscheinungsbild des Q., aber kein offizielles Angebot des Q. Es zeigt, welche Wiener Forschungsorte gemeinsam veröffentlichen, und will nebenbei üben, wie man eine Datengrafik liest.</p>
     <h3>Die Daten</h3>
     <p>${f.total} Veröffentlichungen von ${f.since} bis ${f.to} aus dem ${radar} des WWTF, das wöchentlich aus OpenAlex gespeist wird. ${f.joint} davon (${f.share} %) haben Autorinnen und Autoren an zwei oder mehr Wiener Forschungsorten.</p>
     <h3>Die Regeln</h3>
@@ -142,7 +142,7 @@ export function aboutHtml(lang, f) {
     <h3>Quellen</h3>
     <p>Forschungsdaten: ${radar} (WWTF), ${link('https://openalex.org', 'OpenAlex')}. Häuser: Baukörpermodell aus dem ${link('https://www.wien.gv.at/stadtplanung/dreidimensionales-stadtmodell', '3D-Stadtmodell der Stadt Wien')}; Bezirksgrenzen, Gewässer und Wiener Adressen: ${link('https://data.wien.gv.at', 'Stadt Wien, data.wien.gv.at')}. Häuser außerhalb Wiens: ${link('https://www.bev.gv.at/Services/Produkte/Digitales-Landschaftsmodell/Bauwerke.html', 'Digitales Landschaftsmodell, Bauwerke')} des BEV (alle CC BY 4.0). Adressen und Campus-Umrisse außerhalb Wiens: ${link('https://www.openstreetmap.org/copyright', '© OpenStreetMap-Mitwirkende')}.</p>`;
   return `<h2>About the network</h2>
-    <p>A prototype for an exhibition about science, designed in the look of the Q. but not an official product of the Q. The prototype shows which research places in Vienna publish together, and it practises how to read a data graphic along the way.</p>
+    <p>A 3D model for an exhibition about science, designed in the look of the Q. but not an official product of the Q. It shows which research places in Vienna publish together, and it practises how to read a data graphic along the way.</p>
     <h3>The data</h3>
     <p>${f.total} publications from ${f.since} to ${f.to}, taken from WWTF's ${radar}, which is fed weekly from OpenAlex. ${f.joint} of them (${f.share} %) have authors at two or more research places in Vienna.</p>
     <h3>The rules</h3>
