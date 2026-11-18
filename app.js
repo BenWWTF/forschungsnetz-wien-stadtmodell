@@ -99,6 +99,27 @@ function softDot() {   // round, soft-edged sprite for the travelling lights
 const glow = softDot();
 
 
+/* Vienna is not alone: pale spheres around the network stand for research everywhere else. They
+   carry no data, cannot be tapped, and make way where the camera comes close. */
+const seeded = k => { const x = Math.sin(k * 127.1) * 43758.5453; return x - Math.floor(x); };   // repeatable pseudo-random 0…1
+const beyond = Array.from({ length: 110 }, (_, k) => ({
+  at: new THREE.Vector3().setFromSphericalCoords(85 + 125 * seeded(k), Math.acos(2 * seeded(k + 0.3) - 1), 2 * Math.PI * seeded(k + 0.6)),
+  r: 0.7 + 2.6 * seeded(k + 0.9) ** 3 }));   // most of them small
+const beyondMesh = new THREE.InstancedMesh(new THREE.SphereGeometry(1, 16, 12), new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.6, transparent: true, depthWrite: false }), beyond.length);
+beyondMesh.frustumCulled = false; beyondMesh.renderOrder = 1;
+scene.add(beyondMesh);
+function placeBeyond() {
+  beyondMesh.visible = state.mix < 0.99;
+  if (!beyondMesh.visible) return;
+  beyondMesh.material.opacity = 0.13 * (1 - state.mix);
+  beyond.forEach((g, k) => {
+    dummy.position.copy(g.at); dummy.quaternion.identity();
+    dummy.scale.setScalar(g.r * THREE.MathUtils.smoothstep(camera.position.distanceTo(g.at), 45, 95));
+    dummy.updateMatrix(); beyondMesh.setMatrixAt(k, dummy.matrix);
+  });
+  beyondMesh.instanceMatrix.needsUpdate = true;
+}
+
 /* Small lights that travel along the lines, in both directions. */
 const flecks = [];
 edges.forEach((e, k) => { const count = 1 + Math.round(3 * strength(e)); for (let j = 0; j < count; j++) flecks.push({ edge: k, u0: (j + (k * 0.37) % 1) / count, dir: (j + k) % 2 ? 1 : -1 }); });
@@ -1032,6 +1053,7 @@ function frame(now) {
   controls.update();
   if (!flight && !tmpB.equals(controls.target)) keepOnMap();   // pushed or pinched
   camera.updateMatrixWorld();
+  placeBeyond();
   renderer.render(scene, camera);
   project();
   drawLabels();
