@@ -119,7 +119,7 @@ body.still .egg { animation: none; }
 .egg-card .all { font: 600 17px var(--q-font-intro); }
 .egg-row { background: var(--q-lime); color: var(--q-black); grid-template-columns: 1fr; font-weight: 600; }
 .legend p.found { display: flex; margin-top: 8px; }
-.legend p.found[hidden] { display: none; }
+.legend p[hidden] { display: none; }
 .short { display: none; }
 body.still .band-track { animation-play-state: paused; }
 #homeBtn { display: inline-flex; align-items: center; gap: 8px; }

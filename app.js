@@ -485,6 +485,7 @@ function setView(view) {
   if (view === state.view) return;
   state.view = view;
   $('viewNet').setAttribute('aria-pressed', view === 'net'); $('viewCity').setAttribute('aria-pressed', view === 'city');
+  $('keySite').hidden = view !== 'city';   // the legend explains the dots only where there are dots
   controls.enablePan = controls.zoomToCursor = view === 'city';   // the map can be pushed with two fingers, and a pinch zooms where the fingers are
   camera.near = view === 'city' ? 0.1 : 1; camera.updateProjectionMatrix();
   mixing = { from: state.mix, to: view === 'city' ? 1 : 0, start: performance.now(), ms: calm ? 1 : 1600 };
