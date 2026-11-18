@@ -4,6 +4,7 @@
    Source: the Baukörpermodell of the City of Vienna (layer FMZKBKMOGD, CC BY 4.0), the part of
    the city's 3D model that describes each building by its outline and the height of its top.
    Run build/fetch-buildings.py first; it downloads the tiles this script reads.
+   Sites outside Vienna get their buildings from the BEV's block model of Austria (CC BY 4.0).
 
    The whole city would be several hundred thousand prisms, too many for a phone. So the model
    is drawn only within RADIUS of a research site and fades out towards the edge. */
@@ -26,7 +27,7 @@ const sites = [];   // every located site, once per address
 const coords = read('site-coords.json');
 for (const inst of Object.values(read('sites.json'))) for (const s of inst.sites) {
   const c = coords[s.addr];
-  if (c && !sites.some(x => x.addr === s.addr)) sites.push({ addr: s.addr, p: project(c.lat, c.lon), house: s.house !== false });   // house: false marks a site whose point is not its building
+  if (c && !sites.some(x => x.addr === s.addr)) sites.push({ addr: s.addr, p: project(c.lat, c.lon), house: s.house !== false, grounds: c.grounds?.map(([lon, lat]) => project(lat, lon)) });   // house: false marks a site whose point is not its building
 }
 
 /* Read the tiles. A building on a tile border comes twice; FMZK_ID tells. */
@@ -43,6 +44,14 @@ for (const [ix, iy] of read('cache/bkm-tiles.json')) {
     const polys = f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates;
     for (const rings of polys) raw.push({ rings: rings.map(r => r.map(([lon, lat]) => project(lat, lon))), height, base, geb: a.BW_GEB_ID, bezug: a.BEZUG });
   }
+}
+
+/* Outside Vienna the city's model ends. There the prisms come from the federal block model
+   (fetch-buildings-bev.py): one outline per building and the median height of its roof. */
+const federal = fs.existsSync(path.join(HERE, 'cache/bev-buildings.json')) ? read('cache/bev-buildings.json').buildings : [];
+for (const b of federal) {
+  if (b.height == null || b.height < MIN_HEIGHT) continue;
+  for (const rings of b.polygons) raw.push({ rings: rings.map(r => r.map(([lon, lat]) => project(lat, lon))), height: b.height, base: 0, geb: 'bev' + b.id, bezug: null });
 }
 
 const area = ring => { let s = 0; for (let i = 0; i < ring.length - 1; i++) s += ring[i][0] * ring[i + 1][1] - ring[i + 1][0] * ring[i][1]; return Math.abs(s) / 2; };
@@ -71,7 +80,7 @@ for (const b of raw) {
   if (area(b.rings[0]) < MIN_AREA) continue;
   const c = centre(b.rings[0]);
   let d = Infinity;
-  for (const s of sites) d = Math.min(d, Math.hypot(c[0] - s.p[0], c[1] - s.p[1]));
+  for (const s of sites) d = Math.min(d, s.grounds && inside(c, s.grounds) ? 0 : Math.hypot(c[0] - s.p[0], c[1] - s.p[1]));   // a campus is drawn whole
   if (d > RADIUS) continue;
   b.c = c;
   b.fade = Math.max(1, Math.round(9 * Math.min(1, (1 - d / RADIUS) / (1 - SOLID))));   // 9 = full colour … 1 = almost ground
@@ -79,7 +88,8 @@ for (const b of raw) {
 }
 
 /* Which buildings belong to a site: the one its address point stands in (or next to), and every
-   other part the city files under the same building number or the same address code. */
+   other part the city files under the same building number or the same address code. Where
+   OpenStreetMap maps a site outside Vienna as grounds, every building on them belongs to it. */
 const own = {};
 let unmatched = 0;
 for (const s of sites) {
@@ -89,9 +99,16 @@ for (const s of sites) {
     let best = NEAR;
     for (const b of kept) { if (Math.hypot(b.c[0] - s.p[0], b.c[1] - s.p[1]) > 1) continue; const d = toRing(s.p, b.rings[0]); if (d < best) { best = d; hit = b; } }
   }
-  if (!hit) { unmatched++; continue; }
-  own[s.addr] = kept.map((b, k) => (b === hit || (hit.geb != null && b.geb === hit.geb) || (hit.bezug && b.bezug === hit.bezug)) ? k : -1).filter(k => k >= 0);
+  if (!hit && !s.grounds) { unmatched++; continue; }
+  own[s.addr] = kept.map((b, k) => ((s.grounds && inside(b.c, s.grounds)) || (hit && (b === hit || (hit.geb != null && b.geb === hit.geb) || (hit.bezug && b.bezug === hit.bezug)))) ? k : -1).filter(k => k >= 0);
 }
+
+/* The map's ground ends at the city limits. A site beyond them gets a round patch of ground,
+   wide enough for everything drawn around it. */
+const ground = sites.filter(s => !/,\s*1\d{3}\s+Wien/.test(s.addr)).map(s => {
+  const reach = Math.max(0, ...kept.filter(b => Math.hypot(b.c[0] - s.p[0], b.c[1] - s.p[1]) <= RADIUS || (s.grounds && inside(b.c, s.grounds))).map(b => Math.hypot(b.c[0] - s.p[0], b.c[1] - s.p[1])));
+  return [...s.p, reach + 60 * M].map(v => Math.round(v * 1000) / 1000);
+}).filter(g => g[2] > 60 * M);
 
 const pack = ring => {   // outline as integers: first point, then steps; the closing point is dropped
   const pts = simplify(ring, 0.4 * M).slice(0, -1).map(p => p.map(v => Math.round(v * Q)));
@@ -107,8 +124,9 @@ const bad = buildings.filter(b => b[3].length < 6).length;
 if (bad) throw new Error(`${bad} outlines collapsed while simplifying`);
 
 const file = path.join(path.dirname(HERE), 'data', 'city.json');
-fs.writeFileSync(file, JSON.stringify({ q: Q, m: M, b: buildings, own }));
+fs.writeFileSync(file, JSON.stringify({ q: Q, m: M, b: buildings, own, ground }));
 const sizes = Object.values(own).map(l => l.length).sort((a, b) => b - a);
+console.log(`${federal.length} of the outlines read come from the federal model (outside Vienna)`);
 console.log(`${buildings.length} buildings around ${sites.length} sites, ${(fs.statSync(file).size / 1e6).toFixed(2)} MB`);
 console.log(`${Object.keys(own).length} sites stand in a building of the model, ${unmatched} do not (outside Vienna or open ground); largest group ${sizes[0]} parts, median ${sizes[sizes.length >> 1]}`);
 if (absent) console.warn(`INCOMPLETE: ${absent} tiles are not downloaded yet. Rerun build/fetch-buildings.py, then this script.`);

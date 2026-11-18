@@ -237,6 +237,10 @@ function buildMap() {
     flat(d.ring, land, 0);
     group.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(d.ring.map(([x, z]) => new THREE.Vector3(x, 0.05, z))), border));
   }
+  for (const [x, z, r] of city.ground) {   // sites beyond the city limits stand on a patch of their own
+    const g = new THREE.CircleGeometry(r, 64); g.rotateX(-Math.PI / 2);
+    const m = new THREE.Mesh(g, land); m.position.set(x, 0, z); group.add(m);
+  }
   wien.lakes.forEach(ring => flat(ring, water, 0.08));
   for (const r of wien.rivers) {   // a river is a line in the source data: draw it as a ribbon of its real width
     const pts = r.line, pos = [], idx = [];
@@ -638,10 +642,13 @@ function renderCrumbs() {
   el.hidden = !on; document.body.classList.toggle('solo', on);
   if (!on) return;
   const n = nodes[state.selected], list = n.placed, site = state.site === null ? null : list[state.site];
+  // The arrows come before the site's name: names differ in length, and the arrows must stay under the finger while a visitor clicks through.
+  const held = el.contains(document.activeElement) ? document.activeElement.dataset.go : null;
   el.innerHTML = `<button type="button" class="crumb" data-go="city">${t('crumbCity')}</button><span aria-hidden="true">›</span>
     <button type="button" class="crumb" data-go="place"${site ? '' : ' aria-current="true"'}>${esc(n.id)}</button>
-    ${site ? `<span aria-hidden="true">›</span><b class="crumb" aria-current="true">${esc(site.short)}</b>` : ''}
-    ${list.length > 1 ? `<span class="step"><button type="button" data-go="prev" aria-label="${t('sitePrev')}">‹</button><span>${fill(t('siteCount'), { i: site ? state.site + 1 : '·', n: list.length })}</span><button type="button" data-go="next" aria-label="${t('siteNext')}">›</button></span>` : ''}`;
+    ${list.length > 1 ? `<span class="step"><button type="button" data-go="prev" aria-label="${t('sitePrev')}">‹</button><span>${fill(t('siteCount'), { i: site ? state.site + 1 : '·', n: list.length })}</span><button type="button" data-go="next" aria-label="${t('siteNext')}">›</button></span>` : ''}
+    ${site ? `<b class="crumb" aria-current="true">${esc(site.short)}</b>` : ''}`;
+  if (held) el.querySelector(`[data-go="${held}"]`)?.focus();   // rebuilding the row must not take the keyboard away from the arrow
   el.querySelectorAll('[data-go]').forEach(b => { b.onclick = () => {
     const go = b.dataset.go, at = state.site;
     if (go === 'city') select(null);

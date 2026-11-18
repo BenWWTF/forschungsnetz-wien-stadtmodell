@@ -100,10 +100,10 @@ h1 { font-size: clamp(26px, 3.6vw, 48px); line-height: 1.02; }
 .crumb { min-height: 44px; max-width: min(46vw, 360px); padding: 0 16px; border: 2px solid var(--q-white); border-radius: var(--q-radius-pill); background: var(--q-black); color: var(--q-white); display: inline-flex; align-items: center; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; cursor: pointer; }
 b.crumb { display: inline-block; line-height: 40px; cursor: default; }
 .crumb[aria-current] { background: var(--q-lime); border-color: var(--q-lime); color: var(--q-black); }
-.step { display: inline-flex; align-items: center; margin-left: 6px; border: 2px solid var(--q-white); border-radius: var(--q-radius-pill); background: var(--q-black); font-variant-numeric: tabular-nums; }
+.step { display: inline-flex; align-items: center; margin: 0 6px; flex-shrink: 0; border: 2px solid var(--q-white); border-radius: var(--q-radius-pill); background: var(--q-black); font-variant-numeric: tabular-nums; }
 .step button { width: 44px; height: 44px; border: 0; border-radius: 50%; background: none; font-size: 24px; line-height: 1; cursor: pointer; }
 .step button:hover { background: var(--q-lime); color: var(--q-black); }
-.step span { min-width: 62px; text-align: center; }
+.step span { width: 78px; text-align: center; }   /* fixed, so the right arrow does not move between 9 and 10 */
 body.solo #subtitle { display: none; }
 .egg { position: absolute; left: 0; top: 0; width: 48px; height: 48px; padding: 9px; border: 2px solid var(--q-black); border-radius: 50%; background: var(--q-white); color: var(--q-black); cursor: pointer; pointer-events: auto; animation: egg 2.4s ease-in-out infinite; }
 .egg svg { display: block; width: 100%; height: 100%; }

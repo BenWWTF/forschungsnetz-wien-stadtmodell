@@ -75,10 +75,19 @@ building its outline and the height of its top above ground. `city.mjs` keeps wh
 simplifies the outlines to 0.4 m and assigns to each site the building its address point stands in, plus all
 parts the city files under the same building number or address code. No roof shapes, no terrain.
 
+Outside Vienna the city's model ends. For sites there (Klosterneuburg, Laxenburg, Mödling, Groß-Enzersdorf) the
+prisms come from the BEV's block model of all buildings in Austria (Digitales Landschaftsmodell, Bauwerke): one
+outline per building and the median height of its roof. `build/fetch-buildings-bev.py` explains the one-off
+download (2.6 GB, not committed) and writes `build/cache/bev-buildings.json`, which `city.mjs` picks up. Where
+OpenStreetMap maps such a site as grounds and not as one building (the ISTA campus), `geocode-sites.py` keeps the
+outline, and every building on it is drawn and belongs to the site. Each of these sites stands on a round patch
+of ground, because the district map stops at the city limits.
+
 After changing `sites.json`, run all four steps. The daily Action only needs the committed `sites.json` and
 `site-coords.json`.
 
 ## Sources
 
 Research data: Vienna Research Radar (WWTF), OpenAlex. Buildings (Baukörpermodell of the 3D city model), district borders, waters and Vienna addresses: Stadt Wien,
-data.wien.gv.at (CC BY 4.0). Addresses outside Vienna geocoded with Nominatim, © OpenStreetMap contributors. three.js is MIT licensed.
+data.wien.gv.at (CC BY 4.0). Buildings outside Vienna: Digitales Landschaftsmodell, Bauwerke, BEV (CC BY 4.0).
+Addresses and campus outlines outside Vienna: Nominatim, © OpenStreetMap contributors (ODbL). three.js is MIT licensed.

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Geocode every address in build/sites.json. Vienna addresses go to the City of Vienna's own
 address service, everything else to Nominatim. Results are kept in build/site-coords.json, keyed
-by address, so a rerun only looks up what is new. Addresses that fail or land in another
+by address, so a rerun only looks up what is new. Where OpenStreetMap maps an address outside
+Vienna as grounds (a campus) and not as a single building, the outline is kept as well. Addresses that fail or land in another
 postcode are listed at the end and must be fixed by hand in sites.json."""
 import json, pathlib, re, subprocess, time, urllib.parse
 
@@ -25,9 +26,16 @@ def vienna(addr):
 
 
 def nominatim(addr):
-    hits = get("https://nominatim.openstreetmap.org/search?" + urllib.parse.urlencode({"q": addr, "format": "json", "limit": 1, "countrycodes": "at"}))
+    hits = get("https://nominatim.openstreetmap.org/search?" + urllib.parse.urlencode({"q": addr, "format": "json", "limit": 1, "countrycodes": "at", "polygon_geojson": 1}))
     time.sleep(1.1)
-    return {"lat": float(hits[0]["lat"]), "lon": float(hits[0]["lon"]), "by": "nominatim", "found": hits[0]["display_name"]} if hits else None
+    if not hits:
+        return None
+    hit = {"lat": float(hits[0]["lat"]), "lon": float(hits[0]["lon"]), "by": "nominatim", "found": hits[0]["display_name"]}
+    shape = hits[0].get("geojson", {})
+    if hits[0].get("class") != "building" and shape.get("type") == "Polygon":   # mapped as grounds, e.g. a campus: every house on them belongs to the site
+        hit["grounds"] = [[round(x, 6), round(y, 6)] for x, y in shape["coordinates"][0]]
+        hit["osm"] = f'{hits[0]["osm_type"]}/{hits[0]["osm_id"]} ({hits[0]["class"]}={hits[0]["type"]})'
+    return hit
 
 
 coords = json.loads(OUT.read_text()) if OUT.exists() else {}

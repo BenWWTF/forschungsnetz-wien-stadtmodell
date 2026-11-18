@@ -545,12 +545,6 @@
   "by": "wien",
   "found": "Seestadtstraße 27"
  },
- "Schlossplatz 1, 2361 Laxenburg": {
-  "lat": 48.0677839,
-  "lon": 16.3576303,
-  "by": "nominatim",
-  "found": "Schloss Laxenburg Blauer Hof, 1, Schlossplatz, Katastralgemeinde Laxenburg, Laxenburg, Bezirk Mödling, Niederösterreich, 2361, Österreich"
- },
  "Gregor-Mendel-Straße 33, 1180 Wien": {
   "lat": 48.236563927930106,
   "lon": 16.337549738630972,
@@ -629,12 +623,6 @@
   "by": "wien",
   "found": "Knödelhüttenstraße 37 Seminargebäude"
  },
- "Schloßhofer Straße 31, 2301 Groß-Enzersdorf": {
-  "lat": 48.1992779,
-  "lon": 16.5616791,
-  "by": "nominatim",
-  "found": "BOKU Wien, Versuchsgarten Groß-Enzersdorf, 31, Schloßhofer Straße, Katastralgemeinde Großenzersdorf, Neu-Oberhausen, Groß-Enzersdorf, Bezirk Gänserndorf, Niederösterreich, 2301, Österreich"
- },
  "Konrad-Lorenz-Straße 24, 3430 Tulln an der Donau": {
   "lat": 48.3204364,
   "lon": 16.0691107,
@@ -676,12 +664,6 @@
   "lon": 16.403119339753896,
   "by": "wien",
   "found": "Helmut-Qualtinger-Gasse 2"
- },
- "Am Campus 1, 3400 Klosterneuburg": {
-  "lat": 48.3114581,
-  "lon": 16.2589512,
-  "by": "nominatim",
-  "found": "ISTA (Institute of Science and Technology Austria), 1, Am Campus, Katastralgemeinde Gugging, Maria Gugging, Klosterneuburg, Bezirk Tulln, Niederösterreich, 3400, Österreich"
  },
  "Giefinggasse 4, 1210 Wien": {
   "lat": 48.26921463097489,
@@ -863,12 +845,6 @@
   "by": "wien",
   "found": "Possingergasse 38"
  },
- "Robert-Koch-Gasse 17, 2340 Mödling": {
-  "lat": 48.0783754,
-  "lon": 16.3050516,
-  "by": "nominatim",
-  "found": "Institut für veterinärmedizinische Untersuchungen Mödling, 17, Robert-Koch-Gasse, Schöffelstadt, Katastralgemeinde Mödling, Mödling, Bezirk Mödling, Niederösterreich, 2340, Österreich"
- },
  "Gutshofstraße 12, 2286 Fuchsenbigl": {
   "lat": 48.2018241,
   "lon": 16.7470513,
@@ -958,12 +934,6 @@
   "lon": 16.381999934525126,
   "by": "wien",
   "found": "Johannes-von-Gott-Platz 1 Krankenhaus"
- },
- "Martinstraße 12, 3400 Klosterneuburg": {
-  "lat": 48.3109243,
-  "lon": 16.323854,
-  "by": "nominatim",
-  "found": "12, Martinstraße, Katastralgemeinde Klosterneuburg, Klosterneuburg, Bezirk Tulln, Niederösterreich, 3400, Österreich"
  },
  "Am Kahlenberg 1, 1190 Wien": {
   "lat": 48.27477958872078,
@@ -1294,5 +1264,404 @@
   "lon": 16.40623201,
   "by": "wien, university layer",
   "found": "2., Welthandelsplatz 1 Obj. E A"
+ },
+ "Schlossplatz 1, 2361 Laxenburg": {
+  "lat": 48.0677839,
+  "lon": 16.3576303,
+  "by": "nominatim",
+  "found": "Schloss Laxenburg Blauer Hof, 1, Schlossplatz, Katastralgemeinde Laxenburg, Laxenburg, Bezirk Mödling, Niederösterreich, 2361, Österreich"
+ },
+ "Schloßhofer Straße 31, 2301 Groß-Enzersdorf": {
+  "lat": 48.1992779,
+  "lon": 16.5616791,
+  "by": "nominatim",
+  "found": "BOKU Wien, Versuchsgarten Groß-Enzersdorf, 31, Schloßhofer Straße, Katastralgemeinde Großenzersdorf, Neu-Oberhausen, Groß-Enzersdorf, Bezirk Gänserndorf, Niederösterreich, 2301, Österreich",
+  "grounds": [
+   [
+    16.555524,
+    48.201283
+   ],
+   [
+    16.556695,
+    48.200826
+   ],
+   [
+    16.55613,
+    48.200176
+   ],
+   [
+    16.557551,
+    48.199387
+   ],
+   [
+    16.559553,
+    48.198352
+   ],
+   [
+    16.559478,
+    48.198116
+   ],
+   [
+    16.55985,
+    48.197955
+   ],
+   [
+    16.56096,
+    48.197537
+   ],
+   [
+    16.561359,
+    48.197392
+   ],
+   [
+    16.564321,
+    48.196378
+   ],
+   [
+    16.564416,
+    48.196324
+   ],
+   [
+    16.564484,
+    48.196359
+   ],
+   [
+    16.566727,
+    48.197669
+   ],
+   [
+    16.567605,
+    48.198591
+   ],
+   [
+    16.567165,
+    48.198747
+   ],
+   [
+    16.565908,
+    48.199168
+   ],
+   [
+    16.562866,
+    48.200235
+   ],
+   [
+    16.559307,
+    48.201471
+   ],
+   [
+    16.557971,
+    48.201914
+   ],
+   [
+    16.556817,
+    48.202201
+   ],
+   [
+    16.55629,
+    48.202376
+   ],
+   [
+    16.555524,
+    48.201283
+   ]
+  ],
+  "osm": "way/158414927 (amenity=university)"
+ },
+ "Am Campus 1, 3400 Klosterneuburg": {
+  "lat": 48.3114581,
+  "lon": 16.2589512,
+  "by": "nominatim",
+  "found": "ISTA (Institute of Science and Technology Austria), 1, Am Campus, Katastralgemeinde Gugging, Maria Gugging, Klosterneuburg, Bezirk Tulln, Niederösterreich, 3400, Österreich",
+  "grounds": [
+   [
+    16.256578,
+    48.310507
+   ],
+   [
+    16.256769,
+    48.310244
+   ],
+   [
+    16.25684,
+    48.309953
+   ],
+   [
+    16.256911,
+    48.309771
+   ],
+   [
+    16.257073,
+    48.309539
+   ],
+   [
+    16.257223,
+    48.309377
+   ],
+   [
+    16.257394,
+    48.309234
+   ],
+   [
+    16.257396,
+    48.3092
+   ],
+   [
+    16.2575,
+    48.309126
+   ],
+   [
+    16.257624,
+    48.309007
+   ],
+   [
+    16.257699,
+    48.308935
+   ],
+   [
+    16.257809,
+    48.308882
+   ],
+   [
+    16.25796,
+    48.308778
+   ],
+   [
+    16.258267,
+    48.308666
+   ],
+   [
+    16.258716,
+    48.308503
+   ],
+   [
+    16.259025,
+    48.308525
+   ],
+   [
+    16.259711,
+    48.308629
+   ],
+   [
+    16.260075,
+    48.30871
+   ],
+   [
+    16.260235,
+    48.308751
+   ],
+   [
+    16.260486,
+    48.308909
+   ],
+   [
+    16.261009,
+    48.30961
+   ],
+   [
+    16.260557,
+    48.309854
+   ],
+   [
+    16.260427,
+    48.309891
+   ],
+   [
+    16.260137,
+    48.309992
+   ],
+   [
+    16.259923,
+    48.310203
+   ],
+   [
+    16.259844,
+    48.310519
+   ],
+   [
+    16.259798,
+    48.31054
+   ],
+   [
+    16.259747,
+    48.310511
+   ],
+   [
+    16.25952,
+    48.310495
+   ],
+   [
+    16.259468,
+    48.311129
+   ],
+   [
+    16.259606,
+    48.311331
+   ],
+   [
+    16.259909,
+    48.311612
+   ],
+   [
+    16.260305,
+    48.312077
+   ],
+   [
+    16.260604,
+    48.312349
+   ],
+   [
+    16.260642,
+    48.312516
+   ],
+   [
+    16.260958,
+    48.312632
+   ],
+   [
+    16.261061,
+    48.312746
+   ],
+   [
+    16.260963,
+    48.312967
+   ],
+   [
+    16.261066,
+    48.313256
+   ],
+   [
+    16.261256,
+    48.313517
+   ],
+   [
+    16.261696,
+    48.314122
+   ],
+   [
+    16.26182,
+    48.314255
+   ],
+   [
+    16.261626,
+    48.314326
+   ],
+   [
+    16.261081,
+    48.313865
+   ],
+   [
+    16.260804,
+    48.313605
+   ],
+   [
+    16.259455,
+    48.313856
+   ],
+   [
+    16.259291,
+    48.31385
+   ],
+   [
+    16.259022,
+    48.313582
+   ],
+   [
+    16.258979,
+    48.313359
+   ],
+   [
+    16.258574,
+    48.312806
+   ],
+   [
+    16.258505,
+    48.31261
+   ],
+   [
+    16.25828,
+    48.311974
+   ],
+   [
+    16.258255,
+    48.311585
+   ],
+   [
+    16.257886,
+    48.311094
+   ],
+   [
+    16.257677,
+    48.310853
+   ],
+   [
+    16.257704,
+    48.310738
+   ],
+   [
+    16.257817,
+    48.310555
+   ],
+   [
+    16.257631,
+    48.310475
+   ],
+   [
+    16.256803,
+    48.310806
+   ],
+   [
+    16.256578,
+    48.310507
+   ]
+  ],
+  "osm": "way/920075061 (amenity=university)"
+ },
+ "Robert-Koch-Gasse 17, 2340 Mödling": {
+  "lat": 48.0783754,
+  "lon": 16.3050516,
+  "by": "nominatim",
+  "found": "Institut für veterinärmedizinische Untersuchungen Mödling, 17, Robert-Koch-Gasse, Schöffelstadt, Katastralgemeinde Mödling, Mödling, Bezirk Mödling, Niederösterreich, 2340, Österreich",
+  "grounds": [
+   [
+    16.304036,
+    48.076972
+   ],
+   [
+    16.304079,
+    48.076954
+   ],
+   [
+    16.305612,
+    48.077237
+   ],
+   [
+    16.30602,
+    48.079536
+   ],
+   [
+    16.304997,
+    48.079784
+   ],
+   [
+    16.304951,
+    48.079514
+   ],
+   [
+    16.304503,
+    48.079562
+   ],
+   [
+    16.304036,
+    48.076972
+   ]
+  ],
+  "osm": "way/62189821 (office=research)"
+ },
+ "Martinstraße 12, 3400 Klosterneuburg": {
+  "lat": 48.3109243,
+  "lon": 16.323854,
+  "by": "nominatim",
+  "found": "12, Martinstraße, Katastralgemeinde Klosterneuburg, Klosterneuburg, Bezirk Tulln, Niederösterreich, 3400, Österreich"
  }
 }
