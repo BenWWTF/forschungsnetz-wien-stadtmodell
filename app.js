@@ -1003,6 +1003,10 @@ function setStill(on) {
 }
 $('pause').onclick = () => setStill(!still);
 $('aboutOpen').onclick = () => $('about').showModal();
+for (const d of document.querySelectorAll('dialog')) d.addEventListener('click', e => {   // a click on the dimmed page closes the card
+  const r = d.getBoundingClientRect();
+  if (e.target === d && (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom)) d.close();
+});
 addEventListener('keydown', e => { if (e.key === 'Escape' && !$('about').open && !$('egg').open) { if (state.tour !== null) showTour(null); else if (state.selected !== null || state.list) select(null); } });
 
 /* An exhibit must find its way back to the start when a visitor walks off: first a warning
