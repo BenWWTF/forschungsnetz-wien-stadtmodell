@@ -4,7 +4,7 @@ export const STRINGS = {
   de: {
     docTitle: 'Wer forscht mit wem in Wien? Ein Netz in 3D',
     title: 'Wer forscht mit wem in Wien?',
-    subtitle: '{places} Forschungsorte, {pairs} Verbindungen. Tippe auf eine Kugel, oder halte sie fest und zieh daran.',
+    subtitle: 'Tippe auf eine Kugel, oder halte sie fest und zieh daran.',
     viewLabel: 'Ansicht', viewNet: 'Netz', viewCity: 'Stadtplan', legendLabel: 'Legende',
     pause: 'Bewegung anhalten', play: 'Bewegung fortsetzen', home: 'Überblick', tourShort: 'So geht’s',
     hint: 'Tippe auf eine Kugel, oder halte sie fest und zieh', crowd: 'Hier liegen mehrere Orte dicht beisammen. Näher ran!',
@@ -39,7 +39,7 @@ export const STRINGS = {
   en: {
     docTitle: 'Who does research with whom in Vienna? A network in 3D',
     title: 'Who does research with whom in Vienna?',
-    subtitle: '{places} research places, {pairs} connections. Tap a sphere, or hold it and pull.',
+    subtitle: 'Tap a sphere, or hold it and pull.',
     viewLabel: 'View', viewNet: 'Network', viewCity: 'City map', legendLabel: 'Legend',
     pause: 'Pause motion', play: 'Resume motion', home: 'Overview', tourShort: 'How to',
     hint: 'Tap a sphere, or hold it and pull', crowd: 'Several places sit close together here. Moving in!',

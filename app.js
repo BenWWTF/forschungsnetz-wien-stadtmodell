@@ -949,7 +949,7 @@ function applyTexts() {
   document.title = t('docTitle');
   $('lang').textContent = state.lang === 'de' ? 'English' : 'Deutsch'; $('lang').lang = state.lang === 'de' ? 'en' : 'de';
   $('pause').setAttribute('aria-label', t(still ? 'play' : 'pause')); $('pause').textContent = still ? '▶' : '❙❙'; $('pause').setAttribute('aria-pressed', still);
-  $('subtitle').textContent = fill(t('subtitle'), facts());
+  $('subtitle').textContent = t('subtitle');
   $('bandTrack').innerHTML = [0, 1].map(() => t('band').map(item => `<span>${fill(item, facts())}</span>`).join('')).join('');   // twice, for a seamless loop
   $('legendTopics').innerHTML = TOPIC_COLORS.map((c, d) => `<li>${dot(c)}${t('topics')[d]}</li>`).join('');
   showFound();
