@@ -80,9 +80,8 @@ prisms come from the BEV's block model of all buildings in Austria (Digitales La
 outline per building and the median height of its roof. `build/fetch-buildings-bev.py` explains the one-off
 download (2.6 GB, not committed) and writes `build/cache/bev-buildings.json`, which `city.mjs` picks up. Where
 OpenStreetMap maps such a site as grounds and not as one building (the ISTA campus), `geocode-sites.py` keeps the
-outline, and every building on it is drawn and belongs to the site. The ground continues beyond the city limits
-with the municipalities that carry a site and those between them and Vienna (`build/fetch-around.py`, outlines
-from OpenStreetMap; rerun `node build/build.mjs` afterwards to rewrite `data/wien.json`).
+outline, and every building on it is drawn and belongs to the site. The map itself ends at the city limits: a
+site beyond them stands on a pool of ground without an edge, solid under its houses and fading into the dark.
 
 After changing `sites.json`, run all four steps. The daily Action only needs the committed `sites.json` and
 `site-coords.json`.
@@ -91,4 +90,4 @@ After changing `sites.json`, run all four steps. The daily Action only needs the
 
 Research data: Vienna Research Radar (WWTF), OpenAlex. Buildings (Baukörpermodell of the 3D city model), district borders, waters and Vienna addresses: Stadt Wien,
 data.wien.gv.at (CC BY 4.0). Buildings outside Vienna: Digitales Landschaftsmodell, Bauwerke, BEV (CC BY 4.0).
-Addresses, campus outlines and municipal borders outside Vienna: Nominatim, © OpenStreetMap contributors (ODbL). three.js is MIT licensed.
+Addresses and campus outlines outside Vienna: Nominatim, © OpenStreetMap contributors (ODbL). three.js is MIT licensed.

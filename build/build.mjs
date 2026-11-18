@@ -206,12 +206,7 @@ function buildMap() {
     .flatMap(f => parts(f.geometry, 'LineString').map(l => ({ w: WIDTH[f.properties.NAME] * KM, line: line(l, 0.08) })));
   const lakes = geo('STEHENDEGEWOGD').filter(f => f.properties.NAME === 'Alte Donau')
     .flatMap(f => parts(f.geometry, 'Polygon').map(poly => line(poly[0], 0.08)));
-  // the municipalities around Vienna that carry a site, and those between them and the city (fetch-around.py)
-  const around = fs.existsSync(path.join(HERE, 'umland.geojson')) ? geo('umland').flatMap(f => parts(f.geometry, 'Polygon').map((poly, k) => {
-    const ring = line(poly[0], 0.15);
-    return { name: f.properties.name, ring, at: k ? null : centroid(ring) };   // an exclave gets no second name
-  })) : [];
-  return { districts, around, rivers, lakes, q: project(Q_SITE.lat, Q_SITE.lon).map(round2) };
+  return { districts, rivers, lakes, q: project(Q_SITE.lat, Q_SITE.lon).map(round2) };
 }
 
 function centroid(ring) {

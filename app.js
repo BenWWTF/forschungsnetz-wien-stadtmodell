@@ -220,6 +220,13 @@ const siteDots = dots(9, 4);
 const solo = () => state.view === 'city' && state.selected !== null;
 
 
+function softEdge() {   // white in the middle, black at the rim: as an alpha map it lets a disc fade out
+  const c = document.createElement('canvas'); c.width = c.height = 256;
+  const g = c.getContext('2d'), grad = g.createRadialGradient(128, 128, 0, 128, 128, 128);
+  grad.addColorStop(0, '#fff'); grad.addColorStop(0.62, '#fff'); grad.addColorStop(0.8, '#666'); grad.addColorStop(1, '#000');
+  g.fillStyle = grad; g.fillRect(0, 0, 256, 256);
+  return new THREE.CanvasTexture(c);
+}
 function buildMap() {
   const group = new THREE.Group(), fades = [];
   const mat = (color, opacity, Type = THREE.MeshBasicMaterial) => {
@@ -237,11 +244,13 @@ function buildMap() {
     flat(d.ring, land, 0);
     group.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(d.ring.map(([x, z]) => new THREE.Vector3(x, 0.05, z))), border));
   }
-  // The municipalities around Vienna that carry a research site: the same ground (the houses fade into it), with fainter borders, so that Vienna stays the figure.
-  const outline = mat(css('--q-purple-60'), 0.4, THREE.LineBasicMaterial);
-  for (const d of wien.around) {
-    flat(d.ring, land, -0.02);
-    group.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(d.ring.map(([x, z]) => new THREE.Vector3(x, 0.03, z))), outline));
+  /* Sites beyond the city limits: the map does not follow them, so each stands on a pool of the
+     same ground that has no edge. It is solid under the houses and then thins out into the dark. */
+  const pool = mat(land.color, 0.95);
+  pool.alphaMap = softEdge();
+  for (const [x, z, reach] of city.ground) {
+    const g = new THREE.CircleGeometry(reach / 0.62, 64); g.rotateX(-Math.PI / 2);
+    const m = new THREE.Mesh(g, pool); m.position.set(x, -0.01, z); group.add(m);
   }
   wien.lakes.forEach(ring => flat(ring, water, 0.08));
   for (const r of wien.rivers) {   // a river is a line in the source data: draw it as a ribbon of its real width
@@ -479,7 +488,7 @@ function setView(view) {
 // ── labels ─────────────────────────────────────────────────────────────────────────────────
 const labelBox = $('labels');
 const labels = nodes.map(n => { const el = document.createElement('div'); el.className = 'lbl'; el.textContent = n.id; labelBox.append(el); return { el, w: 0, h: 0 }; });
-const districtLabels = [...wien.districts.map(d => [d.nr + '.', d.at]), ...wien.around.filter(d => d.at).map(d => [d.name, d.at])]   // districts by number, the surrounding municipalities by name
+const districtLabels = wien.districts.map(d => [d.nr + '.', d.at])
   .map(([text, at]) => { const el = document.createElement('div'); el.className = 'lbl district'; el.textContent = text; labelBox.append(el); return { el, w: 0, at: new THREE.Vector3(at[0], 0, at[1]) }; });
 const qSite = new THREE.Vector3(wien.q[0], 1.5, wien.q[1]);   // the Q. on the city map, where the last egg waits
 const screen = nodes.map(() => ({ x: 0, y: 0, r: 0, depth: 0, visible: false }));
