@@ -125,11 +125,12 @@ body.still .egg { animation: none; }
 body.still .band-track { animation-play-state: paused; }
 #homeBtn { display: inline-flex; align-items: center; gap: 8px; }
 .hint, .tabs, #menuBtn, .grip, #legendMore { display: none; }
-.menu { margin: 0; inset: auto; border: 0; border-radius: var(--q-radius-card); padding: 8px; background: var(--q-white); color: var(--q-black); box-shadow: 0 8px 32px rgba(0, 0, 0, .7); }
+.menu { margin: 0; inset: auto; border: 2px solid var(--q-white); border-radius: 22px; padding: 0; overflow: hidden; background: var(--q-black); color: var(--q-white); box-shadow: 0 8px 32px #000; }
 .menu:popover-open { display: grid; }
-.menu button { min-height: 52px; padding: 0 16px; border: 0; border-radius: 14px; background: none; color: inherit; font: 600 18px var(--q-font-intro); text-align: left; cursor: pointer; }
-.menu button:active, .menu button:focus-visible { background: var(--q-lime); outline: none; }
-.menu p { margin: 4px 0 0; padding: 12px 16px 8px; border-top: 1.5px solid var(--q-black); font-size: 15px; font-weight: 600; }
+.menu button { min-height: 52px; padding: 0 20px; border: 0; border-radius: 0; background: none; color: inherit; font: 600 16px var(--q-font-intro); text-align: left; cursor: pointer; }
+.menu button + button { box-shadow: 0 -1px rgba(255, 255, 255, .22); }
+.menu button:active, .menu button:focus-visible { background: var(--q-lime); color: var(--q-black); box-shadow: none; outline: none; }
+.menu p { padding: 14px 20px; box-shadow: 0 -1px rgba(255, 255, 255, .22); color: var(--q-lime); font-size: 14px; font-weight: 600; }
 /* messages that must be seen wherever the visitor is, also above the open dialog */
 .toast { position: fixed; inset: auto auto calc(var(--foot) + 66px) 50%; transform: translateX(-50%); margin: 0; max-width: min(520px, calc(100vw - 32px)); border: 0; border-radius: var(--q-radius-card); padding: 12px 20px; background: var(--q-white); color: var(--q-black); font: 600 17px/1.3 var(--q-font-intro); text-align: center; box-shadow: 0 4px 24px rgba(0, 0, 0, .6); }
 .filter { display: block; width: 100%; min-height: 48px; margin-top: 12px; padding: 0 18px; border: 2px solid var(--q-black); border-radius: var(--q-radius-pill); background: var(--q-white); color: var(--q-black); font: 500 17px var(--q-font-intro); }
@@ -219,7 +220,7 @@ dialog form { position: sticky; bottom: 0; margin-top: 12px; padding: 12px 0 18p
   .controls { gap: 8px; margin-left: auto; }
   .controls .btn { width: 44px; min-height: 44px; padding: 0; font-size: 15px; }
   #menuBtn { display: block; font-size: 20px; }
-  .menu { top: calc(max(8px, env(safe-area-inset-top)) + 52px); right: var(--edge); min-width: 240px; }
+  .menu { top: calc(max(8px, env(safe-area-inset-top)) + 52px); right: var(--edge); min-width: 0; }
   .crumbs { flex: 0 0 100%; margin: 0; padding: 0; gap: 6px; }
   .crumb { max-width: 44vw; padding: 0 12px; }
   .step { margin-left: 0; }
