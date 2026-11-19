@@ -125,12 +125,17 @@ body.still .egg { animation: none; }
 body.still .band-track { animation-play-state: paused; }
 #homeBtn { display: inline-flex; align-items: center; gap: 8px; }
 .hint, .tabs, #menuBtn, .grip, #legendMore { display: none; }
-.menu { margin: 0; inset: auto; border: 2px solid var(--q-white); border-radius: 22px; padding: 0; overflow: hidden; background: var(--q-black); color: var(--q-white); box-shadow: 0 8px 32px #000; }
-.menu:popover-open { display: grid; }
-.menu button { min-height: 52px; padding: 0 20px; border: 0; border-radius: 0; background: none; color: inherit; font: 600 16px var(--q-font-intro); text-align: left; cursor: pointer; }
-.menu button + button { box-shadow: 0 -1px rgba(255, 255, 255, .22); }
-.menu button:active, .menu button:focus-visible { background: var(--q-lime); color: var(--q-black); box-shadow: none; outline: none; }
-.menu p { padding: 14px 20px; box-shadow: 0 -1px rgba(255, 255, 255, .22); color: var(--q-lime); font-size: 14px; font-weight: 600; }
+/* phone: a small menu that hangs from its button */
+.menu { margin: 0; inset: auto; border: 1px solid rgba(255, 255, 255, .4); border-radius: 14px; padding: 4px 0; overflow: hidden; background: #111; color: var(--q-white); box-shadow: 0 6px 24px #000; font: 500 15px/1.2 var(--q-font-intro); transform-origin: top right; }
+.menu:popover-open { display: grid; animation: menu .14s ease-out; }
+@keyframes menu { from { opacity: 0; transform: scale(.92); } }
+.menu button { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 16px 0 12px; border: 0; background: none; color: inherit; font: inherit; text-align: left; white-space: nowrap; cursor: pointer; }
+.menu svg { width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.menu .is-still, body.still .menu .is-moving { display: none; }
+body.still .menu .is-still { display: inline; }
+.menu button:active, .menu button:focus-visible { background: var(--q-lime); color: var(--q-black); outline: none; }
+.menu p { margin-top: 4px; padding: 10px 14px 8px; border-top: 1px solid rgba(255, 255, 255, .22); color: var(--q-lime); font-size: 13px; }
+body:has(.menu:popover-open) #menuBtn { background: var(--q-lime); border-color: var(--q-lime); color: var(--q-black); }
 /* messages that must be seen wherever the visitor is, also above the open dialog */
 .toast { position: fixed; inset: auto auto calc(var(--foot) + 66px) 50%; transform: translateX(-50%); margin: 0; max-width: min(520px, calc(100vw - 32px)); border: 0; border-radius: var(--q-radius-card); padding: 12px 20px; background: var(--q-white); color: var(--q-black); font: 600 17px/1.3 var(--q-font-intro); text-align: center; box-shadow: 0 4px 24px rgba(0, 0, 0, .6); }
 .filter { display: block; width: 100%; min-height: 48px; margin-top: 12px; padding: 0 18px; border: 2px solid var(--q-black); border-radius: var(--q-radius-pill); background: var(--q-white); color: var(--q-black); font: 500 17px var(--q-font-intro); }
@@ -220,7 +225,7 @@ dialog form { position: sticky; bottom: 0; margin-top: 12px; padding: 12px 0 18p
   .controls { gap: 8px; margin-left: auto; }
   .controls .btn { width: 44px; min-height: 44px; padding: 0; font-size: 15px; }
   #menuBtn { display: block; font-size: 20px; }
-  .menu { top: calc(max(8px, env(safe-area-inset-top)) + 52px); right: var(--edge); min-width: 0; }
+  .menu { top: calc(max(8px, env(safe-area-inset-top)) + 50px); right: var(--edge); }
   .crumbs { flex: 0 0 100%; margin: 0; padding: 0; gap: 6px; }
   .crumb { max-width: 44vw; padding: 0 12px; }
   .step { margin-left: 0; }
@@ -296,4 +301,4 @@ dialog form { position: sticky; bottom: 0; margin-top: 12px; padding: 12px 0 18p
   .tour-nav { flex-wrap: wrap; }
   body.busy .dock, body.busy .controls, body.busy .legend { display: none; }
 }
-@media (prefers-reduced-motion: reduce) { .lbl, .panel { transition: none; } .band-track, .egg { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .lbl, .panel { transition: none; } .menu:popover-open { animation: none; } .band-track, .egg { animation: none; } }
