@@ -124,7 +124,12 @@ body.still .egg { animation: none; }
 .short { display: none; }
 body.still .band-track { animation-play-state: paused; }
 #homeBtn { display: inline-flex; align-items: center; gap: 8px; }
-.hint { display: none; }
+.hint, .tabs, #menuBtn, .grip, #legendMore { display: none; }
+.menu { margin: 0; inset: auto; border: 0; border-radius: var(--q-radius-card); padding: 8px; background: var(--q-white); color: var(--q-black); box-shadow: 0 8px 32px rgba(0, 0, 0, .7); }
+.menu:popover-open { display: grid; }
+.menu button { min-height: 52px; padding: 0 16px; border: 0; border-radius: 14px; background: none; color: inherit; font: 600 18px var(--q-font-intro); text-align: left; cursor: pointer; }
+.menu button:active, .menu button:focus-visible { background: var(--q-lime); outline: none; }
+.menu p { margin: 4px 0 0; padding: 12px 16px 8px; border-top: 1.5px solid var(--q-black); font-size: 15px; font-weight: 600; }
 /* messages that must be seen wherever the visitor is, also above the open dialog */
 .toast { position: fixed; inset: auto auto calc(var(--foot) + 66px) 50%; transform: translateX(-50%); margin: 0; max-width: min(520px, calc(100vw - 32px)); border: 0; border-radius: var(--q-radius-card); padding: 12px 20px; background: var(--q-white); color: var(--q-black); font: 600 17px/1.3 var(--q-font-intro); text-align: center; box-shadow: 0 4px 24px rgba(0, 0, 0, .6); }
 .filter { display: block; width: 100%; min-height: 48px; margin-top: 12px; padding: 0 18px; border: 2px solid var(--q-black); border-radius: var(--q-radius-pill); background: var(--q-white); color: var(--q-black); font: 500 17px var(--q-font-intro); }
@@ -201,51 +206,65 @@ dialog form { position: sticky; bottom: 0; margin-top: 12px; padding: 12px 0 18p
 
 /* Phone held upright: cards rise from the bottom edge, the bottom row shrinks to one line. */
 @media (max-width: 900px) and (orientation: portrait) {
-  :root { --band: 0px; }
+  /* Phone: built like an app. One slim bar at the top, the three places to go in a row at the thumb,
+     what is needed once in a menu, and the card as a sheet that is pulled up and down. */
+  :root { --band: 0px; --safe: env(safe-area-inset-bottom, 0px); --tabs: calc(62px + var(--safe)); }
   .band { display: none; }
   body { font-size: 17px; }
-  .top { flex-direction: column; flex-wrap: nowrap; gap: 10px; }
-  .crumbs { flex: none; margin: 0; padding: 0; gap: 6px; }
+  .top { flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: max(8px, env(safe-area-inset-top)) var(--edge) 24px; }
+  .title { --mark: 30px; flex: 1; min-width: 0; max-width: none; align-items: center; gap: 12px; }
+  h1 { font-size: clamp(15px, 4.5vw, 22px); line-height: 1.08; text-wrap: balance; }
+  #subtitle, .seg, #pause, .long, .dock .btn:not(#homeBtn) { display: none; }
+  .short { display: inline; }
+  .controls { gap: 8px; margin-left: auto; }
+  .controls .btn { width: 44px; min-height: 44px; padding: 0; font-size: 15px; }
+  #menuBtn { display: block; font-size: 20px; }
+  .menu { top: calc(max(8px, env(safe-area-inset-top)) + 52px); right: var(--edge); min-width: 240px; }
+  .crumbs { flex: 0 0 100%; margin: 0; padding: 0; gap: 6px; }
   .crumb { max-width: 44vw; padding: 0 12px; }
   .step { margin-left: 0; }
   body.solo .title { display: none; }   /* the steps say where we are; the map needs the room */
   .pin.many i { width: 36px; height: 36px; border-width: 4px; }
-  .title { --mark: 32px; max-width: none; }
-  h1 { font-size: clamp(21px, 6vw, 32px); }
-  #subtitle { display: none; }
-  .long { display: none; }
-  .short { display: inline; }
-  .legend { font-size: 13px; left: var(--edge); right: var(--edge); bottom: calc(max(14px, env(safe-area-inset-bottom)) + 62px); }
-  .legend ul { display: grid; grid-template-columns: auto auto; justify-content: center; gap: 4px 18px; }
-  .legend p { display: none; }
-  .legend p.found { display: flex; justify-content: center; margin: 0 0 4px; order: -1; }
-  .dock { left: var(--edge); right: var(--edge); bottom: max(14px, env(safe-area-inset-bottom)); transform: none; justify-content: center; gap: 8px; }
-  .dock .btn { padding: 0 16px; }
-  .controls { flex-wrap: wrap; gap: 8px; }
-  .controls .seg button { padding: 0 13px; }
-  .controls .btn { padding: 0 15px; }
-  .panel { top: auto; left: 0; right: 0; bottom: 0; width: auto; max-height: 50vh; max-height: 50dvh; border-radius: 20px 20px 0 0; border-width: 2px 0 0; }
-  .head { padding: 14px 18px 18px; }
+
+  .tabs { display: grid; grid-template-columns: repeat(3, 1fr); position: fixed; left: 0; right: 0; bottom: 0; z-index: 3; height: var(--tabs); padding: 6px max(8px, env(safe-area-inset-left)) var(--safe); background: var(--q-black); border-top: 1px solid rgba(255, 255, 255, .28); }
+  .tabs button { display: grid; justify-items: center; align-content: center; gap: 3px; border: 0; background: none; color: var(--q-white); font: 600 13px/1 var(--q-font-intro); cursor: pointer; }
+  .tabs svg { box-sizing: content-box; width: 22px; height: 22px; padding: 3px 20px; border-radius: var(--q-radius-pill); fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .tabs button[aria-pressed="true"] svg { background: var(--q-lime); color: var(--q-black); }
+  .tabs button:focus-visible { outline: 3px solid var(--q-white); outline-offset: -3px; border-radius: 12px; }
+
+  /* above the tabs: the colours at the left, the way back at the right */
+  .legend { left: var(--edge); right: auto; bottom: calc(var(--tabs) + 12px); max-width: calc(100vw - 2 * var(--edge) - 60px); display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 14px; border: 1.5px solid rgba(255, 255, 255, .45); border-radius: 22px; background: rgba(0, 0, 0, .78); font-size: 14px; pointer-events: auto; cursor: pointer; }
+  .legend ul { display: flex; gap: 6px; }
+  .legend li span:last-child, .legend p, .legend p.found { display: none; }
+  #legendMore { display: block; border: 0; padding: 0; background: none; color: inherit; font: inherit; font-weight: 600; cursor: pointer; }
+  .legend.open { display: grid; gap: 8px; padding: 12px 14px; }
+  .legend.open ul { display: grid; gap: 6px; }
+  .legend.open li span:last-child { display: inline; }
+  .legend.open #legendMore { display: none; }
+  .dock { left: auto; right: var(--edge); bottom: calc(var(--tabs) + 12px); transform: none; }
+  #homeBtn { display: none; width: 48px; padding: 0; justify-content: center; font-size: 20px; }
+  body.away #homeBtn { display: inline-flex; }
+  body.busy .legend, body.busy .dock { display: none; }
+  .hint { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 12px; position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(var(--tabs) + 68px); width: max-content; max-width: calc(100vw - 32px); padding: 8px 8px 8px 16px; border: 0; border-radius: 26px; background: var(--q-white); color: var(--q-black); font: 600 15px/1.2 var(--q-font-intro); cursor: pointer; }
+  .hint b { padding: 8px 14px; border-radius: var(--q-radius-pill); background: var(--q-lime); font-weight: 600; white-space: nowrap; }
+  body.used .hint, body.busy .hint, body:has(.legend.open) .hint { display: none; }
+  .toast { bottom: calc(var(--tabs) + 70px); }
+
+  .panel { top: auto; left: 0; right: 0; bottom: var(--tabs); width: auto; border-radius: 20px 20px 0 0; border-width: 2px 0 0; transition: height .26s cubic-bezier(.2, .8, .2, 1); overscroll-behavior: contain; }
+  .panel.dragging { transition: none; }
+  .grip { display: block; position: sticky; top: 0; z-index: 1; height: 22px; background: var(--q-lime); cursor: grab; touch-action: none; }
+  .grip::after { content: ""; position: absolute; left: 50%; top: 9px; width: 44px; height: 5px; margin-left: -22px; border-radius: 3px; background: var(--q-black); opacity: .55; }
+  .head { padding: 2px 18px 18px; touch-action: none; }
   .head h2 { font-size: 23px; }
   .badge { width: 132px; height: 132px; bottom: -48px; }
   .badge b { font-size: 30px; }
   .badge span { font-size: 12.5px; }
-  .body { padding: 16px 18px max(48px, env(safe-area-inset-bottom)); }
-  #homeBtn { width: 48px; padding: 0; justify-content: center; }
-  .hint { display: block; position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(max(14px, env(safe-area-inset-bottom)) + 124px); width: max-content; max-width: calc(100vw - 32px); padding: 8px 16px; border-radius: var(--q-radius-pill); background: var(--q-white); color: var(--q-black); font-size: 15px; font-weight: 600; pointer-events: none; }
-  body.used .hint, body.busy .hint { display: none; }
-  .toast { bottom: calc(max(14px, env(safe-area-inset-bottom)) + 70px); }
-  .tour { width: auto; left: 0; right: 0; bottom: 0; transform: none; max-height: 62vh; max-height: 62dvh; border-radius: 20px 20px 0 0; padding: 16px 18px max(14px, env(safe-area-inset-bottom)); }
+  .body { padding: 16px 18px 48px; }
+  .tour { width: auto; left: 0; right: 0; bottom: var(--tabs); transform: none; max-height: 58vh; max-height: 58dvh; border-radius: 20px 20px 0 0; padding: 16px 18px 14px; }
   .tour h2 { font-size: 23px; }
   .tour #tourBody { font-size: 17px; }
   dialog { padding: 20px 20px 0; max-height: calc(100dvh - 24px); }
-  body.busy .legend, body.busy .dock { display: none; }
-  /* upright wall screen: the switches sit in a row of their own above the buttons */
-  .kiosk .controls { left: var(--edge); right: var(--edge); bottom: calc(max(14px, env(safe-area-inset-bottom)) + 60px); justify-content: center; }
-  .kiosk .legend { bottom: calc(max(14px, env(safe-area-inset-bottom)) + 124px); }
-  .kiosk .hint { bottom: calc(max(14px, env(safe-area-inset-bottom)) + 188px); }
-  .kiosk .panel { bottom: 0; }
-  .kiosk.busy .controls { display: none; }
+  .kiosk .controls { position: static; }   /* a wall screen this narrow is a phone: the tabs are in reach already */
 }
 /* Phone on its side: too little height for a bottom card, so cards take the right edge. */
 @media (max-height: 520px) and (orientation: landscape) {
@@ -276,4 +295,4 @@ dialog form { position: sticky; bottom: 0; margin-top: 12px; padding: 12px 0 18p
   .tour-nav { flex-wrap: wrap; }
   body.busy .dock, body.busy .controls, body.busy .legend { display: none; }
 }
-@media (prefers-reduced-motion: reduce) { .lbl { transition: none; } .band-track, .egg { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .lbl, .panel { transition: none; } .band-track, .egg { animation: none; } }

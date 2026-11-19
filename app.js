@@ -415,6 +415,7 @@ function fly(now) {   // the frame's clock may still be a moment behind the clic
   if (k === 1) flight = null;
 }
 const upright = matchMedia('(max-width: 900px) and (orientation: portrait)');   // the phone layout of style.css
+const sheet = { at: 'half', drag: null };   // the phone's card: which of its three heights it rests at
 
 function home() {
   const h = HOME[state.view], pos = new THREE.Vector3(...h.pos), target = new THREE.Vector3(...h.target);
@@ -426,6 +427,13 @@ function home() {
   return [pos.sub(target).multiplyScalar(THREE.MathUtils.clamp((upright.matches ? 0.5 : 0.72) / lens.room, 1, 1.35)).add(target), target];
 }
 function flyHome() { flyTo(...home()); }
+let awayAt = 0;
+function markAway(now) {   // the way back is offered only to those who have left: a few times a second is enough
+  if (now - awayAt < 300 || flight || !upright.matches || document.body.classList.contains('busy')) return;
+  awayAt = now;
+  const [pos, target] = home(), r = pos.distanceTo(target);
+  document.body.classList.toggle('away', controls.target.distanceTo(target) > 0.08 * r || Math.abs(Math.log(camera.position.distanceTo(controls.target) / r)) > 0.15);
+}
 
 /* An open card covers part of the screen. The picture is shifted so that its centre, the point the
    camera turns around and zooms into, sits in the middle of what the card leaves free. Measured from
@@ -506,7 +514,7 @@ function flyFacing(target, dir, dist) { flyTo(target.clone().addScaledVector(dir
 function setView(view) {
   if (view === state.view) return;
   state.view = view;
-  $('viewNet').setAttribute('aria-pressed', view === 'net'); $('viewCity').setAttribute('aria-pressed', view === 'city');
+  for (const [id, v] of [['viewNet', 'net'], ['viewCity', 'city'], ['tabNet', 'net'], ['tabCity', 'city']]) $(id).setAttribute('aria-pressed', view === v);
   $('keySite').hidden = view !== 'city';   // the legend explains the dots only where there are dots
   controls.enablePan = controls.zoomToCursor = view === 'city';   // the map can be pushed with two fingers, and a pinch zooms where the fingers are
   camera.near = view === 'city' ? 0.1 : 1; camera.updateProjectionMatrix();
@@ -539,7 +547,7 @@ eggs.forEach((egg, k) => {
 function placeEggs() {
   const em = state.emph, card = $('panel').hidden ? null : $('panel').getBoundingClientRect();
   const taken = [];   // two eggs at one place take different corners
-  const free = (x, y) => x >= 4 && x <= W - 52 && y >= (upright.matches ? 134 : 100) && y <= H - 64 && !(card && x + 48 > card.left && y + 48 > card.top && x < card.right)
+  const free = (x, y) => x >= 4 && x <= W - 52 && y >= (upright.matches ? 64 : 100) && y <= H - (upright.matches ? 120 : 64) && !(card && x + 48 > card.left && y + 48 > card.top && x < card.right)
     && !taken.some(([tx, ty]) => Math.abs(tx - x) < 56 && Math.abs(ty - y) < 56);
   for (const egg of eggs) {
     let spot = null;
@@ -830,8 +838,7 @@ function toast(text, ms) {
 }
 
 function showFound() {
-  const el = $('foundCount'); el.hidden = !found.size;
-  el.textContent = '★ ' + fill(t('eggCount'), { n: found.size, all: inPlay() });
+  for (const el of [$('foundCount'), $('menuFound')]) { el.hidden = !found.size; el.textContent = '★ ' + fill(t('eggCount'), { n: found.size, all: inPlay() }); }
   eggs.forEach((egg, k) => { egg.el.classList.toggle('done', found.has(k)); egg.el.setAttribute('aria-label', `${t('eggLabel')}: ${egg[state.lang].title}`); });
 }
 function openEgg(k) {
@@ -894,10 +901,11 @@ function renderPanel(takeFocus = false) {
   if (!wasOpen && !panel.hidden) opener = document.activeElement;
   if (wasOpen && panel.hidden && opener?.isConnected && panel.contains(document.activeElement)) opener.focus();
   document.body.classList.toggle('busy', !panel.hidden || state.tour !== null);
-  if (panel.hidden) return;
+  $('tabList').setAttribute('aria-pressed', state.list);
+  if (panel.hidden) { sheet.at = 'half'; return; }
   const close = `<button type="button" class="btn close" id="panelClose" aria-label="${t('close')}">×</button>`;
   if (i === null) {
-    panel.innerHTML = `<div class="head on-light">${close}<h2>${fill(t('listTitle'), facts())}</h2><p class="also">${fill(t('listNote'), facts())}</p>
+    panel.innerHTML = `<div class="grip"></div><div class="head on-light">${close}<h2>${fill(t('listTitle'), facts())}</h2><p class="also">${fill(t('listNote'), facts())}</p>
       <input type="search" id="listFilter" class="filter" placeholder="${t('search')}" aria-label="${t('search')}" autocomplete="off"></div>
       <div class="body"><p class="note" id="noMatch" hidden>${t('noMatch')}</p><div class="rows">${nodes.map(n => `<button type="button" class="row" data-node="${n.i}">${dot(n.color)}<span>${esc(n.id)}</span><span class="n">${num(n.count)}</span></button>`).join('')}</div></div>`;
   } else {
@@ -913,7 +921,7 @@ function renderPanel(takeFocus = false) {
       <div class="rows">${n.links.slice(0, 8).map(l => `<button type="button" class="row" data-node="${l.other}">${dot(nodes[l.other].color)}<span>${esc(nodes[l.other].id)}</span><span class="n">${num(l.n)}</span></button>`).join('')}</div>
       <p class="note">${fill(t('partnersNote'), { n: n.links.length })}</p>`;
     // what is researched comes first; then what the current view is about: partners in the network, sites above the map
-    panel.innerHTML = `<div class="head on-light has-badge">${close}<p class="tag">${t('kind')[n.type]}</p><h2>${esc(name)}</h2>
+    panel.innerHTML = `<div class="grip"></div><div class="head on-light has-badge">${close}<p class="tag">${t('kind')[n.type]}</p><h2>${esc(name)}</h2>
       ${name !== n.id ? `<p class="also">${t('short')} ${esc(n.id)}</p>` : ''}
       ${n.members.length ? `<p class="also">${t('members')} ${esc(n.members.join(', '))}</p>` : ''}
       <p class="badge"><b>${num(n.count)}</b><span>${fill(t('heroUnit'), facts())}</span></p></div>
@@ -922,7 +930,7 @@ function renderPanel(takeFocus = false) {
       <ul class="mix-key">${mix.map(x => `<li>${dot(TOPIC_COLORS[x.d])}<span>${t('topics')[x.d]}</span><span class="n">${Math.round(100 * x.v / sum)} %</span></li>`).join('')}</ul>` : ''}
       ${state.view === 'city' ? sites + partners : partners + sites}</div>`;
   }
-  panel.scrollTop = 0;
+  panel.scrollTop = 0; setSheet();
   if (takeFocus) panel.focus({ preventScroll: true });
   const filter = $('listFilter');
   if (filter) filter.oninput = () => {
@@ -970,11 +978,12 @@ function applyTexts() {
   document.querySelectorAll('[data-t]').forEach(el => { el.textContent = t(el.dataset.t); });
   document.querySelectorAll('[data-t-label]').forEach(el => { el.setAttribute('aria-label', t(el.dataset.tLabel)); });
   document.title = t('docTitle');
-  $('lang').textContent = state.lang === 'de' ? 'English' : 'Deutsch'; $('lang').lang = state.lang === 'de' ? 'en' : 'de';
-  $('pause').setAttribute('aria-label', t(still ? 'play' : 'pause')); $('pause').textContent = still ? '▶' : '❙❙'; $('pause').setAttribute('aria-pressed', still);
+  const other = state.lang === 'de' ? ['English', 'EN', 'en'] : ['Deutsch', 'DE', 'de'];
+  $('lang').innerHTML = `<span class="long">${other[0]}</span><span class="short" aria-hidden="true">${other[1]}</span>`; $('lang').lang = other[2]; $('lang').setAttribute('aria-label', other[0]);
+  showPause();
   $('subtitle').textContent = t('subtitle');
   $('bandTrack').innerHTML = [0, 1].map(() => t('band').map(item => `<span>${fill(item, facts())}</span>`).join('')).join('');   // twice, for a seamless loop
-  $('legendTopics').innerHTML = TOPIC_COLORS.map((c, d) => `<li>${dot(c)}${t('topics')[d]}</li>`).join('');
+  $('legendTopics').innerHTML = TOPIC_COLORS.map((c, d) => `<li>${dot(c)}<span>${t('topics')[d]}</span></li>`).join('');
   showFound();
   $('aboutBody').innerHTML = aboutHtml(state.lang, { ...facts(), to: new Date(graph.to).toLocaleDateString(state.lang === 'de' ? 'de-DE' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) });
   renderPanel(); renderCrumbs();
@@ -999,9 +1008,57 @@ function setStill(on) {
   controls.autoRotate = !on && state.selected === null;
   if (on) { controls.enableDamping = false; controls.update(); controls.enableDamping = true; }   // drop the rotation still in the damping
   fleckCloud.visible = !on; placed = false;
-  $('pause').setAttribute('aria-pressed', on); $('pause').setAttribute('aria-label', t(on ? 'play' : 'pause')); $('pause').textContent = on ? '▶' : '❙❙';
+  showPause();
+}
+function showPause() {
+  $('pause').setAttribute('aria-pressed', still); $('pause').setAttribute('aria-label', t(still ? 'play' : 'pause')); $('pause').textContent = still ? '▶' : '❙❙';
+  $('menuPause').textContent = t(still ? 'play' : 'pause');
 }
 $('pause').onclick = () => setStill(!still);
+
+/* Phone: the three places a visitor goes sit in a row at the thumb, what is needed once sits in a menu. */
+for (const [tab, target] of [['tabNet', 'viewNet'], ['tabCity', 'viewCity'], ['tabList', 'listOpen']]) $(tab).onclick = () => { document.body.classList.add('used'); if (state.tour !== null) showTour(null); $(target).click(); };   // the tabs stay in reach during the tour, and end it
+$('hint').onclick = () => showTour(0);
+for (const b of $('menu').querySelectorAll('button')) b.onclick = () => { $('menu').hidePopover(); $(b.dataset.do).click(); };
+$('legend').onclick = () => { const open = $('legend').classList.toggle('open'); $('legendMore').setAttribute('aria-expanded', open); };
+
+/* Phone: the card is a sheet with three heights. Its grip and its head are dragged; let go, it
+   settles at the nearest height, and below the lowest it closes. */
+const sheetHeights = () => {
+  const p = $('panel'), top = p.getBoundingClientRect().bottom;   // the sheet stands on the tab row
+  return { peek: Math.min(0.4 * H, p.querySelector('.grip').offsetHeight + p.querySelector('.head').offsetHeight + (p.querySelector('.badge') ? 58 : 6)), half: Math.round(0.46 * top), full: top - document.querySelector('.top').getBoundingClientRect().bottom + 14 };
+};
+function setSheet(at = sheet.at) {
+  const p = $('panel');
+  sheet.at = at;
+  p.style.height = upright.matches && !p.hidden ? sheetHeights()[at] + 'px' : '';
+  if (at !== 'full') p.scrollTop = 0;
+  aimLens();
+}
+$('panel').addEventListener('pointerdown', e => {
+  const p = $('panel');
+  if (!upright.matches || !e.target.closest('.grip, .head') || e.target.closest('button, input, a')) return;
+  sheet.drag = { y: e.clientY, h: p.offsetHeight, t: performance.now(), moved: false };
+  p.setPointerCapture(e.pointerId); p.classList.add('dragging');
+});
+$('panel').addEventListener('pointermove', e => {
+  const d = sheet.drag; if (!d) return;
+  if (Math.abs(e.clientY - d.y) > 6) d.moved = true;
+  if (d.moved) $('panel').style.height = THREE.MathUtils.clamp(d.h + d.y - e.clientY, 60, sheetHeights().full) + 'px';
+});
+const dropSheet = e => {
+  const d = sheet.drag, p = $('panel'); if (!d) return;
+  sheet.drag = null; p.classList.remove('dragging');
+  const s = sheetHeights(), order = ['peek', 'half', 'full'];
+  if (!d.moved) { setSheet(order[(order.indexOf(sheet.at) + 1) % 3]); return; }   // a tap on the grip steps through the heights
+  if (p.offsetHeight < 0.6 * s.peek) { p.style.height = ''; select(null); return; }
+  const h = p.offsetHeight + 0.12 * 1000 * (d.y - e.clientY) / Math.max(60, performance.now() - d.t);   // a flick carries on a little
+  setSheet(order.reduce((a, b) => Math.abs(s[b] - h) < Math.abs(s[a] - h) ? b : a));
+};
+$('panel').addEventListener('pointerup', dropSheet);
+$('panel').addEventListener('pointercancel', dropSheet);
+$('panel').addEventListener('transitionend', e => { if (e.target === $('panel')) aimLens(); });
+$('panel').addEventListener('focusin', e => { if (e.target.id === 'listFilter' && upright.matches) setSheet('full'); });   // the keyboard takes the lower half
 $('aboutOpen').onclick = () => $('about').showModal();
 for (const d of document.querySelectorAll('dialog')) d.addEventListener('click', e => {   // a click on the dimmed page closes the card
   const r = d.getBoundingClientRect();
@@ -1032,7 +1089,7 @@ function resize() {
   W = innerWidth; H = innerHeight;
   renderer.setSize(W, H, false);
   camera.fov = W < H ? 58 : 42;   // portrait screens need a wider view to hold the whole network
-  aimLens();
+  setSheet();
   camera.setViewOffset(W, H, -lens.x, -lens.y, W, H);   // sets the aspect and the projection as well
 }
 addEventListener('resize', resize);
@@ -1058,7 +1115,7 @@ function frame(now) {
   controls.update();
   if (!flight && !tmpB.equals(controls.target)) keepOnMap();   // pushed or pinched
   camera.updateMatrixWorld();
-  placeBeyond();
+  placeBeyond(); markAway(now);
   renderer.render(scene, camera);
   project();
   drawLabels();
